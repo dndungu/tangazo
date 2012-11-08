@@ -167,6 +167,8 @@ var tangazo  = {
 		if(!html.length) {
 			subject.uploadElement.val('');
 			subject.writeError('Please select a valid MS Excel file.');
+		}else{
+			subject.clearError();
 		}
 		$('.imports').css({display: 'none'}).prepend(html.join("\n")).fadeIn();
 	},
