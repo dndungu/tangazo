@@ -134,7 +134,9 @@ var tangazo  = {
 		return true;
 	},
 	onLoadStart: function(){},
-	onLoadEnd: function(){},
+	onLoadEnd: function(){
+		tangazo.progressIndicator.html('').width(0);
+	},
 	onProgress: function(){
 		var subject = tangazo;
 		var event = arguments[0];
