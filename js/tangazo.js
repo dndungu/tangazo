@@ -105,6 +105,7 @@ var tangazo  = {
 		alert('Kindly use either firefox, chrome, safari and not Internet Explorer.');
 	},
 	ajaxUpload: function(){
+		var subject = this;
 		var data = new FormData();
 		data.append('do', 'upload');
 		var files = document.getElementById('spendfile').files;
