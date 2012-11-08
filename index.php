@@ -22,8 +22,8 @@
   		<div class="content row">
   			<form class="column grid4of10">
   				<h2>Import Form</h2>
-  				<p>This form updates the Synovate Media Spending Database.</p>
-  				<p>Use this form to upload new files.</p>
+  				<p>Synovate Media Spending Database.</p>
+  				<p>Use this form to upload new data.</p>
   				<label class="errorBox"></label>
   				<label class="infoBox"></label>
   				<label>
@@ -31,7 +31,6 @@
 					<br/>
 					<span class="progress"></span>
   				</label>
-  				<input type="button" name="uploadbutton" value="UPLOAD EXCEL FILE"/>
   			</form>  			
   			<div class="column grid6of10">
   				<h2>Latest Imports</h2>
