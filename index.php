@@ -31,6 +31,7 @@
 					<br/>
 					<span class="progress"></span>
   				</label>
+  				<p><input type="button" id="uploadspendfile" value="UPLOAD"/></p>
   			</form>  			
   			<div class="column grid6of10">
   				<h2>Latest Imports</h2>
