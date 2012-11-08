@@ -121,7 +121,7 @@ var tangazo  = {
 			}
 			if(file.type.trim() != 'application/vnd.ms-excel'){
 				subject.uploadElement.val('');
-				subject.writeError('Please upload Excel files only.');
+				subject.writeError('Please upload Excel files with the preset 15 columns only.');
 				return;
 			}else{
 				subject.clearError();
