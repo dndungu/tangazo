@@ -22,7 +22,7 @@
   		<div class="content row">
   			<form class="column grid4of10">
   				<h2>Import Form</h2>
-  				<br/>
+  				<p>This form updates the Synovate Media Spending Database. Use this form to upload new files.</p>
   				<label class="errorBox"></label>
   				<label class="infoBox"></label>
   				<label>
