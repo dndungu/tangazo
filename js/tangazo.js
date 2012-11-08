@@ -83,14 +83,14 @@ var tangazo  = {
 	},
 	initUploadEvent: function(){
 		var subject = this;
-		$('#spendfile').change(function(){
+		$('#uploadspendfile').mousedown(function(){
 			if(!subject.uploadElement.val()) return;
 			switch(subject.settings.uploader){
 				case 'iframe':
-					subject.iframeUpload(arguments[0]);
+					subject.iframeUpload();
 					break;
 				case 'ajax':
-					subject.ajaxUpload(arguments[0]);
+					subject.ajaxUpload();
 					break;
 			}
 		});
@@ -105,11 +105,10 @@ var tangazo  = {
 		alert('Kindly use either firefox, chrome, safari and not Internet Explorer.');
 	},
 	ajaxUpload: function(){
-		var subject = this;
-		var event = arguments[0];
 		var data = new FormData();
 		data.append('do', 'upload');
-		var files = event.currentTarget.files;
+		var files = document.getElementById('spendfile').files;
+		console.info(files);return;
 		for(i in files){
 			var file = files[i];
 			if(!(file instanceof File)) continue;
