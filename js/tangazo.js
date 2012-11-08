@@ -83,7 +83,7 @@ var tangazo  = {
 	},
 	initUploadEvent: function(){
 		var subject = this;
-		$('#uploadspendfile').mousedown(function(){
+		$('#spendfile').live('change', function(){
 			if(!subject.uploadElement.val()) return;
 			switch(subject.settings.uploader){
 				case 'iframe':
@@ -93,6 +93,9 @@ var tangazo  = {
 					subject.ajaxUpload(arguments[0]);
 					break;
 			}
+		});
+		$('#uploadspendfile').mousedown(function(){
+			$('#spendfile').change();
 		});
 	},
 	initMaxPostSize: function(){
