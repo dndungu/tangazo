@@ -206,7 +206,8 @@ label .label {
 	border-radius:4px;
 	width:0;
 	float:left;
-	display:block;
+	clear:both;
+	display:inline-block;
 	padding:5px 0;
 	background:#70b040;
 	text-align:center;
