@@ -167,11 +167,11 @@ var tangazo  = {
 			html.push('</div>');
 		}
 		if(!html.length) {
-			subject.uploadElement.val('');
 			subject.writeError('Please select a valid MS Excel file.');
 		}else{
 			subject.clearError();
 		}
+		subject.uploadElement.val('');
 		$('.imports').css({display: 'none'}).prepend(html.join("\n")).fadeIn();
 	},
 	clearError: function(){
