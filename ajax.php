@@ -79,7 +79,7 @@ function getLatency(){
 
 function doStoreRecords($xlsfile){
 	$csvfile = str_replace('.xls', '.csv', $xlsfile);
-	$lines = file($csvfile);
+	$csvfile = str_replace('.csvx', '.csv', $csvfile);
 	foreach($lines as $index => $line){
 		$record = explode(",",  $line);
 		if($index < 3 || count($record) < 15) continue;
