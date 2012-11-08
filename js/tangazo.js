@@ -94,9 +94,6 @@ var tangazo  = {
 					break;
 			}
 		});
-		$('#uploadspendfile').mousedown(function(){
-			$('#spendfile').change();
-		});
 	},
 	initMaxPostSize: function(){
 		var subject = this;
