@@ -115,10 +115,14 @@ var tangazo  = {
 			if(file.size > subject.settings.maxPostSize){
 				subject.writeError('Please select a file with less than ' + (subject.settings.maxPostSize/1048576) + 'Mb.');
 				return;
+			}else{
+				subject.clearError();
 			}
 			if(file.type.trim() != 'application/vnd.ms-excel'){
 				subject.writeError('Please upload Excel files only.');
 				return;
+			}else{
+				subject.clearError();
 			}
 			data.append(file.name, file);
 		}
@@ -162,6 +166,9 @@ var tangazo  = {
 			subject.writeError('Please select a valid MS Excel file.');
 		}
 		$('.imports').css({display: 'none'}).prepend(html.join("\n")).fadeIn();
+	},
+	clearError: function(){
+		$('.errorBox').html('').fadeOut();
 	},
 	writeError: function(){
 		this.writeBox($('.errorBox'), arguments[0]);
