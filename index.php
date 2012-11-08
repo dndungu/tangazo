@@ -27,7 +27,7 @@
   				<label class="errorBox"></label>
   				<label class="infoBox"></label>
   				<label>
-					<input type="file" name="spendfile" id="spendfile"/>
+					<input type="file" multiple name="spendfile" id="spendfile"/>
 					<br/>
 					<span class="progress"></span>
   				</label>
