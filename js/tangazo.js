@@ -108,7 +108,6 @@ var tangazo  = {
 		var data = new FormData();
 		data.append('do', 'upload');
 		var files = document.getElementById('spendfile').files;
-		console.info(files);return;
 		for(i in files){
 			var file = files[i];
 			if(!(file instanceof File)) continue;
