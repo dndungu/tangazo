@@ -82,7 +82,7 @@ function doStoreRecords($xlsfile){
 	$lines = file($csvfile);
 	foreach($lines as $index => $line){
 		$record = explode(",",  $line);
-		if($index < 3 || count($record) <> 15) continue;
+		if($index < 3 || count($record) < 15) continue;
 		$companies[$record[1]] = doCompanyQuery($record);
 		$brands[$record[3]] = doBrandQuery($record);
 		$sections[$record[5]] = doSectionQuery($record);
