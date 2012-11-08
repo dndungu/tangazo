@@ -31,6 +31,7 @@
 					<br/>
 					<span class="progress"></span>
   				</label>
+  				<input type="button" name="uploadbutton" value="UPLOAD EXCEL FILE"/>
   			</form>  			
   			<div class="column grid6of10">
   				<h2>Latest Imports</h2>
