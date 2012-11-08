@@ -1,9 +1,5 @@
 <?php
 
-ini_set('log_errors', 1);
-
-ini_set('error_log', "error.log");
-
 date_default_timezone_set('Africa/Nairobi');
 
 ignore_user_abort(true);
