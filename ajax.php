@@ -58,7 +58,7 @@ function doHandleUpload(){
 				throw new Exception('Could not move uploaded file');
 			}
 			$instruction = "unoconv -f csv '{$xlsfile}'";
-			error_log("****************** \n {$instruction} returned: " . shell_exec($instruction));
+			error_log("******************\n{$instruction} : " . shell_exec($instruction). "\n******************");
 			$inserts = doStoreRecords($xlsfile);
 			$results[] = $inserts;
 			$results[0]['source'] = $name;
