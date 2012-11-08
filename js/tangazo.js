@@ -83,7 +83,8 @@ var tangazo  = {
 	},
 	initUploadEvent: function(){
 		var subject = this;
-		subject.uploadElement.live('change', function(){
+		$('#uploadspendfile').mousedown(function(){
+			if(!subject.uploadElement.val()) return;
 			switch(subject.settings.uploader){
 				case 'iframe':
 					subject.iframeUpload(arguments[0]);
