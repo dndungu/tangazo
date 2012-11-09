@@ -66,7 +66,7 @@ function doHandleUpload(){
 			$importID = dbInsertId();
 			$insert = doStoreRecords($xlsfile, $importID);
 			dbQuery(sprintf("UPDATE `import` SET `companies` = %d, `brands` = %d, `sections` = %d, `subSections` = %d, `media` = %d, `campaigns` = %d, `latency` = %d WHERE `ID` = %d", $insert['company'], $insert['brand'], $insert['section'], $insert['subSection'], $insert['media'], $insert['campaign'], getLatency(), $importID));
-			$insert['name'] = $name;
+			$insert['source'] = $name;
 			$insert['creationTime'] = date('r');
 			$results[] = $insert;
 		}
