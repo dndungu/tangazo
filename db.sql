@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Nov 08, 2012 at 07:57 PM
+-- Generation Time: Nov 09, 2012 at 01:12 PM
 -- Server version: 5.5.28-0ubuntu0.12.04.2
 -- PHP Version: 5.4.8-1~precise+1
 
@@ -25,16 +25,16 @@ SET time_zone = "+00:00";
 -- Table structure for table `brand`
 --
 
-DROP TABLE IF EXISTS `brand`;
 CREATE TABLE IF NOT EXISTS `brand` (
   `ID` int(10) NOT NULL AUTO_INCREMENT,
+  `importID` int(10) NOT NULL,
   `code` int(10) NOT NULL,
   `companyCode` int(10) NOT NULL,
   `name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `creationTime` int(10) NOT NULL,
   PRIMARY KEY (`ID`),
   UNIQUE KEY `code` (`code`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=2004 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=19172 ;
 
 -- --------------------------------------------------------
 
@@ -42,9 +42,9 @@ CREATE TABLE IF NOT EXISTS `brand` (
 -- Table structure for table `campaign`
 --
 
-DROP TABLE IF EXISTS `campaign`;
 CREATE TABLE IF NOT EXISTS `campaign` (
   `ID` int(20) NOT NULL AUTO_INCREMENT,
+  `importID` int(10) NOT NULL,
   `campaignCode` int(20) NOT NULL,
   `companyCode` int(10) NOT NULL,
   `brandCode` int(10) NOT NULL,
@@ -63,7 +63,7 @@ CREATE TABLE IF NOT EXISTS `campaign` (
   KEY `mediaCode` (`mediaCode`),
   KEY `subSectionCode` (`subSectionCode`),
   KEY `brandCode` (`brandCode`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=3927 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=78506 ;
 
 -- --------------------------------------------------------
 
@@ -71,15 +71,15 @@ CREATE TABLE IF NOT EXISTS `campaign` (
 -- Table structure for table `company`
 --
 
-DROP TABLE IF EXISTS `company`;
 CREATE TABLE IF NOT EXISTS `company` (
   `ID` int(10) NOT NULL AUTO_INCREMENT,
+  `importID` int(10) NOT NULL,
   `code` int(10) NOT NULL,
   `name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `creationTime` int(10) NOT NULL,
   PRIMARY KEY (`ID`),
   UNIQUE KEY `code` (`code`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=934 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=7288 ;
 
 -- --------------------------------------------------------
 
@@ -87,7 +87,6 @@ CREATE TABLE IF NOT EXISTS `company` (
 -- Table structure for table `import`
 --
 
-DROP TABLE IF EXISTS `import`;
 CREATE TABLE IF NOT EXISTS `import` (
   `ID` int(20) NOT NULL AUTO_INCREMENT,
   `source` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
@@ -100,7 +99,7 @@ CREATE TABLE IF NOT EXISTS `import` (
   `latency` int(20) NOT NULL,
   `creationTime` int(10) NOT NULL,
   PRIMARY KEY (`ID`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=2 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=15 ;
 
 -- --------------------------------------------------------
 
@@ -108,15 +107,15 @@ CREATE TABLE IF NOT EXISTS `import` (
 -- Table structure for table `media`
 --
 
-DROP TABLE IF EXISTS `media`;
 CREATE TABLE IF NOT EXISTS `media` (
   `ID` int(10) NOT NULL AUTO_INCREMENT,
+  `importID` int(10) NOT NULL,
   `code` int(10) NOT NULL,
   `name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `creationTime` int(10) NOT NULL,
   PRIMARY KEY (`ID`),
   UNIQUE KEY `code` (`code`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=92 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=164 ;
 
 -- --------------------------------------------------------
 
@@ -124,15 +123,15 @@ CREATE TABLE IF NOT EXISTS `media` (
 -- Table structure for table `section`
 --
 
-DROP TABLE IF EXISTS `section`;
 CREATE TABLE IF NOT EXISTS `section` (
   `ID` int(10) NOT NULL AUTO_INCREMENT,
+  `importID` int(10) NOT NULL,
   `code` int(10) NOT NULL,
   `name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `creationTime` int(10) NOT NULL,
   PRIMARY KEY (`ID`),
   UNIQUE KEY `code` (`code`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=17 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=21 ;
 
 -- --------------------------------------------------------
 
@@ -140,16 +139,16 @@ CREATE TABLE IF NOT EXISTS `section` (
 -- Table structure for table `subSection`
 --
 
-DROP TABLE IF EXISTS `subSection`;
 CREATE TABLE IF NOT EXISTS `subSection` (
   `ID` int(10) NOT NULL AUTO_INCREMENT,
+  `importID` int(10) NOT NULL,
   `sectionCode` int(10) NOT NULL,
   `code` int(10) NOT NULL,
   `name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `creationTime` int(10) NOT NULL,
   PRIMARY KEY (`ID`),
   UNIQUE KEY `code` (`code`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=158 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=196 ;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

@@ -41,6 +41,11 @@ function dbAffectedRows(){
 	return mysqli_affected_rows($dbConnection);
 }
 
+function dbInsertId(){
+	global $dbConnection;
+	return mysqli_insert_id($dbConnection);
+}
+
 function createJSON($value){
 	return json_encode($value, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES);
 }
