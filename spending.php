@@ -38,8 +38,11 @@
 				<div class="column grid2of10">
 					Media
 				</div>
-				<div class="column grid2of10">
+				<div class="column grid1of10">
 					Section
+				</div>
+				<div class="column grid1of10">
+					Week
 				</div>
 				<div class="column grid1of10">
 					Amount
@@ -50,7 +53,7 @@
 			$page = getInteger('p');
 			$page = $page ? $page : 1;
 			$offset = (($page - 1) * $config['PAGE_SIZE']);
-			$query[] = "SELECT `campaign`.`ID` AS `ID`, `company`.`name` AS `company`, `brand`.`name` AS `brand`, `media`.`name` AS `media`, `section`.`name` AS `section`, `amount` FROM `campaign`";
+			$query[] = "SELECT `campaign`.`ID` AS `ID`, `company`.`name` AS `company`, `brand`.`name` AS `brand`, `media`.`name` AS `media`, `section`.`name` AS `section`, `amount`, `week` FROM `campaign`";
 			$query[] = "LEFT JOIN `company` ON (`campaign`.`companyCode` = `company`.`code`)";
 			$query[] = "LEFT JOIN `brand` ON (`campaign`.`brandCode` = `brand`.`code`)";
 			$query[] = "LEFT JOIN `media` ON (`campaign`.`mediaCode` = `media`.`code`)";
@@ -75,8 +78,11 @@
 					<div class="column grid2of10">
 						<?php print $record['media']?>
 					</div>
-					<div class="column grid2of10">
+					<div class="column grid1of10">
 						<?php print $record['section']?>
+					</div>
+					<div class="column grid1of10">
+						<?php print $record['week']?>
 					</div>
 					<div class="column grid1of10">
 						<?php print $record['amount']?>
