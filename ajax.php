@@ -1,12 +1,16 @@
 <?php
 
+set_time_limit(0);
+
 date_default_timezone_set('Africa/Nairobi');
 
 ignore_user_abort(true);
 
-set_time_limit(0);
-
 global $start;
+
+ini_set('log_errors', 1);
+
+ini_set('error_log', getcwd() . "/logs/error");
 
 $start = microtime(true);
 
