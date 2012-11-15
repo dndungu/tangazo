@@ -119,13 +119,6 @@ var tangazo  = {
 			}else{
 				subject.clearError();
 			}
-			if(file.type.trim() != 'application/vnd.ms-excel' && file.type.trim() != 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'){
-				subject.uploadElement.val('');
-				subject.writeError('Please upload Excel files with the preset 15 columns only.');
-				return;
-			}else{
-				subject.clearError();
-			}
 			data.append(file.name, file);
 		}
 		subject.ajaxObject.open("POST", this.settings.source);
