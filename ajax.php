@@ -77,7 +77,7 @@ function doHandleUpload(){
 			$insert['creationTime'] = date('r');
 			$results[] = $insert;
 		}
-		return json_encode(array('latency' => getLatency(), 'inserts' => $results), JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES);
+		return json_encode(array('latency' => getLatency(), 'inserts' => $results));
 	}catch(Exception $e){
 		throw new Exception($e->getMessage());
 	}
