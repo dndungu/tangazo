@@ -64,7 +64,11 @@ function doHandleUpload(){
 			$instruction = "unoconv -v --server 127.0.0.1 --port 5050 -f csv '{$xlsfile}'";
 			$exec_result = `$instruction`;
 			if(is_null($exec_result)){
-				error_log("\n***********\n$instruction : $exec_result\n**********");
+				$message = "\n***********\nFailure in converting {$xlsfile}.\n**********";
+				error_log($message);
+				throw new Exception($message);
+			}else{
+				error_log("\n***********\nSuccess : $instruction\n**********");
 			}
 			dbQuery(sprintf("INSERT INTO `import` (`source`, `companies`, `brands`, `sections`, `subSections`, `media`, `campaigns`, `latency`, `creationTime`) VALUES ('%s', 0, 0, 0, 0, 0, 0, 0, %d)", $name, time()));
 			$importID = dbInsertId();
