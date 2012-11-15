@@ -62,13 +62,11 @@ function doHandleUpload(){
 				throw new Exception('Could not move uploaded file');
 			}			
 			$instruction = "unoconv -v --server 127.0.0.1 --port 5050 -f csv '{$xlsfile}'";
-			$exec_result = `$instruction`;
-			if(is_null($exec_result)){
-				$message = "\n***********\nFailure in converting {$xlsfile}.\n**********";
-				error_log($message);
-				throw new Exception($message);
-			}else{
-				error_log("\n***********\nSuccess : $instruction\n**********");
+			$exec_result = shell_exec($instruction);
+			error_log("\n***********\n$instruction\n**********");
+			$csvfile = str_replace('.xls', '.csv', str_replace('.xlsx', '.csv', $xlsfile));
+			if(!file_exists($csvfile)){
+				throw new Exception("\nFailed to convert {$xlsfile} to .csv\n");
 			}
 			dbQuery(sprintf("INSERT INTO `import` (`source`, `companies`, `brands`, `sections`, `subSections`, `media`, `campaigns`, `latency`, `creationTime`) VALUES ('%s', 0, 0, 0, 0, 0, 0, 0, %d)", $name, time()));
 			$importID = dbInsertId();
@@ -90,8 +88,7 @@ function getLatency(){
 }
 
 function doStoreRecords($xlsfile, $importID){
-	$csvfile = str_replace('.xlsx', '.csv', $xlsfile);
-	$csvfile = str_replace('.xls', '.csv', $csvfile);
+	$csvfile = str_replace('.xls', '.csv', str_replace('.xlsx', '.csv', $xlsfile));
 	$lines = file($csvfile);
 	foreach($lines as $index => $line){
 		$record = explode(",",  $line);
