@@ -102,7 +102,7 @@ var tangazo  = {
 		});
 	},
 	iframeUpload: function(){
-		alert('Kindly use either firefox, chrome, safari and not Internet Explorer.');
+		alert('To use the uploader, kindly use either firefox, chrome, safari and not Internet Explorer.');
 	},
 	ajaxUpload: function(){
 		var subject = this;
