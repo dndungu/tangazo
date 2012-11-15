@@ -65,7 +65,7 @@ function doHandleUpload(){
 			error_log("\n***********\n$instruction\n**********");
 			$exec_result = shell_exec($instruction);
 			if(is_null($exec_result)){
-				throw new Exception("\n***********\nConverting {$xlsfile} has failed.\n**********");
+				error_log("\n***********\nConverting {$xlsfile} has failed.\n**********");
 			}else{
 				error_log("\n***********\n$exec_result\n**********");
 			}
