@@ -62,12 +62,9 @@ function doHandleUpload(){
 				throw new Exception('Could not move uploaded file');
 			}			
 			$instruction = "unoconv -v -f csv '{$xlsfile}'";
-			error_log("\n***********\n$instruction\n**********");
-			$exec_result = shell_exec($instruction);
+			$exec_result = `$instruction`;
 			if(is_null($exec_result)){
-				error_log("\n***********\nConverting {$xlsfile} has failed.\n**********");
-			}else{
-				error_log("\n***********\n$exec_result\n**********");
+				error_log("\n***********\n$instruction : $exec_result\n**********");
 			}
 			dbQuery(sprintf("INSERT INTO `import` (`source`, `companies`, `brands`, `sections`, `subSections`, `media`, `campaigns`, `latency`, `creationTime`) VALUES ('%s', 0, 0, 0, 0, 0, 0, 0, %d)", $name, time()));
 			$importID = dbInsertId();
