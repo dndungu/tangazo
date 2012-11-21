@@ -39,7 +39,7 @@
   				<div class="column grid10of10 imports">
   					<?php
   						require_once('includes.php');
-  						$imports = dbFetch(dbQuery("SELECT * FROM `import` ORDER BY `ID` DESC LIMIT 0, 5"));
+  						$imports = dbFetch(dbQuery("SELECT * FROM `import` ORDER BY `ID` DESC LIMIT 0, 15"));
   					?>
   					<?php if(!is_null($imports)){?>
   						<?php foreach($imports as $import){?>
