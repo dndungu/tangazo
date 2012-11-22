@@ -1,14 +1,5 @@
 SET time_zone = "+00:00";
 
---
--- Database: `tangazo`
---
-
--- --------------------------------------------------------
-
---
--- Table structure for table `brand`
---
 
 DROP TABLE IF EXISTS `brand`;
 CREATE TABLE IF NOT EXISTS `brand` (
@@ -16,11 +7,11 @@ CREATE TABLE IF NOT EXISTS `brand` (
   `importID` int(10) NOT NULL,
   `code` int(10) NOT NULL,
   `companyCode` int(10) NOT NULL,
-  `name` varchar(255) NOT NULL,
+  `name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `creationTime` int(10) NOT NULL,
   PRIMARY KEY (`ID`),
   UNIQUE KEY `code` (`code`)
-) TYPE=MyISAM  AUTO_INCREMENT=19172 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=19172 ;
 
 -- --------------------------------------------------------
 
@@ -50,7 +41,7 @@ CREATE TABLE IF NOT EXISTS `campaign` (
   KEY `mediaCode` (`mediaCode`),
   KEY `subSectionCode` (`subSectionCode`),
   KEY `brandCode` (`brandCode`)
-) TYPE=MyISAM  AUTO_INCREMENT=78506 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=78506 ;
 
 -- --------------------------------------------------------
 
@@ -63,12 +54,12 @@ CREATE TABLE IF NOT EXISTS `company` (
   `ID` int(10) NOT NULL AUTO_INCREMENT,
   `importID` int(10) NOT NULL,
   `code` int(10) NOT NULL,
-  `name` varchar(255) NOT NULL,
+  `name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `creationTime` int(10) NOT NULL,
   PRIMARY KEY (`ID`),
   UNIQUE KEY `code` (`code`),
   FULLTEXT KEY `name` (`name`)
-) TYPE=MyISAM  AUTO_INCREMENT=7288 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=7288 ;
 
 -- --------------------------------------------------------
 
@@ -79,7 +70,7 @@ CREATE TABLE IF NOT EXISTS `company` (
 DROP TABLE IF EXISTS `import`;
 CREATE TABLE IF NOT EXISTS `import` (
   `ID` int(20) NOT NULL AUTO_INCREMENT,
-  `source` varchar(255) NOT NULL,
+  `source` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `companies` int(10) NOT NULL,
   `brands` int(10) NOT NULL,
   `sections` int(10) NOT NULL,
@@ -89,7 +80,7 @@ CREATE TABLE IF NOT EXISTS `import` (
   `latency` int(20) NOT NULL,
   `creationTime` int(10) NOT NULL,
   PRIMARY KEY (`ID`)
-) TYPE=MyISAM  AUTO_INCREMENT=29 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=15 ;
 
 -- --------------------------------------------------------
 
@@ -102,11 +93,11 @@ CREATE TABLE IF NOT EXISTS `media` (
   `ID` int(10) NOT NULL AUTO_INCREMENT,
   `importID` int(10) NOT NULL,
   `code` int(10) NOT NULL,
-  `name` varchar(255) NOT NULL,
+  `name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `creationTime` int(10) NOT NULL,
   PRIMARY KEY (`ID`),
   UNIQUE KEY `code` (`code`)
-) TYPE=MyISAM  AUTO_INCREMENT=164 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=164 ;
 
 -- --------------------------------------------------------
 
@@ -119,11 +110,11 @@ CREATE TABLE IF NOT EXISTS `section` (
   `ID` int(10) NOT NULL AUTO_INCREMENT,
   `importID` int(10) NOT NULL,
   `code` int(10) NOT NULL,
-  `name` varchar(255) NOT NULL,
+  `name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `creationTime` int(10) NOT NULL,
   PRIMARY KEY (`ID`),
   UNIQUE KEY `code` (`code`)
-) TYPE=MyISAM  AUTO_INCREMENT=21 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=21 ;
 
 -- --------------------------------------------------------
 
@@ -137,9 +128,9 @@ CREATE TABLE IF NOT EXISTS `subSection` (
   `importID` int(10) NOT NULL,
   `sectionCode` int(10) NOT NULL,
   `code` int(10) NOT NULL,
-  `name` varchar(255) NOT NULL,
+  `name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `creationTime` int(10) NOT NULL,
   PRIMARY KEY (`ID`),
   UNIQUE KEY `code` (`code`)
-) TYPE=MyISAM  AUTO_INCREMENT=196 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=196 ;
 
