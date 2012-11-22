@@ -138,14 +138,16 @@ function doCampaignQuery($record, $importID){
 }
 
 function getStartDate($startDate){
-	$record = explode('-', str_replace('"', '', $startDate));
+	$startDate = str_replace('"', '', $startDate);
+	$record = explode('-', $startDate);
 	if(count($record) <> 3) return $startDate;
 	$record[2] = strlen($record[2]) == 4 ? $record[2] : '20'.$record[2];
 	return date('Y-m-d', strtotime(implode('-', $record)));
 }
 
 function getEndDate($endDate){
-	$record = explode('-', str_replace('"', '', $endDate));
+	$endDate = str_replace('"', '', $endDate);
+	$record = explode('-', $endDate);
 	if(count($record) <> 3) return $endDate;
 	$record[2] = strlen($record[2]) == 4 ? $record[2] : '20'.$record[2];
 	return date('Y-m-d', strtotime(implode('-', $record)));
