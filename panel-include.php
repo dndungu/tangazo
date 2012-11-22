@@ -17,14 +17,14 @@ if(!is_null($companies)){
 			$timeQuery = "AND 1 = 1";
 			break;
 	}	
-	$contentQuery[] = "SELECT SUM(`amount`) AS `total`, `media`.`name` AS `media`, `brand`.`name` AS `brand`, `campaign`.`mediaCode` AS `mediaCode`, `campaign`.`brandCode` AS `brandCode`, `week` FROM `campaign`";
+	$contentQuery[] = "SELECT `media`.`name` AS `media`, `brand`.`name` AS `brand`, `campaign`.`mediaCode` AS `mediaCode`, `campaign`.`brandCode` AS `brandCode`, SUM(`amount`) AS `total`, `week` FROM `campaign`";
 	$contentQuery[] = "LEFT JOIN `media` ON `campaign`.`mediaCode` = `media`.`code`";
 	$contentQuery[] = "LEFT JOIN `brand` ON `campaign`.`brandCode` = `brand`.`code`";
 	$contentQuery[] = "LEFT JOIN `company` ON `campaign`.`companyCode` = `company`.`code`";
 	$contentQuery[] = "WHERE `amount` > 0";
 	$contentQuery[] = $timeQuery;
 	$contentQuery[] = sprintf("AND `campaign`.`companyCode` = %d", $companies[0]['code']);
-	$contentQuery[] = "GROUP BY `brandCode`";
+	$contentQuery[] = "GROUP BY `mediaCode`, `brandCode`";
 	$contentQuery[] = "ORDER BY `total` DESC";
 	$contentResults = dbQuery(implode(" ", $contentQuery));
 	if($contentResults->num_rows) {

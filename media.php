@@ -42,10 +42,17 @@
 			<?php
 			require_once('includes.php');
 			$page = getInteger('p');
+			$import = getInteger('i');
 			$page = $page ? $page : 1;
 			$offset = (($page - 1) * $config['PAGE_SIZE']);
 			$query[] = "SELECT * FROM `media`";
-			$query[] = sprintf("ORDER BY `media`.`name` ASC, `media`.`ID` DESC LIMIT %d, %d", $offset, $config['PAGE_SIZE']);
+			if($import){
+				$query[] = sprintf("WHERE `media`.`importID` = %d", $import);
+			}			
+			$query[] = "ORDER BY `media`.`name` ASC, `media`.`ID` DESC";
+			if(!$import){
+				$query[] = sprintf("LIMIT %d, %d", $offset, $config['PAGE_SIZE']);
+			}
 			$recordsCount = dbFetch(dbQuery("SELECT COUNT(*) AS `count` FROM `media`"));
 			$pages = $recordsCount[0]['count'] / $config['PAGE_SIZE'];
 			$records = dbFetch(dbQuery(implode(" ", $query))); 
@@ -69,6 +76,7 @@
 				<?php }?>
 			</div>
 			<div class="row gridFooter">
+				<?php if(!$import){?>
 				<div class="column grid10of10">
 					<?php 
 					if($pages > 1 && $page > 1){
@@ -84,6 +92,7 @@
 					}
 					?>
 				</div>
+				<?php }?>
 			</div>
 		</div>
 	</div>

@@ -51,6 +51,7 @@
 			<?php
 			require_once('includes.php');
 			$page = getInteger('p');
+			$import = getInteger('i');
 			$page = $page ? $page : 1;
 			$offset = (($page - 1) * $config['PAGE_SIZE']);
 			$query[] = "SELECT `campaign`.`ID` AS `ID`, `company`.`name` AS `company`, `brand`.`name` AS `brand`, `media`.`name` AS `media`, `section`.`name` AS `section`, `amount`, `week` FROM `campaign`";
@@ -58,7 +59,13 @@
 			$query[] = "LEFT JOIN `brand` ON (`campaign`.`brandCode` = `brand`.`code`)";
 			$query[] = "LEFT JOIN `media` ON (`campaign`.`mediaCode` = `media`.`code`)";
 			$query[] = "LEFT JOIN `section` ON (`campaign`.`sectionCode` = `section`.`code`)";
-			$query[] = sprintf("ORDER BY `company`.`name` ASC, `campaign`.`ID` DESC LIMIT %d, %d", $offset, $config['PAGE_SIZE']);
+			if($import){
+				$query[] = sprintf("WHERE `campaign`.`importID` = %d", $import);
+			}
+			$query[] = "ORDER BY `company`.`name` ASC, `campaign`.`ID` DESC";
+			if(!$import){
+				$query[] = sprintf("LIMIT %d, %d", $offset, $config['PAGE_SIZE']);
+			}
 			$recordsCount = dbFetch(dbQuery("SELECT COUNT(*) AS `count` FROM `campaign` {$query[1]} {$query[2]} {$query[3]} {$query[4]}"));
 			$pages = $recordsCount[0]['count'] / $config['PAGE_SIZE'];
 			$records = dbFetch(dbQuery(implode(" ", $query))); 
@@ -91,6 +98,7 @@
 				<?php }?>
 			</div>
 			<div class="row gridFooter">
+				<?php if(!$import){?>
 				<div class="column grid10of10">
 					<?php 
 					if($pages > 1 && $page > 1){
@@ -106,6 +114,7 @@
 					}
 					?>
 				</div>
+				<?php }?>
 			</div>
 		</div>
 	</div>

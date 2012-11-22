@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Nov 15, 2012 at 08:43 PM
+-- Generation Time: Nov 22, 2012 at 11:05 AM
 -- Server version: 5.5.28-0ubuntu0.12.10.1
 -- PHP Version: 5.4.8-1~precise+1
 
@@ -29,7 +29,7 @@ CREATE TABLE IF NOT EXISTS `brand` (
   `creationTime` int(10) NOT NULL,
   PRIMARY KEY (`ID`),
   UNIQUE KEY `code` (`code`)
-) TYPE=MyISAM  AUTO_INCREMENT=4861 ;
+) TYPE=MyISAM  AUTO_INCREMENT=19172 ;
 
 -- --------------------------------------------------------
 
@@ -59,7 +59,7 @@ CREATE TABLE IF NOT EXISTS `campaign` (
   KEY `mediaCode` (`mediaCode`),
   KEY `subSectionCode` (`subSectionCode`),
   KEY `brandCode` (`brandCode`)
-) TYPE=MyISAM  AUTO_INCREMENT=9837 ;
+) TYPE=MyISAM  AUTO_INCREMENT=78506 ;
 
 -- --------------------------------------------------------
 
@@ -75,8 +75,9 @@ CREATE TABLE IF NOT EXISTS `company` (
   `name` varchar(255) NOT NULL,
   `creationTime` int(10) NOT NULL,
   PRIMARY KEY (`ID`),
-  UNIQUE KEY `code` (`code`)
-) TYPE=MyISAM  AUTO_INCREMENT=2317 ;
+  UNIQUE KEY `code` (`code`),
+  FULLTEXT KEY `name` (`name`)
+) TYPE=MyISAM  AUTO_INCREMENT=7288 ;
 
 -- --------------------------------------------------------
 
@@ -97,7 +98,7 @@ CREATE TABLE IF NOT EXISTS `import` (
   `latency` int(20) NOT NULL,
   `creationTime` int(10) NOT NULL,
   PRIMARY KEY (`ID`)
-) TYPE=MyISAM  AUTO_INCREMENT=3 ;
+) TYPE=MyISAM  AUTO_INCREMENT=29 ;
 
 -- --------------------------------------------------------
 
@@ -114,7 +115,7 @@ CREATE TABLE IF NOT EXISTS `media` (
   `creationTime` int(10) NOT NULL,
   PRIMARY KEY (`ID`),
   UNIQUE KEY `code` (`code`)
-) TYPE=MyISAM  AUTO_INCREMENT=119 ;
+) TYPE=MyISAM  AUTO_INCREMENT=164 ;
 
 -- --------------------------------------------------------
 
@@ -131,7 +132,7 @@ CREATE TABLE IF NOT EXISTS `section` (
   `creationTime` int(10) NOT NULL,
   PRIMARY KEY (`ID`),
   UNIQUE KEY `code` (`code`)
-) TYPE=MyISAM  AUTO_INCREMENT=20 ;
+) TYPE=MyISAM  AUTO_INCREMENT=21 ;
 
 -- --------------------------------------------------------
 
@@ -149,5 +150,5 @@ CREATE TABLE IF NOT EXISTS `subSection` (
   `creationTime` int(10) NOT NULL,
   PRIMARY KEY (`ID`),
   UNIQUE KEY `code` (`code`)
-) TYPE=MyISAM  AUTO_INCREMENT=180 ;
+) TYPE=MyISAM  AUTO_INCREMENT=196 ;
 

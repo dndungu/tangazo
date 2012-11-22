@@ -54,7 +54,6 @@
     	}
     	.header .two, .header .three {
     		text-align:center;
-    		
     	}
     </style>
     <title>Week Spending</title>
@@ -66,7 +65,7 @@
   		<?php if($width){?>
   		<div class="row header">
   			<div class="column four">Station</div>
-  			<div class="column two">Week Totals</div>
+  			<div class="column two">Period Totals</div>
   			<?php foreach($headerRecords as $headerRecord){?>
   				<div class="column three" style="text-transform:capitalize;"><?php print strtolower($headerRecord['name'])?></div>
   			<?php }?>	  			

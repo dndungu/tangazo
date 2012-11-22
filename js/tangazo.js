@@ -150,12 +150,12 @@ var tangazo  = {
 			var insert = response.inserts[i];
 			html.push('<div class="row import">');
 			html.push('<div class="column grid10of10">' + insert.source + '</div>');
-			html.push('<div class="column grid3of10">Media Expenditure</div><div class="column grid2of10">' + insert.campaign + '</div>');
-			html.push('<div class="column grid3of10">New Companies</div><div class="column grid2of10">' + insert.company + '</div>');
-			html.push('<div class="column grid3of10">New Brands</div><div class="column grid2of10">' + insert.brand + '</div>');
-			html.push('<div class="column grid3of10">New Sections</div><div class="column grid2of10">' + insert.section + '</div>');
-			html.push('<div class="column grid3of10">New Sub Sections</div><div class="column grid2of10">' + insert.subSection + '</div>');
-			html.push('<div class="column grid3of10">New Media</div><div class="column grid2of10">' + insert.media + '</div>');
+			html.push('<div class="column grid3of10">Media Expenditure</div><div class="column grid2of10"><a href="spending.php?i='+insert.import+'">' + insert.campaign + '</a></div>');
+			html.push('<div class="column grid3of10">New Companies</div><div class="column grid2of10"><a href="companies.php?i='+insert.import+'">' + insert.company + '</a></div>');
+			html.push('<div class="column grid3of10">New Brands</div><div class="column grid2of10"><a href="brands.php?i='+insert.import+'">' + insert.brand + '</a></div>');
+			html.push('<div class="column grid3of10">New Sections</div><div class="column grid2of10"><a href="sections.php?i='+insert.import+'">' + insert.section + '</a></div>');
+			html.push('<div class="column grid3of10">New Sub Sections</div><div class="column grid2of10"><a href="subsections.php?i='+insert.import+'">' + insert.subSection + '</a></div>');
+			html.push('<div class="column grid3of10">New Media</div><div class="column grid2of10"><a href="media.php?i='+insert.import+'">' + insert.media + '</a></div>');
 			html.push('<div class="column grid3of10">Import Time</div><div class="column grid7of10">' + insert.creationTime + '</div>');
 			html.push('</div>');
 		}

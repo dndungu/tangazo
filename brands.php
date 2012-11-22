@@ -45,11 +45,18 @@
 			<?php
 			require_once('includes.php');
 			$page = getInteger('p');
+			$import = getInteger('i');
 			$page = $page ? $page : 1;
 			$offset = (($page - 1) * $config['PAGE_SIZE']);
 			$query[] = "SELECT `brand`.`ID` AS `ID`, `brand`.`code` AS `code`, `brand`.`name` AS `name`, `company`.`name` AS `company`, `brand`.`creationTime` AS `creationTime` FROM `brand`";
 			$query[] = "LEFT JOIN `company` ON (`brand`.`companyCode` = `company`.`code`)";
-			$query[] = sprintf("ORDER BY `brand`.`name` ASC, `brand`.`ID` DESC LIMIT %d, %d", $offset, $config['PAGE_SIZE']);
+			if($import){
+				$query[] = sprintf("WHERE `brand`.`importID` = %d", $import);
+			}
+			$query[] = "ORDER BY `brand`.`name` ASC, `brand`.`ID` DESC";
+			if(!$import){
+				$query[] = sprintf("LIMIT %d, %d", $offset, $config['PAGE_SIZE']);
+			}
 			$recordsCount = dbFetch(dbQuery("SELECT COUNT(*) AS `count` FROM `brand` {$query[1]}"));
 			$pages = $recordsCount[0]['count'] / $config['PAGE_SIZE'];
 			$records = dbFetch(dbQuery(implode(" ", $query))); 
@@ -76,8 +83,9 @@
 				<?php }?>
 			</div>
 			<div class="row gridFooter">
+				<?php if(!$import){?>
 				<div class="column grid10of10">
-					<?php 
+					<?php
 					if($pages > 1 && $page > 1){
 						print '<a href="?p='.($page-1).'">PREVIOUS</a>';
 					}
@@ -91,6 +99,7 @@
 					}
 					?>
 				</div>
+				<?php }?>
 			</div>
 		</div>
 	</div>
