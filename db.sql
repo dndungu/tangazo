@@ -1,12 +1,3 @@
--- phpMyAdmin SQL Dump
--- version 3.5.2.2
--- http://www.phpmyadmin.net
---
--- Host: localhost
--- Generation Time: Nov 22, 2012 at 11:05 AM
--- Server version: 5.5.28-0ubuntu0.12.10.1
--- PHP Version: 5.4.8-1~precise+1
-
 SET time_zone = "+00:00";
 
 --
