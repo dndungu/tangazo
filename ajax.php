@@ -132,15 +132,14 @@ function doMediaQuery($record, $importID){
 }
 
 function doCampaignQuery($record, $importID){
-	$record[11] = explode('-', $record[11]);
-	print_r($record[11]);die();
+	$record[11] = explode('-', str_replace('"', '', $record[11]));
 	$record[11][2] = strlen($record[11][2]) == 4 ? $record[11][2] : '20'.$record[11][2];
 	$record[11] = implode('-', $record[11]);
-	$record[12] = explode('-', $record[12]);
+	$record[12] = explode('-', str_replace('"', '', $record[12]));
 	$record[12][2] = strlen($record[12][2]) == 4 ? $record[12][2] : '20'.$record[12][2];
 	$record[12] = implode('-', $record[12]);
-	$startDate = date('Y-m-d', strtotime(str_replace('"', '', $record[11])));
-	$endDate = date('Y-m-d', strtotime(str_replace('"', '', $record[12])));
+	$startDate = date('Y-m-d', strtotime($record[11]));
+	$endDate = date('Y-m-d', strtotime($record[12]));
 	return sprintf("(%d, %d, %d, %d, %d, %d, %d, %f, '%s', '%s', %d, UNIX_TIMESTAMP())", $importID, trim($record[14]), trim($record[1]), trim($record[3]), trim($record[5]), trim($record[7]), trim($record[9]), trim($record[10]), $startDate, $endDate, trim($record[13]));
 }
 
