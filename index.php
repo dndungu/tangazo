@@ -45,12 +45,24 @@
   						<?php foreach($imports as $import){?>
 							<div class="row import">
 								<div class="column grid10of10"><?php echo $import['source']?></div>
-								<div class="column grid3of10">Media Expenditure</div><div class="column grid2of10"><a href="spending.php?i=<?php print $import['ID']?>"><?php echo $import['campaigns']?></a></div>
-								<div class="column grid3of10">New Companies</div><div class="column grid2of10"><a href="companies.php?i=<?php print $import['ID']?>"><?php echo $import['companies']?></a></div>
-								<div class="column grid3of10">New Brands</div><div class="column grid2of10"><a href="brands.php?i=<?php print $import['ID']?>"><?php echo $import['brands']?></a></div>
-								<div class="column grid3of10">New Sections</div><div class="column grid2of10"><a href="sections.php?=<?php print $import['ID']?>"><?php echo $import['sections']?></a></div>
-								<div class="column grid3of10">New Sub Sections</div><div class="column grid2of10"><a href="subsections.php?i=<?php print $import['ID']?>"><?php echo $import['subSections']?></a></div>
-								<div class="column grid3of10">New Media</div><div class="column grid2of10"><a href="media.php?i=<?php print $import['ID']?>"><?php echo $import['media']?></a></div>
+								<div class="column grid3of10">Media Expenditure</div><div class="column grid2of10">
+									<a href="spending.php?i=<?php print $import['ID']?>"><?php echo $import['campaigns']?></a>
+								</div>
+								<div class="column grid3of10">New Companies</div><div class="column grid2of10">
+									<a href="companies.php?i=<?php print $import['ID']?>"><?php echo $import['companies']?></a>
+								</div>
+								<div class="column grid3of10">New Brands</div><div class="column grid2of10">
+									<a href="brands.php?i=<?php print $import['ID']?>"><?php echo $import['brands']?></a>
+								</div>
+								<div class="column grid3of10">New Sections</div><div class="column grid2of10">
+									<a href="sections.php?=<?php print $import['ID']?>"><?php echo $import['sections']?></a>
+								</div>
+								<div class="column grid3of10">New Sub Sections</div><div class="column grid2of10">
+									<a href="subsections.php?i=<?php print $import['ID']?>"><?php echo $import['subSections']?></a>
+								</div>
+								<div class="column grid3of10">New Media</div><div class="column grid2of10">
+									<a href="media.php?i=<?php print $import['ID']?>"><?php echo $import['media']?></a>
+								</div>
 								<div class="column grid3of10">Import Time</div><div class="column grid7of10"><?php echo date('r', $import['creationTime'])?></div>
 							</div>  							
   						<?php }?>
