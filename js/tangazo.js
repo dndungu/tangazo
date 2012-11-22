@@ -110,6 +110,7 @@ var tangazo  = {
 		var data = new FormData();
 		data.append('do', 'upload');
 		var files = document.getElementById('spendfile').files;
+		var i = 0;
 		for(i in files){
 			var file = files[i];
 			if(!(file instanceof File)) continue;
@@ -147,6 +148,7 @@ var tangazo  = {
 		$('.processing').css({display: 'none'});
 		var response = jQuery.parseJSON(arguments[0].responseText);
 		var html = [];
+		var i = 0;
 		for(i in response.inserts){
 			var insert = response.inserts[i];
 			html.push('<div class="row import">');
