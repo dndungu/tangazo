@@ -1,5 +1,11 @@
 <?php
 
+date_default_timezone_set('Africa/Nairobi');
+
+ini_set('log_errors', 1);
+
+ini_set('error_log', getcwd() . "/logs/error");
+
 require_once('config.php');
 
 function dbConnect(){
