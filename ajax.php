@@ -132,7 +132,7 @@ function doMediaQuery($record, $importID){
 }
 
 function doCampaignQuery($record, $importID){
-	return sprintf("(%d, %d, %d, %d, %d, %d, %d, %f, '%s', '%s', %d, UNIX_TIMESTAMP())", $importID, $record[14], $record[1], $record[3], $record[5], $record[7], $record[9], date('Y-m-d', strtotime($record[10])), date('Y-m-d', strtotime($record[11])), date('Y-m-d', strtotime($record[12])), $record[13]);
+	return sprintf("(%d, %d, %d, %d, %d, %d, %d, %f, '%s', '%s', %d, UNIX_TIMESTAMP())", $importID, trim($record[14]), trim($record[1]), trim($record[3]), trim($record[5]), trim($record[7]), trim($record[9]), trim($record[10]), date('Y-m-d', strtotime($record[11])), date('Y-m-d', strtotime($record[12])), trim($record[13]));
 }
 
 function doBrowseCompanies(){
