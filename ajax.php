@@ -57,7 +57,7 @@ function doHandleUpload(){
 			}			
 			$instruction = "unoconv -v --server 127.0.0.1 --port 5050 -f csv '{$xlsfile}'";
 			$exec_result = shell_exec($instruction);
-			error_log("\n***********\n$instruction\n**********");
+			error_log($instruction);
 			$csvfile = str_replace('.xls', '.csv', str_replace('.xlsx', '.csv', $xlsfile));
 			if(!file_exists($csvfile)){
 				throw new Exception("\nFailed to convert {$xlsfile} to .csv\n");
