@@ -70,6 +70,18 @@
   				<div class="column three" style="text-transform:capitalize;"><?php print strtolower($headerRecord['name'])?></div>
   			<?php }?>	  			
   		</div>
+  		<?php
+  		$records = array();
+  		foreach($contentRecords as $mediaCode => $contentRecord){
+			$total = 0	;
+			foreach($contentRecord as $brandRecord){
+				$total += $brandRecord['total'];
+			}
+			$records[$mediaCode] = $contentRecord;
+			$records[$mediaCode]['rowtotal'] = number_format($total, 2);  			
+  		}
+  		$contentRecords = $records;
+  		?>
   		<?php foreach($contentRecords as $mediaCode => $contentRecord){?>
   		<div class="row">
   			<div class="column four" style="text-transform:capitalize;">
@@ -89,7 +101,7 @@
   			<?php foreach($headerRecords as $headerRecord){?>
   				<div class="column three">
   					<?php 
-  					print @number_format($contentRecords[$mediaCode][$headerRecord['brandCode']]['total'], 2);
+  					print @number_format($contentRecord[$headerRecord['brandCode']]['total'], 2);
   					?>
   				</div>
   			<?php }?>
