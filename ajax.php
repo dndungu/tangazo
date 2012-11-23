@@ -153,7 +153,11 @@ function getStartDate($startDate){
 	$day = $record[0];
 	$record[0] = $month;
 	$record[1] = $day;
-	return date('Y-m-d', strtotime(implode('-', $record)));
+	$date = date('Y-m-d', strtotime(implode('-', $record)));
+	if($date == '0000-00-00'){
+		error_log($startDate);
+	}
+	return $date;
 }
 
 function getEndDate($endDate){
@@ -171,7 +175,11 @@ function getEndDate($endDate){
 	$day = $record[0];
 	$record[0] = $month;
 	$record[1] = $day;
-	return date('Y-m-d', strtotime(implode('-', $record)));
+	$date = date('Y-m-d', strtotime(implode('-', $record)));
+	if($date == '0000-00-00') {
+		error_log($endDate);
+	}
+	return $date;
 }
 
 function removeQuotes($subject){
