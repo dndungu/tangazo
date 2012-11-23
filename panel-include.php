@@ -17,7 +17,7 @@ if(!is_null($companies)){
 			$timeQuery = "AND 1 = 1";
 			break;
 	}	
-	$contentQuery[] = "SELECT `media`.`name` AS `media`, `brand`.`name` AS `brand`, `campaign`.`mediaCode` AS `mediaCode`, `campaign`.`brandCode` AS `brandCode`, SUM(`amount`) AS `total`, `week` FROM `campaign`";
+	$contentQuery[] = "SELECT `campaign`.`companyCode`, `media`.`name` AS `media`, `brand`.`name` AS `brand`, `campaign`.`mediaCode` AS `mediaCode`, `campaign`.`brandCode` AS `brandCode`, SUM(`amount`) AS `total`, `week` FROM `campaign`";
 	$contentQuery[] = "LEFT JOIN `media` ON `campaign`.`mediaCode` = `media`.`code`";
 	$contentQuery[] = "LEFT JOIN `brand` ON `campaign`.`brandCode` = `brand`.`code`";
 	$contentQuery[] = "LEFT JOIN `company` ON `campaign`.`companyCode` = `company`.`code`";
