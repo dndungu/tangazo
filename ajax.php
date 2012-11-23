@@ -60,7 +60,7 @@ function doHandleUpload(){
 			error_log($instruction);
 			$csvfile = str_replace('.xls', '.csv', str_replace('.xlsx', '.csv', $xlsfile));
 			if(!file_exists($csvfile)){
-				throw new Exception("\nFailed to convert {$xlsfile} to .csv\n");
+				throw new Exception($instruction);
 			}
 			dbQuery(sprintf("INSERT INTO `import` (`source`, `companies`, `brands`, `sections`, `subSections`, `media`, `campaigns`, `latency`, `creationTime`) VALUES ('%s', 0, 0, 0, 0, 0, 0, 0, %d)", $name, time()));
 			$importID = dbInsertId();
