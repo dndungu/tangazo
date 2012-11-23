@@ -78,7 +78,8 @@
 				$total += $brandRecord['total'];
 			}
 			$records[$mediaCode] = $contentRecord;
-			$records[$mediaCode]['rowtotal'] = number_format($total, 2);  			
+			$records[$mediaCode]['rowtotal'] = number_format($total, 2);
+			$records[$mediaCode]['media'] = (strlen($mediaRecords[$mediaCode]) < 4 ? $mediaRecords[$mediaCode] : strtolower($mediaRecords[$mediaCode]));  			
   		}
   		$contentRecords = $records;
   		?>
@@ -86,16 +87,12 @@
   		<div class="row">
   			<div class="column four" style="text-transform:capitalize;">
   				<?php 
-  				print (strlen($mediaRecords[$mediaCode]) < 4 ? $mediaRecords[$mediaCode] : strtolower($mediaRecords[$mediaCode]));
+  				print $contentRecord['media'];
   				?>
   			</div>
   			<div class="column two">
   				<?php
-  				$total = 0	;
-  				foreach($contentRecord as $brandRecord){
-  					$total += $brandRecord['total'];
-  				}
-  				print number_format($total, 2);
+  				print $contentRecord['rowtotal'];
   				?>
   			</div>
   			<?php foreach($headerRecords as $headerRecord){?>
