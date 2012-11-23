@@ -77,7 +77,7 @@
 			foreach($contentRecord as $brandRecord){
 				$total += $brandRecord['total'];
 			}
-			$contentRecord['rowtotal'] = number_format($total, 2);
+			$contentRecord['rowtotal'] = $total;
 			$contentRecord['medianame'] = (strlen($mediaRecords[$mediaCode]) < 4 ? $mediaRecords[$mediaCode] : strtolower($mediaRecords[$mediaCode]));
 			$records[] = $contentRecord;  			
   		}
@@ -97,7 +97,7 @@
   			</div>
   			<div class="column two">
   				<?php
-  				print $contentRecord['rowtotal'];
+  				print number_format($contentRecord['rowtotal'], 2);
   				?>
   			</div>
   			<?php foreach($headerRecords as $headerRecord){?>
