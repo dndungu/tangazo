@@ -102,7 +102,7 @@
 					print ' this week.';
 					break;
 				case 'month ':
-					print 'this month.';
+					print ' this month.';
 					break;
 				case 'year':
 					print ' this year.';
