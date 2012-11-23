@@ -62,7 +62,7 @@
 			if($import){
 				$query[] = sprintf("WHERE `campaign`.`importID` = %d", $import);
 			}
-			$query[] = "ORDER BY `week`.`ID` DESC";
+			$query[] = "ORDER BY `campaign`.`week` DESC";
 			if(!$import){
 				$query[] = sprintf("LIMIT %d, %d", $offset, $config['PAGE_SIZE']);
 			}
