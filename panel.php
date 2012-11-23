@@ -77,15 +77,15 @@
 			foreach($contentRecord as $brandRecord){
 				$total += $brandRecord['total'];
 			}
-			$records[$mediaCode] = $contentRecord;
-			$records[$mediaCode]['rowtotal'] = number_format($total, 2);
-			$records[$mediaCode]['medianame'] = (strlen($mediaRecords[$mediaCode]) < 4 ? $mediaRecords[$mediaCode] : strtolower($mediaRecords[$mediaCode]));  			
+			$contentRecord['rowtotal'] = number_format($total, 2);
+			$contentRecord['medianame'] = (strlen($mediaRecords[$mediaCode]) < 4 ? $mediaRecords[$mediaCode] : strtolower($mediaRecords[$mediaCode]));
+			$records[] = $contentRecord;  			
   		}
   		$contentRecords = $records;
-//   		function totalSort($a, $b){
-//   			return $b['rowtotal'] - $a['rowtotal'];
-//   		}
-//   		usort($contentRecords, "totalSort");
+  		function totalSort($a, $b){
+  			return $b['rowtotal'] - $a['rowtotal'];
+  		}
+  		usort($contentRecords, "totalSort");
   		?>
   		<?php foreach($contentRecords as $contentRecord){?>
   		<div class="row">
