@@ -79,7 +79,7 @@
 			}
 			$records[$mediaCode] = $contentRecord;
 			$records[$mediaCode]['rowtotal'] = number_format($total, 2);
-			$records[$mediaCode]['media'] = (strlen($mediaRecords[$mediaCode]) < 4 ? $mediaRecords[$mediaCode] : strtolower($mediaRecords[$mediaCode]));  			
+			$records[$mediaCode]['medianame'] = (strlen($mediaRecords[$mediaCode]) < 4 ? $mediaRecords[$mediaCode] : strtolower($mediaRecords[$mediaCode]));  			
   		}
   		$contentRecords = $records;
   		?>
@@ -87,7 +87,7 @@
   		<div class="row">
   			<div class="column four" style="text-transform:capitalize;">
   				<?php 
-  				print $contentRecord['media'];
+  				print $contentRecord['medianame'];
   				?>
   			</div>
   			<div class="column two">
