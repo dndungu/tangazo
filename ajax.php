@@ -133,12 +133,15 @@ function doMediaQuery($record, $importID){
 
 function doCampaignQuery($record, $importID){
 	$startDate = getStartDate($record[11]);
+	if($startDate == '0000-00-00') {
+		print_r($result);die();
+	}
 	$endDate = getEndDate($record[12]);
 	return sprintf("(%d, %d, %d, %d, %d, %d, %d, %f, '%s', '%s', %d, UNIX_TIMESTAMP())", $importID, trim($record[14]), trim($record[1]), trim($record[3]), trim($record[5]), trim($record[7]), trim($record[9]), trim($record[10]), $startDate, $endDate, trim($record[13]));
 }
 
 function getStartDate($startDate){
-	$startDate = str_replace('"', '', $startDate);
+	$startDate = removeQuotes($startDate);
 	$record = explode('-', $startDate);
 	if(count($record) <> 3) $record = explode('/', $startDate);
 	if(count($record) <> 3) return $startDate;
@@ -147,12 +150,16 @@ function getStartDate($startDate){
 }
 
 function getEndDate($endDate){
-	$endDate = str_replace('"', '', $endDate);
+	$endDate = removeQuotes($endDate);
 	$record = explode('-', $endDate);
 	if(count($record) <> 3) $record = explode('/', $endDate);
 	if(count($record) <> 3) return $endDate;
 	$record[2] = strlen($record[2]) == 4 ? $record[2] : '20'.$record[2];
 	return date('Y-m-d', strtotime(implode('-', $record)));
+}
+
+function removeQuotes($subject){
+	return str_replace('"', '', $subject);
 }
 
 function doBrowseCompanies(){
