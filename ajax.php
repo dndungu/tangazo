@@ -132,10 +132,7 @@ function doMediaQuery($record, $importID){
 }
 
 function doCampaignQuery($record, $importID){
-	$startDate = getStartDate($record[11]);
-	error_log("\n*****************".$startDate.var_export($record));
-	$endDate = getEndDate($record[12]);
-	return sprintf("(%d, %d, %d, %d, %d, %d, %d, %f, '%s', '%s', %d, UNIX_TIMESTAMP())", $importID, trim($record[14]), trim($record[1]), trim($record[3]), trim($record[5]), trim($record[7]), trim($record[9]), trim($record[10]), $startDate, $endDate, trim($record[13]));
+	return sprintf("(%d, %d, %d, %d, %d, %d, %d, %f, '%s', '%s', %d, UNIX_TIMESTAMP())", $importID, trim($record[14]), trim($record[1]), trim($record[3]), trim($record[5]), trim($record[7]), trim($record[9]), trim($record[10]), removeQuotes($record[11]), removeQuotes($record[12]), trim($record[13]));
 }
 
 function getStartDate($startDate){
@@ -148,6 +145,7 @@ function getStartDate($startDate){
 		return $startDate;
 	}
 	$record[2] = strlen($record[2]) == 4 ? $record[2] : '20'.$record[2];
+	$record[2] = intval($record[2]) - date('Y') > 50 ? strval(inval($record[2]) + 100) : $record[2];
 	return date('Y-m-d', strtotime(implode('-', $record)));
 }
 
@@ -161,6 +159,7 @@ function getEndDate($endDate){
 		return $endDate;
 	}
 	$record[2] = strlen($record[2]) == 4 ? $record[2] : '20'.$record[2];
+	$record[2] = intval($record[2]) - date('Y') > 50 ? strval(inval($record[2]) + 100) : $record[2];
 	return date('Y-m-d', strtotime(implode('-', $record)));
 }
 
