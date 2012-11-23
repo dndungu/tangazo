@@ -86,7 +86,10 @@ function doStoreRecords($xlsfile, $importID){
 	$lines = file($csvfile);
 	foreach($lines as $index => $line){
 		$record = explode(",",  $line);
-		if($index < 3 || count($record) < 15) continue;
+		if($index < 3) continue;
+		if(count($record) < 15) {
+			throw new Exception(count($record).' columns instead of 15.');
+		}
 		$companies[$record[1]] = doCompanyQuery($record, $importID);
 		$brands[$record[3]] = doBrandQuery($record, $importID);
 		$sections[$record[5]] = doSectionQuery($record, $importID);
@@ -142,11 +145,10 @@ function getStartDate($startDate){
 		$record = explode('/', $startDate);
 	}
 	if(count($record) <> 3) {
-		error_log($startDate . ' : ' . json_encode($record));
 		return $startDate;
 	}
 	$record[2] = strlen($record[2]) == 4 ? $record[2] : '20'.$record[2];
-	$record[2] = intval($record[2]) - date('Y') > 50 ? strval(inval($record[2]) + 100) : $record[2];
+	$record[2] = intval($record[2]) - intval(date('Y')) > 50 ? strval(inval($record[2]) + 100) : $record[2];
 	return date('Y-m-d', strtotime(implode('-', $record)));
 }
 
@@ -157,11 +159,10 @@ function getEndDate($endDate){
 		$record = explode('/', $endDate);
 	}
 	if(count($record) != 3) {
-		error_log($endDate . ' : ' . json_encode($record));
 		return $endDate;
 	}
 	$record[2] = strlen($record[2]) == 4 ? $record[2] : '20'.$record[2];
-	$record[2] = intval($record[2]) - date('Y') > 50 ? strval(inval($record[2]) + 100) : $record[2];
+	$record[2] = intval($record[2]) - intval(date('Y')) > 50 ? strval(inval($record[2]) + 100) : $record[2];
 	return date('Y-m-d', strtotime(implode('-', $record)));
 }
 
