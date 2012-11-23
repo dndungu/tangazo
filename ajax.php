@@ -134,6 +134,8 @@ function doMediaQuery($record, $importID){
 function doCampaignQuery($record, $importID){
 	$startDate = getStartDate($record[11]);
 	if($startDate == '0000-00-00' || $startDate == '1912-05-10' || $startDate == '1970-01-01'|| $startDate == '2042-00-00'){
+		//error_log(var_export($record));
+	}else{
 		error_log(var_export($record));
 	}
 	$endDate = getEndDate($record[12]);
