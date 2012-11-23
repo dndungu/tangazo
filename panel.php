@@ -56,7 +56,7 @@
     		text-align:center;
     	}
     </style>
-    <title>Week Spending</title>
+    <title>Spending</title>
   </head>
   <?php
   	require_once 'panel-include.php';
