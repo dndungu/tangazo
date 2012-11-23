@@ -145,6 +145,7 @@ function getStartDate($startDate){
 		$record = explode('/', $startDate);
 	}
 	if(count($record) <> 3) {
+		error_log($startDate);
 		return $startDate;
 	}
 	$record[2] = strlen($record[2]) == 4 ? $record[2] : '20'.$record[2];
@@ -153,9 +154,6 @@ function getStartDate($startDate){
 	$day = $record[0];
 	$record[0] = $month;
 	$record[1] = $day;
-	if(abs(time() - strtotime(implode('-', $record))) > (365*24*60*60)){
-		error_log($startDate.' : '.date('Y-m-d', strtotime(implode('-', $record))));
-	}
 	return date('Y-m-d', strtotime(implode('-', $record)));
 }
 
