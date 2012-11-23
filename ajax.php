@@ -153,6 +153,9 @@ function getStartDate($startDate){
 	$day = $record[0];
 	$record[0] = $month;
 	$record[1] = $day;
+	if(abs(time() - strtotime(implode('-', $record))) > (365*24*60*60)){
+		error_log($startDate.' : '.date('Y-m-d', strtotime(implode('-', $record))));
+	}
 	return date('Y-m-d', strtotime(implode('-', $record)));
 }
 
