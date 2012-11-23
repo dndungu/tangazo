@@ -142,6 +142,7 @@ function getStartDate($startDate){
 		$record = explode('/', $startDate);
 	}
 	if(count($record) <> 3) {
+		error_log($startDate . ' : ' . json_encode($record));
 		return $startDate;
 	}
 	$record[2] = strlen($record[2]) == 4 ? $record[2] : '20'.$record[2];
@@ -156,6 +157,7 @@ function getEndDate($endDate){
 		$record = explode('/', $endDate);
 	}
 	if(count($record) != 3) {
+		error_log($endDate . ' : ' . json_encode($record));
 		return $endDate;
 	}
 	$record[2] = strlen($record[2]) == 4 ? $record[2] : '20'.$record[2];
