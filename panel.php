@@ -83,7 +83,8 @@
   		}
   		$contentRecords = $records;
   		function totalSort($a, $b){
-  			return $b['rowtotal'] - $a['rowtotal'];
+			if($b['rowtotal'] == $a['rowtotal']) return 0;
+  			return $b['rowtotal'] > $a['rowtotal'] ? -1 : 1;
   		}
   		usort($contentRecords, "totalSort");
   		?>
