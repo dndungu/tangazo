@@ -149,7 +149,10 @@ function getStartDate($startDate){
 	}
 	$record[2] = strlen($record[2]) == 4 ? $record[2] : '20'.$record[2];
 	$record[2] = str_replace('19', '20', strval($record[2]));
-	error_log(implode('-', $record));
+	$month = $record[1];
+	$day = $record[0];
+	$record[0] = $month;
+	$record[1] = $day;
 	return date('Y-m-d', strtotime(implode('-', $record)));
 }
 
@@ -164,6 +167,10 @@ function getEndDate($endDate){
 	}
 	$record[2] = strlen($record[2]) == 4 ? $record[2] : '20'.$record[2];
 	$record[2] = str_replace('19', '20', strval($record[2]));
+	$month = $record[1];
+	$day = $record[0];
+	$record[0] = $month;
+	$record[1] = $day;
 	return date('Y-m-d', strtotime(implode('-', $record)));
 }
 
