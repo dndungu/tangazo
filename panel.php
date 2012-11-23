@@ -82,10 +82,10 @@
 			$records[$mediaCode]['medianame'] = (strlen($mediaRecords[$mediaCode]) < 4 ? $mediaRecords[$mediaCode] : strtolower($mediaRecords[$mediaCode]));  			
   		}
   		$contentRecords = $records;
-  		function totalSort($a, $b){
-  			return $b['rowtotal'] - $a['rowtotal'];
-  		}
-  		usort($contentRecords, "totalSort");
+//   		function totalSort($a, $b){
+//   			return $b['rowtotal'] - $a['rowtotal'];
+//   		}
+//   		usort($contentRecords, "totalSort");
   		?>
   		<?php foreach($contentRecords as $contentRecord){?>
   		<div class="row">
