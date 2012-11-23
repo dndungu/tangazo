@@ -87,7 +87,7 @@
   		}
   		usort($contentRecords, "totalSort");
   		?>
-  		<?php foreach($contentRecords as $mediaCode => $contentRecord){?>
+  		<?php foreach($contentRecords as $contentRecord){?>
   		<div class="row">
   			<div class="column four" style="text-transform:capitalize;">
   				<?php 
@@ -108,8 +108,10 @@
   			<?php }?>
   		</div>
   		<?php }
-  		}else{
+  		} else {
+
 			print 'There are no records for ' . getString('company');
+			
 			switch(getString('filter')){
 				case 'week':
 					print ' this week.';
@@ -120,7 +122,9 @@
 				case 'year':
 					print ' this year.';
 					break;
-			}  		
-  		}?>
+			}
+			 		
+  		}
+  		?>
   </body>
 </html>  
