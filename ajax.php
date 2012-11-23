@@ -55,7 +55,7 @@ function doHandleUpload(){
 			if(!move_uploaded_file($source, $xlsfile)) {
 				throw new Exception('Could not move uploaded file');
 			}			
-			$instruction = "unoconv -v --server 127.0.0.1 --port 5050 -f csv '{$xlsfile}'";
+			$instruction = "unoconv -v --server 127.0.0.1 --port 5050 -f csv -i 59,34,UTF-8 '{$xlsfile}'";
 			$exec_result = shell_exec($instruction);
 			error_log("\n***********\n$instruction\n**********");
 			$csvfile = str_replace('.xls', '.csv', str_replace('.xlsx', '.csv', $xlsfile));
