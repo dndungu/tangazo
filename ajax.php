@@ -112,29 +112,29 @@ function doStoreRecords($xlsfile, $importID){
 }
 
 function doCompanyQuery($record, $importID){
-	return sprintf("(%d, %d, '%s', UNIX_TIMESTAMP())", $importID, $record[1], dbEscapeString(trim($record[0])));
+	return sprintf("(%d, %d, '%s', UNIX_TIMESTAMP())", $importID, $record[1], dbEscapeString(removeQuotes($record[0])));
 }
 
 function doBrandQuery($record, $importID){
-	return sprintf("(%d, %d, '%s', UNIX_TIMESTAMP(), %d)", $importID, $record[3], dbEscapeString(trim($record[2])), $record[1]);
+	return sprintf("(%d, %d, '%s', UNIX_TIMESTAMP(), %d)", $importID, $record[3], dbEscapeString(removeQuotes($record[2])), $record[1]);
 }
 
 function doSectionQuery($record, $importID){
-	return sprintf("(%d, %d, '%s', UNIX_TIMESTAMP())", $importID, $record[5], dbEscapeString(trim($record[4])));
+	return sprintf("(%d, %d, '%s', UNIX_TIMESTAMP())", $importID, $record[5], dbEscapeString(removeQuotes($record[4])));
 }
 
 function doSubSectionQuery($record, $importID){
-	return sprintf("(%d, %d, '%s', UNIX_TIMESTAMP(), %d)", $importID, $record[7], dbEscapeString(trim($record[6])), $record[5]);
+	return sprintf("(%d, %d, '%s', UNIX_TIMESTAMP(), %d)", $importID, $record[7], dbEscapeString(removeQuotes($record[6])), $record[5]);
 }
 
 function doMediaQuery($record, $importID){
-	return sprintf("(%d, %d, '%s', UNIX_TIMESTAMP())", $importID, $record[9], dbEscapeString(trim($record[8])));
+	return sprintf("(%d, %d, '%s', UNIX_TIMESTAMP())", $importID, $record[9], dbEscapeString(removeQuotes($record[8])));
 }
 
 function doCampaignQuery($record, $importID){
 	$startDate = getStartDate($record[11]);
-	if($startDate == '0000-00-00') {
-		print_r($result);die();
+	if($startDate == '0000-00-00' || $startDate == '1912-05-10' || $startDate == '1970-01-01'|| $startDate == '2042-00-00'){
+		error_log(var_export($record));
 	}
 	$endDate = getEndDate($record[12]);
 	return sprintf("(%d, %d, %d, %d, %d, %d, %d, %f, '%s', '%s', %d, UNIX_TIMESTAMP())", $importID, trim($record[14]), trim($record[1]), trim($record[3]), trim($record[5]), trim($record[7]), trim($record[9]), trim($record[10]), $startDate, $endDate, trim($record[13]));
@@ -143,8 +143,12 @@ function doCampaignQuery($record, $importID){
 function getStartDate($startDate){
 	$startDate = removeQuotes($startDate);
 	$record = explode('-', $startDate);
-	if(count($record) <> 3) $record = explode('/', $startDate);
-	if(count($record) <> 3) return $startDate;
+	if(count($record) <> 3) {
+		$record = explode('/', $startDate);
+	}
+	if(count($record) <> 3) {
+		return $startDate;
+	}
 	$record[2] = strlen($record[2]) == 4 ? $record[2] : '20'.$record[2];
 	return date('Y-m-d', strtotime(implode('-', $record)));
 }
@@ -152,14 +156,18 @@ function getStartDate($startDate){
 function getEndDate($endDate){
 	$endDate = removeQuotes($endDate);
 	$record = explode('-', $endDate);
-	if(count($record) <> 3) $record = explode('/', $endDate);
-	if(count($record) <> 3) return $endDate;
+	if(count($record) != 3) {
+		$record = explode('/', $endDate);
+	}
+	if(count($record) != 3) {
+		return $endDate;
+	}
 	$record[2] = strlen($record[2]) == 4 ? $record[2] : '20'.$record[2];
 	return date('Y-m-d', strtotime(implode('-', $record)));
 }
 
 function removeQuotes($subject){
-	return str_replace('"', '', $subject);
+	return str_replace('"', '', trim($subject));
 }
 
 function doBrowseCompanies(){
