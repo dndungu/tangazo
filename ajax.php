@@ -136,7 +136,7 @@ function doCampaignQuery($record, $importID){
 	if($startDate == '0000-00-00' || $startDate == '1912-05-10' || $startDate == '1970-01-01'|| $startDate == '2042-00-00'){
 		//error_log(var_export($record));
 	}else{
-		error_log(var_export($record));
+		//error_log(var_export($record));
 	}
 	$endDate = getEndDate($record[12]);
 	return sprintf("(%d, %d, %d, %d, %d, %d, %d, %f, '%s', '%s', %d, UNIX_TIMESTAMP())", $importID, trim($record[14]), trim($record[1]), trim($record[3]), trim($record[5]), trim($record[7]), trim($record[9]), trim($record[10]), $startDate, $endDate, trim($record[13]));
