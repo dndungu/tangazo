@@ -40,7 +40,7 @@ if(!is_null($companies)){
 		$headerQuery[] = sprintf("AND `campaign`.`companyCode` = %d", $companies[0]['code']);
 		$headerQuery[] = "GROUP BY `brandCode`";
 		$headerRecords = dbFetch(dbQuery(implode(" ", $headerQuery)));
-		$width = ((count($headerRecords)) * 180) + 300;
+		$width = ((count($headerRecords)) * 180) + 600;
 	}
 }
 ?>
