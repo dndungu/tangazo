@@ -71,12 +71,14 @@
   			<?php }?>	  			
   		</div>
   		<?php
+  		$rowsTotal = 0;
   		$records = array();
   		foreach($contentRecords as $mediaCode => $contentRecord){
 			$total = 0	;
 			foreach($contentRecord as $brandRecord){
 				$total += $brandRecord['total'];
 			}
+			$rowsTotal += $total;
 			$contentRecord['rowtotal'] = $total;
 			$contentRecord['medianame'] = (strlen($mediaRecords[$mediaCode]) < 4 ? $mediaRecords[$mediaCode] : strtolower($mediaRecords[$mediaCode]));
 			$records[] = $contentRecord;  			
@@ -109,6 +111,16 @@
   			<?php }?>
   		</div>
   		<?php }
+  		?>
+  		<div class="row">
+  			<div class="column four" style="text-transform:capitalize;">
+  				Total
+  			</div>
+  			<div class="column two">
+  				<strong><?php print number_format($rowsTotal, 2);?></strong>
+  			</div>
+  		</div>
+  		<?php
   		} else {
 
 			print 'There are no records for ' . getString('company');
