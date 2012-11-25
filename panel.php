@@ -83,7 +83,7 @@
   		<?php if($width){?>
   		<div class="row header">
   			<div class="column four">Station</div>
-  			<div class="column two">Period Totals<br/><strong><?php print number_format($rowsTotal, 2);?></strong></div>
+  			<div class="column two">Period Totals<br/><?php print number_format($rowsTotal, 2);?></div>
   			<?php foreach($headerRecords as $headerRecord){?>
   				<div class="column three" style="text-transform:capitalize;"><?php print strtolower($headerRecord['name'])?></div>
   			<?php }?>	  			
