@@ -60,6 +60,24 @@
   </head>
   <?php
   	require_once 'panel-include.php';
+  	$rowsTotal = 0;
+  	$records = array();
+  	foreach($contentRecords as $mediaCode => $contentRecord){
+  		$total = 0	;
+  		foreach($contentRecord as $brandRecord){
+  			$total += $brandRecord['total'];
+  		}
+  		$rowsTotal += $total;
+  		$contentRecord['rowtotal'] = $total;
+  		$contentRecord['medianame'] = (strlen($mediaRecords[$mediaCode]) < 4 ? $mediaRecords[$mediaCode] : strtolower($mediaRecords[$mediaCode]));
+  		$records[] = $contentRecord;
+  	}
+  	$contentRecords = $records;
+  	function totalSort($a, $b){
+  		if($b['rowtotal'] == $a['rowtotal']) return 0;
+  		return $a['rowtotal'] > $b['rowtotal'] ? -1 : 1;
+  	}
+  	usort($contentRecords, "totalSort");
   ?>
   <body <?php print 'style="width:'.($width ? strval($width).'px' : '100%').';"'?>>
   		<?php if($width){?>
@@ -70,26 +88,6 @@
   				<div class="column three" style="text-transform:capitalize;"><?php print strtolower($headerRecord['name'])?></div>
   			<?php }?>	  			
   		</div>
-  		<?php
-  		$rowsTotal = 0;
-  		$records = array();
-  		foreach($contentRecords as $mediaCode => $contentRecord){
-			$total = 0	;
-			foreach($contentRecord as $brandRecord){
-				$total += $brandRecord['total'];
-			}
-			$rowsTotal += $total;
-			$contentRecord['rowtotal'] = $total;
-			$contentRecord['medianame'] = (strlen($mediaRecords[$mediaCode]) < 4 ? $mediaRecords[$mediaCode] : strtolower($mediaRecords[$mediaCode]));
-			$records[] = $contentRecord;  			
-  		}
-  		$contentRecords = $records;
-  		function totalSort($a, $b){
-			if($b['rowtotal'] == $a['rowtotal']) return 0;
-  			return $a['rowtotal'] > $b['rowtotal'] ? -1 : 1;
-  		}
-  		usort($contentRecords, "totalSort");
-  		?>
   		<?php foreach($contentRecords as $contentRecord){?>
   		<div class="row">
   			<div class="column four" style="text-transform:capitalize;">
