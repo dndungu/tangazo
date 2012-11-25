@@ -65,7 +65,7 @@
   		<?php if($width){?>
   		<div class="row header">
   			<div class="column four">Station</div>
-  			<div class="column two">Period Totals</div>
+  			<div class="column two">Period Totals<br/><strong><?php print number_format($rowsTotal, 2);?></strong></div>
   			<?php foreach($headerRecords as $headerRecord){?>
   				<div class="column three" style="text-transform:capitalize;"><?php print strtolower($headerRecord['name'])?></div>
   			<?php }?>	  			
@@ -111,16 +111,6 @@
   			<?php }?>
   		</div>
   		<?php }
-  		?>
-  		<div class="row">
-  			<div class="column four" style="text-transform:capitalize;">
-  				Total
-  			</div>
-  			<div class="column two">
-  				<strong><?php print number_format($rowsTotal, 2);?></strong>
-  			</div>
-  		</div>
-  		<?php
   		} else {
 
 			print 'There are no records for ' . getString('company');
