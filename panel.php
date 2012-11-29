@@ -71,6 +71,9 @@
   		$contentRecord['rowtotal'] = $total;
   		$contentRecord['medianame'] = (strlen($mediaRecords[$mediaCode]) < 4 ? $mediaRecords[$mediaCode] : strtolower($mediaRecords[$mediaCode]));
   		$records[] = $contentRecord;
+  		foreach($headerRecords as $headerRecordKey => $headerRecord){
+  			@$headerRecords[$headerRecordKey]['rowtotal'] += $contentRecord[$headerRecord['brandCode']]['total'];
+  		}
   	}
   	$contentRecords = $records;
   	function totalSort($a, $b){
@@ -78,12 +81,13 @@
   		return $a['rowtotal'] > $b['rowtotal'] ? -1 : 1;
   	}
   	usort($contentRecords, "totalSort");
+  	usort($headerRecords, "totalSort");
   ?>
   <body <?php print 'style="width:'.($width ? strval($width).'px' : '100%').';"'?>>
   		<?php if($width){?>
   		<div class="row header">
   			<div class="column four">Station</div>
-  			<div class="column two">Period Total<br/><?php print number_format($rowsTotal, 2);?></div>
+  			<div class="column two">Period Total</div>
   			<?php foreach($headerRecords as $headerRecord){?>
   				<div class="column three" style="text-transform:capitalize;"><?php print strtolower($headerRecord['name'])?></div>
   			<?php }?>	  			
@@ -109,6 +113,21 @@
   			<?php }?>
   		</div>
   		<?php }
+  		?>
+  		<div class="row" style="font-weight:900;">
+  			<div class="column four" style="text-transform:capitalize;">
+  				Totals
+  			</div>
+  			<div class="column two">
+  				<?php print number_format($rowsTotal, 2);?>
+  			</div>
+  			<?php foreach($headerRecords as $headerRecord){?>
+  				<div class="column three">
+  					<?php print number_format($headerRecord['rowtotal'], 2)?>
+  				</div>
+  			<?php }?>
+  		</div>
+  		<?php
   		} else {
 
 			print 'There are no records for ' . getString('company');
