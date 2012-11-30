@@ -70,6 +70,7 @@ function doHandleUpload(){
 			$insert['creationTime'] = date('r');
 			$results[] = $insert;
 		}
+		doAccountsMerge();
 		return json_encode(array('latency' => getLatency(), 'inserts' => $results));
 	}catch(Exception $e){
 		throw new Exception($e->getMessage());
@@ -194,6 +195,10 @@ function doBrowseCompanies(){
 function doDeleteRecords(){
 	dbQuery(sprintf("DELETE FROM `%s` WHERE `ID` IN (%s)", postString('table'), postString('records')));
 	return dbAffectedRows();
+}
+
+function doAccountsMerge(){
+	
 }
 
 dbClose();

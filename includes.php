@@ -86,4 +86,40 @@ function getInteger($key){
 	return filter_var(filter_input(INPUT_GET, $key, FILTER_SANITIZE_NUMBER_INT), FILTER_VALIDATE_INT);
 }
 
+function createGuid(){
+	$microTime = microtime();
+	list($a_dec, $a_sec) = explode(" ", $microTime);
+
+	$dec_hex = dechex($a_dec* 1000000);
+	$sec_hex = dechex($a_sec);
+
+	ensure_length($dec_hex, 5);
+	ensure_length($sec_hex, 6);
+
+	$guid = "";
+	$guid .= $dec_hex;
+	$guid .= createGuidSection(3);
+	$guid .= '-';
+	$guid .= createGuidSection(4);
+	$guid .= '-';
+	$guid .= createGuidSection(4);
+	$guid .= '-';
+	$guid .= createGuidSection(4);
+	$guid .= '-';
+	$guid .= $sec_hex;
+	$guid .= createGuidSection(6);
+
+	return $guid;
+
+}
+
+function createGuidSection($characters) {
+	$return = "";
+	for($i=0; $i<$characters; $i++)
+	{
+		$return .= dechex(mt_rand(0,15));
+	}
+	return $return;
+}
+
 dbConnect();

@@ -10,6 +10,8 @@ $config['DB_PASSWORD'] = 'x8JUBRrGYer6HfCU';
 
 $config['DB_SCHEMA'] = 'tangazo';
 
+$config['SUGAR_SCHEMA'] = 'sugar';
+
 $config['PAGE_SIZE'] = 15;
 
 ?>
