@@ -6,7 +6,7 @@ ignore_user_abort(true);
 
 require_once('includes.php');
 
-$companies = dbFetch(dbQuery("SELECT * FROM `radioafrica_importer`.`company` WHERE `code` NOT IN (SELECT `synovateCode` FROM `radioafrica_crmmigration`.`accounts` GROUP BY `synovateCode`)"));
+$companies = dbFetch(dbQuery("SELECT * FROM `radioafrica_importer`.`company` WHERE `code` NOT IN (SELECT `synovateCode` FROM `radioafrica_crmmigration`.`accounts` WHERE `synovateCode` IS NOT NULL GROUP BY `synovateCode`)"));
 
 if(is_null($companies)) die('no companies to update');
 

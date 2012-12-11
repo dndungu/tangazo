@@ -165,6 +165,10 @@ var tangazo  = {
 		if(!html.length) {
 			subject.writeError('Please select a valid MS Excel file.');
 		}else{
+			$.get('merge.php', function(){
+				if(typeof console == 'undefined') return;
+				console.info(arguments[0].responseText);
+			});
 			subject.clearError();
 		}
 		subject.uploadElement.val('');
