@@ -62,6 +62,10 @@
   	require_once 'panel-include.php';
   	$rowsTotal = 0;
   	$records = array();
+  	function totalSort($a, $b){
+  		if($b['rowtotal'] == $a['rowtotal']) return 0;
+  		return $a['rowtotal'] > $b['rowtotal'] ? -1 : 1;
+  	}
   	if(isset($contentRecords)){
 		foreach($contentRecords as $mediaCode => $contentRecord){
 			$total = 0	;
@@ -77,13 +81,9 @@
 			}
 		}
 		$contentRecords = $records;
+		usort($contentRecords, "totalSort");
+		usort($headerRecords, "totalSort");
   	}  	
-  	function totalSort($a, $b){
-  		if($b['rowtotal'] == $a['rowtotal']) return 0;
-  		return $a['rowtotal'] > $b['rowtotal'] ? -1 : 1;
-  	}
-  	usort($contentRecords, "totalSort");
-  	usort($headerRecords, "totalSort");
   ?>
   <body <?php print 'style="width:'.($width ? strval($width).'px' : '100%').';"'?>>
   		<?php if($width){?>
