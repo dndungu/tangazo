@@ -59,8 +59,9 @@
 			$query[] = "LEFT JOIN `msa_brand` ON (`msa_campaign`.`brandCode` = `msa_brand`.`code`)";
 			$query[] = "LEFT JOIN `msa_media` ON (`msa_campaign`.`mediaCode` = `msa_media`.`code`)";
 			$query[] = "LEFT JOIN `msa_section` ON (`msa_campaign`.`sectionCode` = `msa_section`.`code`)";
+			$query[] = "WHERE `accounts`.code IS NOT NULL";
 			if($import){
-				$query[] = sprintf("WHERE `msa_campaign`.`importID` = %d", $import);
+				$query[] = sprintf("AND `msa_campaign`.`importID` = %d", $import);
 			}
 			$query[] = "ORDER BY `msa_campaign`.`week` DESC";
 			if(!$import){
