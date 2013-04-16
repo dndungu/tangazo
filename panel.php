@@ -62,20 +62,22 @@
   	require_once 'panel-include.php';
   	$rowsTotal = 0;
   	$records = array();
-  	foreach($contentRecords as $mediaCode => $contentRecord){
-  		$total = 0	;
-  		foreach($contentRecord as $brandRecord){
-  			$total += $brandRecord['total'];
-  		}
-  		$rowsTotal += $total;
-  		$contentRecord['rowtotal'] = $total;
-  		$contentRecord['medianame'] = (strlen($mediaRecords[$mediaCode]) < 4 ? $mediaRecords[$mediaCode] : strtolower($mediaRecords[$mediaCode]));
-  		$records[] = $contentRecord;
-  		foreach($headerRecords as $headerRecordKey => $headerRecord){
-  			@$headerRecords[$headerRecordKey]['rowtotal'] += $contentRecord[$headerRecord['brandCode']]['total'];
-  		}
-  	}
-  	$contentRecords = $records;
+  	if(isset($contentRecords)){
+		foreach($contentRecords as $mediaCode => $contentRecord){
+			$total = 0	;
+			foreach($contentRecord as $brandRecord){
+				$total += $brandRecord['total'];
+			}
+			$rowsTotal += $total;
+			$contentRecord['rowtotal'] = $total;
+			$contentRecord['medianame'] = (strlen($mediaRecords[$mediaCode]) < 4 ? $mediaRecords[$mediaCode] : strtolower($mediaRecords[$mediaCode]));
+			$records[] = $contentRecord;
+			foreach($headerRecords as $headerRecordKey => $headerRecord){
+				@$headerRecords[$headerRecordKey]['rowtotal'] += $contentRecord[$headerRecord['brandCode']]['total'];
+			}
+		}
+		$contentRecords = $records;
+  	}  	
   	function totalSort($a, $b){
   		if($b['rowtotal'] == $a['rowtotal']) return 0;
   		return $a['rowtotal'] > $b['rowtotal'] ? -1 : 1;
