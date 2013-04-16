@@ -99,7 +99,7 @@ function doStoreRecords($xlsfile, $importID){
 	}
 	if(!isset($companies)) return NULL;
 	$result['import'] = $importID;
-	dbQuery(sprintf("INSERT IGNORE INTO `msa_account` (`importID`, `code`, `name`, `creationTime`) VALUES %s", implode(", ", $companies)));
+	dbQuery(sprintf("INSERT IGNORE INTO `accounts` (`importID`, `code`, `name`, `creationTime`) VALUES %s", implode(", ", $companies)));
 	$result['company'] = dbAffectedRows();
 	dbQuery(sprintf("INSERT IGNORE INTO `msa_brand` (`importID`, `code`, `name`, `creationTime`, `companyCode`) VALUES %s", implode(", ", $brands)));
 	$result['brand'] = dbAffectedRows();
@@ -187,7 +187,7 @@ function doBrowseCompanies(){
 	$orderColumn = $orderColumn ? $orderColumn : '`ID`';
 	$orderDirection = postString('orderDirection');
 	$orderDirection = $orderDirection ? $orderDirection : 'DESC';
-	$query = sprintf("SELECT * FROM `msa_account` ORDER BY %s %s LIMIT %d, %d", $orderColumn, $orderDirection, $limit , $offset);
+	$query = sprintf("SELECT * FROM `accounts` ORDER BY %s %s LIMIT %d, %d", $orderColumn, $orderDirection, $limit , $offset);
 	return createJSON(dbFetch(dbQuery($query)));
 }
 
