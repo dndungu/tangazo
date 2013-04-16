@@ -8,7 +8,7 @@ ALTER IGNORE TABLE `accounts` ADD UNIQUE (`code`);
 
 ALTER TABLE  `accounts` ADD  `importID` INT( 10 ) NOT NULL AFTER  `id`;
 
-ALTER TABLE  `accounts` ADD  `creationTime` INT( 10 ) NOT NULL;
+ALTER TABLE  `accounts` ADD  `creationTime` INT( 10 ) NULL DEFAULT NULL;
 
 
 --
