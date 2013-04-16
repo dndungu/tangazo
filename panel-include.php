@@ -17,13 +17,13 @@ if(!is_null($companies)){
 			$timeQuery = "AND 1 = 1";
 			break;
 	}	
-	$contentQuery[] = "SELECT `media`.`name` AS `media`, `brand`.`name` AS `brand`, `campaign`.`mediaCode` AS `mediaCode`, `campaign`.`brandCode` AS `brandCode`, SUM(`amount`) AS `total`, `week` FROM `campaign`";
-	$contentQuery[] = "LEFT JOIN `media` ON `campaign`.`mediaCode` = `media`.`code`";
-	$contentQuery[] = "LEFT JOIN `brand` ON `campaign`.`brandCode` = `brand`.`code`";
-	$contentQuery[] = "LEFT JOIN `accounts` ON `campaign`.`companyCode` = `accounts`.`code`";
+	$contentQuery[] = "SELECT `msa_media`.`name` AS `media`, `msa_brand`.`name` AS `brand`, `msa_campaign`.`mediaCode` AS `mediaCode`, `msa_campaign`.`brandCode` AS `brandCode`, SUM(`amount`) AS `total`, `week` FROM `msa_campaign`";
+	$contentQuery[] = "LEFT JOIN `msa_media` ON `msa_campaign`.`mediaCode` = `msa_media`.`code`";
+	$contentQuery[] = "LEFT JOIN `msa_brand` ON `msa_campaign`.`brandCode` = `msa_brand`.`code`";
+	$contentQuery[] = "LEFT JOIN `msa_accounts` ON `msa_campaign`.`companyCode` = `accounts`.`code`";
 	$contentQuery[] = "WHERE `amount` > 0";
 	$contentQuery[] = $timeQuery;
-	$contentQuery[] = sprintf("AND `campaign`.`companyCode` = %d", $companies[0]['code']);
+	$contentQuery[] = sprintf("AND `msa_campaign`.`companyCode` = %d", $companies[0]['code']);
 	$contentQuery[] = "GROUP BY `mediaCode`, `brandCode`";
 	$contentQuery[] = "ORDER BY `total` DESC";
 	$contentResults = dbQuery(implode(" ", $contentQuery));
@@ -32,12 +32,12 @@ if(!is_null($companies)){
 			$mediaRecords[$row['mediaCode']] = $row['media'];
 			$contentRecords[$row['mediaCode']][$row['brandCode']] = $row;
 		}
-		$headerQuery[] = "SELECT `campaign`.`brandCode`, `brand`.`name`, `campaign`.`mediaCode` FROM `campaign`";
-		$headerQuery[] = "LEFT JOIN `brand` ON `campaign`.`brandCode` = `brand`.`code`";
-		$headerQuery[] = "LEFT JOIN `accounts` ON `campaign`.`companyCode` = `accounts`.`code`";
+		$headerQuery[] = "SELECT `msa_campaign`.`brandCode`, `bmsa_rand`.`name`, `msa_campaign`.`mediaCode` FROM `msa_campaign`";
+		$headerQuery[] = "LEFT JOIN `msa_brand` ON (`msa_campaign`.`brandCode` = `brand`.`code`)";
+		$headerQuery[] = "LEFT JOIN `msa_accounts` ON (`msa_campaign`.`companyCode` = `accounts`.`code`)";
 		$contentQuery[] = $timeQuery;
 		$headerQuery[] = "WHERE `amount` > 0";
-		$headerQuery[] = sprintf("AND `campaign`.`companyCode` = %d", $companies[0]['code']);
+		$headerQuery[] = sprintf("AND `msa_campaign`.`companyCode` = %d", $companies[0]['code']);
 		$headerQuery[] = "GROUP BY `brandCode`";
 		$headerRecords = dbFetch(dbQuery(implode(" ", $headerQuery)));
 		$width = ((count($headerRecords)) * 180) + 600;
