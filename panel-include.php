@@ -20,7 +20,7 @@ if(!is_null($companies)){
 	$contentQuery[] = "SELECT `msa_media`.`name` AS `media`, `msa_brand`.`name` AS `brand`, `msa_campaign`.`mediaCode` AS `mediaCode`, `msa_campaign`.`brandCode` AS `brandCode`, SUM(`amount`) AS `total`, `week` FROM `msa_campaign`";
 	$contentQuery[] = "LEFT JOIN `msa_media` ON `msa_campaign`.`mediaCode` = `msa_media`.`code`";
 	$contentQuery[] = "LEFT JOIN `msa_brand` ON `msa_campaign`.`brandCode` = `msa_brand`.`code`";
-	$contentQuery[] = "LEFT JOIN `msa_accounts` ON `msa_campaign`.`companyCode` = `accounts`.`code`";
+	$contentQuery[] = "LEFT JOIN `accounts` ON `msa_campaign`.`companyCode` = `accounts`.`code`";
 	$contentQuery[] = "WHERE `amount` > 0";
 	$contentQuery[] = $timeQuery;
 	$contentQuery[] = sprintf("AND `msa_campaign`.`companyCode` = %d", $companies[0]['code']);
@@ -34,7 +34,7 @@ if(!is_null($companies)){
 		}
 		$headerQuery[] = "SELECT `msa_campaign`.`brandCode`, `bmsa_rand`.`name`, `msa_campaign`.`mediaCode` FROM `msa_campaign`";
 		$headerQuery[] = "LEFT JOIN `msa_brand` ON (`msa_campaign`.`brandCode` = `brand`.`code`)";
-		$headerQuery[] = "LEFT JOIN `msa_accounts` ON (`msa_campaign`.`companyCode` = `accounts`.`code`)";
+		$headerQuery[] = "LEFT JOIN `accounts` ON (`msa_campaign`.`companyCode` = `accounts`.`code`)";
 		$contentQuery[] = $timeQuery;
 		$headerQuery[] = "WHERE `amount` > 0";
 		$headerQuery[] = sprintf("AND `msa_campaign`.`companyCode` = %d", $companies[0]['code']);
