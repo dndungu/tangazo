@@ -48,8 +48,8 @@
 			$import = getInteger('i');
 			$page = $page ? $page : 1;
 			$offset = (($page - 1) * $config['PAGE_SIZE']);
-			$query[] = "SELECT `msa_brand`.`ID` AS `ID`, `msa_brand`.`code` AS `code`, `msa_brand`.`name` AS `name`, `msa_account`.`name` AS `company`, `msa_brand`.`creationTime` AS `creationTime` FROM `msa_brand`";
-			$query[] = "LEFT JOIN `msa_account` ON (`msa_brand`.`companyCode` = `msa_account`.`code`)";
+			$query[] = "SELECT `msa_brand`.`ID` AS `ID`, `msa_brand`.`code` AS `code`, `msa_brand`.`name` AS `name`, `accounts`.`name` AS `company`, `msa_brand`.`creationTime` AS `creationTime` FROM `msa_brand`";
+			$query[] = "LEFT JOIN `accounts` ON (`msa_brand`.`companyCode` = `accounts`.`code`)";
 			if($import){
 				$query[] = sprintf("WHERE `msa_brand`.`importID` = %d", $import);
 			}
