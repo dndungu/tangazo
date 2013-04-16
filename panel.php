@@ -132,7 +132,7 @@
   		<?php
   		} else {
 
-			print 'There are no records for ' . getString('company');
+			print 'There are no records for account id: ' . getString('id');
 			
 			switch(getString('filter')){
 				case 'week':
