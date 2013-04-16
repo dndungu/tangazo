@@ -53,7 +53,7 @@
 			if(!$import){
 				$query[] = sprintf("LIMIT %d, %d", $offset, $config['PAGE_SIZE']);
 			}
-			$recordsCount = dbFetch(dbQuery("SELECT COUNT(*) AS `count` FROM `accounts`"));
+			$recordsCount = dbFetch(dbQuery("SELECT COUNT(*) AS `count` FROM `accounts` WHERE `code` IS NOT NULL"));
 			$pages = $recordsCount[0]['count'] / $config['PAGE_SIZE'];
 			$records = dbFetch(dbQuery(implode(" ", $query))); 
 			?>
