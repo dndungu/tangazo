@@ -93,8 +93,8 @@ function createGuid(){
 	$dec_hex = dechex($a_dec* 1000000);
 	$sec_hex = dechex($a_sec);
 
-	ensure_length($dec_hex, 5);
-	ensure_length($sec_hex, 6);
+	ensureLength($dec_hex, 5);
+	ensureLength($sec_hex, 6);
 
 	$guid = "";
 	$guid .= $dec_hex;
@@ -120,6 +120,16 @@ function createGuidSection($characters) {
 		$return .= dechex(mt_rand(0,15));
 	}
 	return $return;
+}
+
+function ensureLength(&$string, $length) {
+	$strlen = strlen($string);
+	if($strlen < $length) {
+		$string = str_pad($string,$length,"0");
+	}
+	else if($strlen > $length) {
+		$string = substr($string, 0, $length);
+	}
 }
 
 dbConnect();
