@@ -33,7 +33,7 @@ if(!is_null($companies)){
 			$contentRecords[$row['mediaCode']][$row['brandCode']] = $row;
 		}
 		$headerQuery[] = "SELECT `msa_campaign`.`brandCode`, `msa_brand`.`name`, `msa_campaign`.`mediaCode` FROM `msa_campaign`";
-		$headerQuery[] = "LEFT JOIN `msa_brand` ON (`msa_campaign`.`brandCode` = `brand`.`code`)";
+		$headerQuery[] = "LEFT JOIN `msa_brand` ON (`msa_campaign`.`brandCode` = `msa_brand`.`code`)";
 		$headerQuery[] = "LEFT JOIN `accounts` ON (`msa_campaign`.`companyCode` = `accounts`.`code`)";
 		$contentQuery[] = $timeQuery;
 		$headerQuery[] = "WHERE `amount` > 0";
