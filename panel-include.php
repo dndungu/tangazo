@@ -1,6 +1,6 @@
 <?php
 require_once('includes.php');
-$companies = dbFetch(dbQuery(sprintf("SELECT * FROM `company` WHERE MATCH(`name`) AGAINST('%s') LIMIT 1", getString('company'))));
+$companies = dbFetch(dbQuery(sprintf("SELECT * FROM `accounts` WHERE `id` = '%s' LIMIT 1", getString('id'))));
 $width = 0;
 if(!is_null($companies)){
 	switch(getString('filter')){
@@ -20,7 +20,7 @@ if(!is_null($companies)){
 	$contentQuery[] = "SELECT `media`.`name` AS `media`, `brand`.`name` AS `brand`, `campaign`.`mediaCode` AS `mediaCode`, `campaign`.`brandCode` AS `brandCode`, SUM(`amount`) AS `total`, `week` FROM `campaign`";
 	$contentQuery[] = "LEFT JOIN `media` ON `campaign`.`mediaCode` = `media`.`code`";
 	$contentQuery[] = "LEFT JOIN `brand` ON `campaign`.`brandCode` = `brand`.`code`";
-	$contentQuery[] = "LEFT JOIN `company` ON `campaign`.`companyCode` = `company`.`code`";
+	$contentQuery[] = "LEFT JOIN `accounts` ON `campaign`.`companyCode` = `accounts`.`code`";
 	$contentQuery[] = "WHERE `amount` > 0";
 	$contentQuery[] = $timeQuery;
 	$contentQuery[] = sprintf("AND `campaign`.`companyCode` = %d", $companies[0]['code']);
@@ -34,7 +34,7 @@ if(!is_null($companies)){
 		}
 		$headerQuery[] = "SELECT `campaign`.`brandCode`, `brand`.`name`, `campaign`.`mediaCode` FROM `campaign`";
 		$headerQuery[] = "LEFT JOIN `brand` ON `campaign`.`brandCode` = `brand`.`code`";
-		$headerQuery[] = "LEFT JOIN `company` ON `campaign`.`companyCode` = `company`.`code`";
+		$headerQuery[] = "LEFT JOIN `accounts` ON `campaign`.`companyCode` = `accounts`.`code`";
 		$contentQuery[] = $timeQuery;
 		$headerQuery[] = "WHERE `amount` > 0";
 		$headerQuery[] = sprintf("AND `campaign`.`companyCode` = %d", $companies[0]['code']);
