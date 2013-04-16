@@ -169,6 +169,9 @@ var tangazo  = {
 		}
 		subject.uploadElement.val('');
 		$('.imports').css({display: 'none'}).prepend(html.join("\n")).fadeIn();
+		$.get('merge.php', function(){
+			console.info(arguments[0]);
+		});
 	},
 	clearError: function(){
 		$('.errorBox').html('').fadeOut();
