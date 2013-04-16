@@ -132,7 +132,7 @@
   		<?php
   		} else {
 
-			print 'There are no records for account id: ' . getString('id');
+			print 'Sorry there is no spending data for this account.';
 			
 			switch(getString('filter')){
 				case 'week':
