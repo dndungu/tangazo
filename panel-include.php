@@ -13,9 +13,6 @@ if(!is_null($companies)){
 		case 'year':
 			$timeQuery = "AND YEAR(`startDate`) = YEAR(NOW())";
 			break;
-		default:
-			$timeQuery = "AND 1 = 1";
-			break;
 	}	
 	$contentQuery[] = "SELECT `msa_media`.`name` AS `media`, `msa_brand`.`name` AS `brand`, `msa_campaign`.`mediaCode` AS `mediaCode`, `msa_campaign`.`brandCode` AS `brandCode`, SUM(`amount`) AS `total`, `week` FROM `msa_campaign`";
 	$contentQuery[] = "LEFT JOIN `msa_media` ON `msa_campaign`.`mediaCode` = `msa_media`.`code`";
