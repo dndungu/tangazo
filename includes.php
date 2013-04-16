@@ -108,7 +108,6 @@ function createGuid(){
 	$guid .= '-';
 	$guid .= $sec_hex;
 	$guid .= createGuidSection(6);
-	error_log("GUID: $guid");
 	return $guid;
 
 }

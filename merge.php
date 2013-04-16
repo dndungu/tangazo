@@ -6,16 +6,16 @@ ignore_user_abort(true);
 
 require_once('includes.php');
 
-$companies = dbFetch(dbQuery("SELECT * FROM `radioafrica_importer`.`company` WHERE `code` NOT IN (SELECT `synovateCode` FROM `radioafrica_crmmigration`.`accounts` WHERE `synovateCode` IS NOT NULL GROUP BY `synovateCode`)"));
+$results = array();
 
-if(is_null($companies)) die('no companies to update');
+$accounts = dbFetch(dbQuery("SELECT `name` FROM `accounts` GROUP BY `name` HAVING COUNT(*) > 1"));
 
-$query[] = "INSERT INTO `radioafrica_crmmigration` (`id`, synovateCode`, `name`, `date_entered`, `date_modified`) VALUES";
-
-$datetime = date();
-
-foreach($companies as $company){
-	$query[] = sprintf("('%s', %d, '%s', NOW(), NOW())", createGuid(), $company['code'], $company['name']);
+foreach($accounts as $account){
+	$name = $account['name'];
+	dbQuery(sprintf("UPDATE `accounts` SET `code` = (SELECT `code` FROM `accounts` WHERE `name` = '%s' AND `code` IS NOT NULL LIMIT 1) WHERE `code` IS NULL AND `name` = '%s' LIMIT 1", $name, $name));
+	$results[$name]['update'][] = dbAffectedRows();
+	dbQuery(sprintf("DELETE FROM `accounts` WHERE `name` = '%s' AND `creationTime` > 0 LIMIT 1", $name));
+	$results[$name]['delete'][] = dbAffectedRows();
 }
 
-dbQuery(implode(' ', $query));
+print json_encode($results);
