@@ -99,7 +99,7 @@ function doStoreRecords($xlsfile, $importID){
 	}
 	if(!isset($companies)) return NULL;
 	$result['import'] = $importID;
-	dbQuery(sprintf("INSERT IGNORE INTO `accounts` (`importID`, `code`, `name`, `creationTime`) VALUES %s", implode(", ", $companies)));
+	dbQuery(sprintf("INSERT IGNORE INTO `accounts` (`id`, `importID`, `code`, `name`, `creationTime`) VALUES %s", implode(", ", $companies)));
 	$result['company'] = dbAffectedRows();
 	dbQuery(sprintf("INSERT IGNORE INTO `msa_brand` (`importID`, `code`, `name`, `creationTime`, `companyCode`) VALUES %s", implode(", ", $brands)));
 	$result['brand'] = dbAffectedRows();
@@ -115,7 +115,7 @@ function doStoreRecords($xlsfile, $importID){
 }
 
 function doCompanyQuery($record, $importID){
-	return sprintf("(%d, %d, '%s', UNIX_TIMESTAMP())", $importID, $record[1], dbEscapeString(removeQuotes($record[0])));
+	return sprintf("('%s', %d, %d, '%s', UNIX_TIMESTAMP())", createGuid(), $importID, $record[1], dbEscapeString(removeQuotes($record[0])));
 }
 
 function doBrandQuery($record, $importID){
