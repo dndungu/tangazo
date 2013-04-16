@@ -26,7 +26,7 @@ if(!is_null($companies)){
 	$contentQuery[] = sprintf("AND `msa_campaign`.`companyCode` = %d", $companies[0]['code']);
 	$contentQuery[] = "GROUP BY `mediaCode`, `brandCode`";
 	$contentQuery[] = "ORDER BY `total` DESC";
-	error_log(implode(" ", $contentQuery));
+	print (implode(" ", $contentQuery));die();
 	$contentResults = dbQuery(implode(" ", $contentQuery));
 	if($contentResults->num_rows) {
 		while($row = $contentResults->fetch_assoc()){
