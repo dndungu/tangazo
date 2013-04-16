@@ -23,7 +23,7 @@
 			<div class="gridColumns">
 				<div class="row">
 					<div class="column grid1of10 align-center">
-						<input type="button" id="deleteRecords" name="company" value="DELETE"/>
+						<input type="button" id="deleteRecords" name="accounts" value="DELETE"/>
 					</div>
 				</div>			
 				<div class="column grid1of10 align-center">
@@ -45,15 +45,15 @@
 			$import = getInteger('i');
 			$page = $page ? $page : 1;
 			$offset = (($page - 1) * $config['PAGE_SIZE']);
-			$query[] = "SELECT * FROM `company`";
+			$query[] = "SELECT * FROM `msa_accounts` WHERE `code` IS NOT NULL";
 			if($import){
-				$query[] = sprintf("WHERE `company`.`importID` = %d", $import);
+				$query[] = sprintf("AND `msa_accounts`.`importID` = %d", $import);
 			}			
-			$query[] = "ORDER BY `company`.`name` ASC, `company`.`ID` DESC";
+			$query[] = "ORDER BY `msa_accounts`.`name` ASC, `msa_accounts`.`ID` DESC";
 			if(!$import){
 				$query[] = sprintf("LIMIT %d, %d", $offset, $config['PAGE_SIZE']);
 			}
-			$recordsCount = dbFetch(dbQuery("SELECT COUNT(*) AS `count` FROM `company`"));
+			$recordsCount = dbFetch(dbQuery("SELECT COUNT(*) AS `count` FROM `msa_accounts`"));
 			$pages = $recordsCount[0]['count'] / $config['PAGE_SIZE'];
 			$records = dbFetch(dbQuery(implode(" ", $query))); 
 			?>
@@ -61,7 +61,7 @@
 				<?php foreach($records as $record){?>
 				<div class="row">
 					<div class="column grid1of10 align-center">
-						<input name="selectone" class="selectone" type="checkbox" value="<?php print $record['ID']?>"/>
+						<input name="selectone" class="selectone" type="checkbox" value="<?php print $record['id']?>"/>
 					</div>
 					<div class="column grid1of10">
 						<?php print $record['code']?>

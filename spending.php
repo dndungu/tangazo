@@ -54,19 +54,19 @@
 			$import = getInteger('i');
 			$page = $page ? $page : 1;
 			$offset = (($page - 1) * $config['PAGE_SIZE']);
-			$query[] = "SELECT `campaign`.`ID` AS `ID`, `company`.`name` AS `company`, `brand`.`name` AS `brand`, `media`.`name` AS `media`, `section`.`name` AS `section`, `amount`, `week` FROM `campaign`";
-			$query[] = "LEFT JOIN `company` ON (`campaign`.`companyCode` = `company`.`code`)";
-			$query[] = "LEFT JOIN `brand` ON (`campaign`.`brandCode` = `brand`.`code`)";
-			$query[] = "LEFT JOIN `media` ON (`campaign`.`mediaCode` = `media`.`code`)";
-			$query[] = "LEFT JOIN `section` ON (`campaign`.`sectionCode` = `section`.`code`)";
+			$query[] = "SELECT `msa_campaign`.`ID` AS `ID`, `msa_accounts`.`name` AS `company`, `msa_brand`.`name` AS `brand`, `msa_media`.`name` AS `media`, `msa_section`.`name` AS `section`, `amount`, `week` FROM `msa_campaign`";
+			$query[] = "LEFT JOIN `msa_accounts` ON (`campaign`.`companyCode` = `msa_accounts`.`code`)";
+			$query[] = "LEFT JOIN `msa_brand` ON (`msa_campaign`.`brandCode` = `msa_brand`.`code`)";
+			$query[] = "LEFT JOIN `msa_media` ON (`msa_campaign`.`mediaCode` = `msa_media`.`code`)";
+			$query[] = "LEFT JOIN `msa_section` ON (`msa_campaign`.`sectionCode` = `msa_section`.`code`)";
 			if($import){
-				$query[] = sprintf("WHERE `campaign`.`importID` = %d", $import);
+				$query[] = sprintf("WHERE `msa_campaign`.`importID` = %d", $import);
 			}
-			$query[] = "ORDER BY `campaign`.`week` DESC";
+			$query[] = "ORDER BY `msa_campaign`.`week` DESC";
 			if(!$import){
 				$query[] = sprintf("LIMIT %d, %d", $offset, $config['PAGE_SIZE']);
 			}
-			$recordsCount = dbFetch(dbQuery("SELECT COUNT(*) AS `count` FROM `campaign` {$query[1]} {$query[2]} {$query[3]} {$query[4]}"));
+			$recordsCount = dbFetch(dbQuery("SELECT COUNT(*) AS `count` FROM `msa_campaign` {$query[1]} {$query[2]} {$query[3]} {$query[4]}"));
 			$pages = $recordsCount[0]['count'] / $config['PAGE_SIZE'];
 			$records = dbFetch(dbQuery(implode(" ", $query))); 
 			?>

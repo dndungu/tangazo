@@ -48,16 +48,16 @@
 			$import = getInteger('i');
 			$page = $page ? $page : 1;
 			$offset = (($page - 1) * $config['PAGE_SIZE']);
-			$query[] = "SELECT `subSection`.`ID` AS `ID`, `subSection`.`code` AS `code`, `subSection`.`name` AS `name`, `section`.`name` AS `section`, `subSection`.`creationTime` AS `creationTime` FROM `subSection`";
-			$query[] = "LEFT JOIN `section` ON (`subSection`.`sectionCode` = `section`.`code`)";
+			$query[] = "SELECT `msa_subSection`.`ID` AS `ID`, `msa_subSection`.`code` AS `code`, `msa_subSection`.`name` AS `name`, `msa_section`.`name` AS `section`, `msa_subSection`.`creationTime` AS `creationTime` FROM `msa_subSection`";
+			$query[] = "LEFT JOIN `msa_section` ON (`msa_subSection`.`sectionCode` = `msa_section`.`code`)";
 			if($import){
-				$query[] = sprintf("WHERE `subSection`.`importID` = %d", $import);
+				$query[] = sprintf("WHERE `msa_subSection`.`importID` = %d", $import);
 			}
-			$query[] = "ORDER BY `subSection`.`name` ASC, `subSection`.`ID` DESC";
+			$query[] = "ORDER BY `msa_subSection`.`name` ASC, `msa_subSection`.`ID` DESC";
 			if(!$import){
 				$query[] = sprintf("LIMIT %d, %d", $offset, $config['PAGE_SIZE']);
 			}
-			$recordsCount = dbFetch(dbQuery("SELECT COUNT(*) AS `count` FROM `subSection` {$query[1]}"));
+			$recordsCount = dbFetch(dbQuery("SELECT COUNT(*) AS `count` FROM `msa_subSection` {$query[1]}"));
 			$pages = $recordsCount[0]['count'] / $config['PAGE_SIZE'];
 			$records = dbFetch(dbQuery(implode(" ", $query))); 
 			?>

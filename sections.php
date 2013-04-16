@@ -45,15 +45,15 @@
 			$import = getInteger('i');
 			$page = $page ? $page : 1;
 			$offset = (($page - 1) * $config['PAGE_SIZE']);
-			$query[] = "SELECT * FROM `section`";
+			$query[] = "SELECT * FROM `msa_section`";
 			if($import){
-				$query[] = sprintf("WHERE `section`.`importID` = %d", $import);
+				$query[] = sprintf("WHERE `msa_section`.`importID` = %d", $import);
 			}			
-			$query[] = "ORDER BY `section`.`name` ASC, `section`.`ID` DESC";
+			$query[] = "ORDER BY `msa_section`.`name` ASC, `msa_section`.`ID` DESC";
 			if(!$import){
 				$query[] = sprintf("LIMIT %d, %d", $offset, $config['PAGE_SIZE']);
 			}
-			$recordsCount = dbFetch(dbQuery("SELECT COUNT(*) AS `count` FROM `section`"));
+			$recordsCount = dbFetch(dbQuery("SELECT COUNT(*) AS `count` FROM `msa_section`"));
 			$pages = $recordsCount[0]['count'] / $config['PAGE_SIZE'];
 			$records = dbFetch(dbQuery(implode(" ", $query))); 
 			?>

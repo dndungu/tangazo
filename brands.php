@@ -48,16 +48,16 @@
 			$import = getInteger('i');
 			$page = $page ? $page : 1;
 			$offset = (($page - 1) * $config['PAGE_SIZE']);
-			$query[] = "SELECT `brand`.`ID` AS `ID`, `brand`.`code` AS `code`, `brand`.`name` AS `name`, `company`.`name` AS `company`, `brand`.`creationTime` AS `creationTime` FROM `brand`";
-			$query[] = "LEFT JOIN `company` ON (`brand`.`companyCode` = `company`.`code`)";
+			$query[] = "SELECT `msa_brand`.`ID` AS `ID`, `msa_brand`.`code` AS `code`, `msa_brand`.`name` AS `name`, `msa_accounts`.`name` AS `company`, `msa_brand`.`creationTime` AS `creationTime` FROM `msa_brand`";
+			$query[] = "LEFT JOIN `msa_accounts` ON (`msa_brand`.`companyCode` = `msa_accounts`.`code`)";
 			if($import){
-				$query[] = sprintf("WHERE `brand`.`importID` = %d", $import);
+				$query[] = sprintf("WHERE `msa_brand`.`importID` = %d", $import);
 			}
-			$query[] = "ORDER BY `brand`.`name` ASC, `brand`.`ID` DESC";
+			$query[] = "ORDER BY `msa_brand`.`name` ASC, `msa_brand`.`ID` DESC";
 			if(!$import){
 				$query[] = sprintf("LIMIT %d, %d", $offset, $config['PAGE_SIZE']);
 			}
-			$recordsCount = dbFetch(dbQuery("SELECT COUNT(*) AS `count` FROM `brand` {$query[1]}"));
+			$recordsCount = dbFetch(dbQuery("SELECT COUNT(*) AS `count` FROM `msa_brand` {$query[1]}"));
 			$pages = $recordsCount[0]['count'] / $config['PAGE_SIZE'];
 			$records = dbFetch(dbQuery(implode(" ", $query))); 
 			?>

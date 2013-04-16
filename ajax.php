@@ -62,15 +62,14 @@ function doHandleUpload(){
 			if(!file_exists($csvfile)){
 				throw new Exception($instruction);
 			}
-			dbQuery(sprintf("INSERT INTO `import` (`source`, `companies`, `brands`, `sections`, `subSections`, `media`, `campaigns`, `latency`, `creationTime`) VALUES ('%s', 0, 0, 0, 0, 0, 0, 0, %d)", $name, time()));
+			dbQuery(sprintf("INSERT INTO `msa_import` (`source`, `companies`, `brands`, `sections`, `subSections`, `media`, `campaigns`, `latency`, `creationTime`) VALUES ('%s', 0, 0, 0, 0, 0, 0, 0, %d)", $name, time()));
 			$importID = dbInsertId();
 			$insert = doStoreRecords($xlsfile, $importID);
-			dbQuery(sprintf("UPDATE `import` SET `companies` = %d, `brands` = %d, `sections` = %d, `subSections` = %d, `media` = %d, `campaigns` = %d, `latency` = %d WHERE `ID` = %d", $insert['company'], $insert['brand'], $insert['section'], $insert['subSection'], $insert['media'], $insert['campaign'], getLatency(), $importID));
+			dbQuery(sprintf("UPDATE `msa_import` SET `companies` = %d, `brands` = %d, `sections` = %d, `subSections` = %d, `media` = %d, `campaigns` = %d, `latency` = %d WHERE `ID` = %d", $insert['company'], $insert['brand'], $insert['section'], $insert['subSection'], $insert['media'], $insert['campaign'], getLatency(), $importID));
 			$insert['source'] = $name;
 			$insert['creationTime'] = date('r');
 			$results[] = $insert;
 		}
-		doAccountsMerge();
 		return json_encode(array('latency' => getLatency(), 'inserts' => $results));
 	}catch(Exception $e){
 		throw new Exception($e->getMessage());
@@ -100,17 +99,17 @@ function doStoreRecords($xlsfile, $importID){
 	}
 	if(!isset($companies)) return NULL;
 	$result['import'] = $importID;
-	dbQuery(sprintf("INSERT IGNORE INTO `company` (`importID`, `code`, `name`, `creationTime`) VALUES %s", implode(", ", $companies)));
+	dbQuery(sprintf("INSERT IGNORE INTO `msa_company` (`importID`, `code`, `name`, `creationTime`) VALUES %s", implode(", ", $companies)));
 	$result['company'] = dbAffectedRows();
-	dbQuery(sprintf("INSERT IGNORE INTO `brand` (`importID`, `code`, `name`, `creationTime`, `companyCode`) VALUES %s", implode(", ", $brands)));
+	dbQuery(sprintf("INSERT IGNORE INTO `msa_brand` (`importID`, `code`, `name`, `creationTime`, `companyCode`) VALUES %s", implode(", ", $brands)));
 	$result['brand'] = dbAffectedRows();
-	dbQuery(sprintf("INSERT IGNORE INTO `section` (`importID`, `code`, `name`, `creationTime`) VALUES %s", implode(", ", $sections)));
+	dbQuery(sprintf("INSERT IGNORE INTO `msa_section` (`importID`, `code`, `name`, `creationTime`) VALUES %s", implode(", ", $sections)));
 	$result['section'] = dbAffectedRows();
-	dbQuery(sprintf("INSERT IGNORE INTO `subSection` (`importID`, `code`, `name`, `creationTime`, `sectionCode`) VALUES %s", implode(", ", $subSections)));
+	dbQuery(sprintf("INSERT IGNORE INTO `msa_subSection` (`importID`, `code`, `name`, `creationTime`, `sectionCode`) VALUES %s", implode(", ", $subSections)));
 	$result['subSection'] = dbAffectedRows();
-	dbQuery(sprintf("INSERT IGNORE INTO `media` (`importID`, `code`, `name`, `creationTime`) VALUES %s", implode(", ", $media)));
+	dbQuery(sprintf("INSERT IGNORE INTO `msa_media` (`importID`, `code`, `name`, `creationTime`) VALUES %s", implode(", ", $media)));
 	$result['media'] = dbAffectedRows();
-	dbQuery(sprintf("INSERT IGNORE INTO `campaign` (`importID`, `campaignCode`, `companyCode`, `brandCode`, `sectionCode`, `subSectionCode`, `mediaCode`, `amount`, `startDate`, `endDate`, `week`, `creationTime`) VALUES %s", implode(", ", $campaigns)));
+	dbQuery(sprintf("INSERT IGNORE INTO `msa_campaign` (`importID`, `campaignCode`, `companyCode`, `brandCode`, `sectionCode`, `subSectionCode`, `mediaCode`, `amount`, `startDate`, `endDate`, `week`, `creationTime`) VALUES %s", implode(", ", $campaigns)));
 	$result['campaign'] = dbAffectedRows();
 	return $result;
 }
@@ -188,17 +187,14 @@ function doBrowseCompanies(){
 	$orderColumn = $orderColumn ? $orderColumn : '`ID`';
 	$orderDirection = postString('orderDirection');
 	$orderDirection = $orderDirection ? $orderDirection : 'DESC';
-	$query = sprintf("SELECT * FROM `company` ORDER BY %s %s LIMIT %d, %d", $orderColumn, $orderDirection, $limit , $offset);
+	$query = sprintf("SELECT * FROM `msa_accounts` ORDER BY %s %s LIMIT %d, %d", $orderColumn, $orderDirection, $limit , $offset);
 	return createJSON(dbFetch(dbQuery($query)));
 }
 
 function doDeleteRecords(){
-	dbQuery(sprintf("DELETE FROM `%s` WHERE `ID` IN (%s)", postString('table'), postString('records')));
+	$primaryKey = postString('table') == 'company' ? 'id' : 'ID';
+	dbQuery(sprintf("DELETE FROM `%s` WHERE `%s` IN (%s)", postString('table'), $primaryKey, postString('records')));
 	return dbAffectedRows();
-}
-
-function doAccountsMerge(){
-	
 }
 
 dbClose();
