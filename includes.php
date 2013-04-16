@@ -2,7 +2,7 @@
 
 date_default_timezone_set('Africa/Nairobi');
 
-ini_set('display_errors', 0);
+ini_set('display_errors', 1);
 
 ini_set('log_errors', 1);
 
@@ -108,7 +108,7 @@ function createGuid(){
 	$guid .= '-';
 	$guid .= $sec_hex;
 	$guid .= createGuidSection(6);
-
+	error_log("GUID: $guid");
 	return $guid;
 
 }
