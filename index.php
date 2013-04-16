@@ -16,7 +16,7 @@
   				<li><a href="brands.php">Brands</a></li>
   				<li><a href="media.php">Media</a></li>
   				<li><a href="sections.php">Sections</a></li>
-  				<li><a href="sections.php">Sub Sections</a></li>
+  				<li><a href="subsections.php">Sub Sections</a></li>
   			</ul>
   		</div>
   		<div class="content row">
