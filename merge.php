@@ -19,7 +19,7 @@ foreach($accounts as $account){
 	dbQuery(sprintf("DELETE FROM `accounts` WHERE `name` = '%s' AND `creationTime` IS NOT NULL", $name));
 	$results['delete'][$name][] = dbAffectedRows();
 	
-	dbQuery(sprintf("UPDATE `accounts` SET `code` = %d WHERE `code` IS NULL AND `name` = '%s' LIMIT 1", $rows[0]['code'], $name, $name));
+	dbQuery(sprintf("UPDATE `accounts` SET `code` = %d WHERE `name` = '%s' AND `creationTime` IS NULL LIMIT", $rows[0]['code'], $name, $name));
 	$results['update'][$name][] = dbAffectedRows();
 		
 }
