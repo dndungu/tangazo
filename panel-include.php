@@ -4,14 +4,17 @@ $companies = dbFetch(dbQuery(sprintf("SELECT * FROM `accounts` WHERE `id` = '%s'
 $width = 0;
 if(!is_null($companies)){
 	switch(getString('filter')){
-		case 'week':
+		case 'weekly':
 			$timeQuery = "AND `week` = WEEKOFYEAR(NOW())";
 			break;
-		case 'month':
+		case 'monthly':
 			$timeQuery = "AND YEAR(`startDate`) = YEAR(NOW()) AND MONTH(`startDate`) = MONTH(NOW())";
 			break;
-		case 'year':
+		case 'yearly':
 			$timeQuery = "AND YEAR(`startDate`) = YEAR(NOW())";
+			break;
+		default:
+			$timeQuery = "AND 1 = 1";
 			break;
 	}	
 	$contentQuery[] = "SELECT `msa_media`.`name` AS `media`, `msa_brand`.`name` AS `brand`, `msa_campaign`.`mediaCode` AS `mediaCode`, `msa_campaign`.`brandCode` AS `brandCode`, SUM(`amount`) AS `total`, `week` FROM `msa_campaign`";
