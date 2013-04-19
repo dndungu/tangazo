@@ -89,8 +89,8 @@
   		<?php if($width){?>
   		<div class="row header">
   			<div class="column four">
-  				<a href="panel.php?filter=<?php print $filter?>&id=<?php print $id?>&offset=<?php print ($offset - 1)?>"><img src="images/previous.png"/></a> 
-  				<?php print $title?>
+  				<a href="panel.php?filter=<?php print $filter?>&id=<?php print $id?>&offset=<?php print ($offset - 1)?>"><img src="images/previous.png"/></a>
+  				<span><?php print $title?></span>
   				<?php if($offset < 0){?>
   				<a href="panel.php?filter=<?php print $filter?>&id=<?php print $id?>&offset=<?php print ($offset + 1)?>"><img src="images/next.png"/></a>
   				<?php }?>
@@ -138,7 +138,7 @@
   		<?php
   		} else {
 
-			print 'Sorry there is no spending data for this account.';
+			print 'Sorry there is no spending data for this account for '.$title;
 			
 			switch(getString('filter')){
 				case 'week':
