@@ -60,6 +60,12 @@
     		height:24px;
     		display:inline-block;
     	}
+    	.navigation:first-child {
+    		margin:0 20px 0 0;
+    	}
+    	.navigation:last-child {
+    		margin:0 0 0 20px;
+    	}
     </style>
     <title>Spending</title>
   </head>
