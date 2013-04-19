@@ -14,7 +14,7 @@ if(!is_null($companies)){
 			break;
 		case 'monthly':
 			$t = (time() + ($offset * (intval(date('t'))*24*60*60)));
-			$title = date('F Y', $t);
+			$title = date('M Y', $t);
 			$timeQuery = sprintf("AND YEAR(`startDate`) = YEAR(FROM_UNIXTIME(%d)) AND MONTH(`startDate`) = MONTH(FROM_UNIXTIME(%d))", $t, $t);
 			break;
 		case 'yearly':
