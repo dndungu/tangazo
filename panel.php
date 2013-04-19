@@ -111,7 +111,7 @@
   				<div class="column three" style="text-transform:capitalize;"><?php print strtolower($headerRecord['name'])?></div>
   			<?php }?>
   			<?php } else {
-  				print '<div class="column four">No data for '.$title.'.</div>';
+  				print '<div class="column four">There is no data for '.$title.'.</div>';
   			}?>	
   		</div>
   		<?php if($width){?>
