@@ -3,17 +3,25 @@ require_once('includes.php');
 $companies = dbFetch(dbQuery(sprintf("SELECT * FROM `accounts` WHERE `id` = '%s' LIMIT 1", getString('id'))));
 $width = 0;
 if(!is_null($companies)){
+	$offset = (Integer) getString('offset');
 	switch(getString('filter')){
 		case 'weekly':
-			$timeQuery = "AND `week` = WEEKOFYEAR(NOW())";
+			$t = (time() + ($offset * (7*24*60*60)));
+			$title = 'WEEK ' . date('W', $t);
+			$timeQuery = sprintf("AND `week` = WEEKOFYEAR(FROM_UNIXTIME(%d))", $t);
 			break;
 		case 'monthly':
-			$timeQuery = "AND YEAR(`startDate`) = YEAR(NOW()) AND MONTH(`startDate`) = MONTH(NOW())";
+			$t = (time() + ($offset * (intval(date('t'))*24*60*60)));
+			$title = date('F', $t);
+			$timeQuery = sprintf("AND YEAR(`startDate`) = YEAR(FROM_UNIXTIME(%d)) AND MONTH(`startDate`) = MONTH(FROM_UNIXTIME(%d))", $t, $t);
 			break;
 		case 'yearly':
-			$timeQuery = "AND YEAR(`startDate`) = YEAR(NOW())";
+			$t = (time() + ($offset * (365*24*60*60)));
+			$title = date('Y', $t);
+			$timeQuery = sprintf("AND YEAR(`startDate`) = YEAR(FROM_UNIXTIME(%d))", $t);
 			break;
 		default:
+			$title = 'All Time';
 			$timeQuery = "AND 1 = 1";
 			break;
 	}	
