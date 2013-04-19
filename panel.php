@@ -105,8 +105,8 @@
   				<a class="navigation" href="panel.php?filter=<?php print $filter?>&id=<?php print $id?>&offset=<?php print ($offset + 1)?>"><img src="images/next.png"/></a>
   				<?php }?>
   			</div>
-  			<div class="column two">Period Total</div>
   			<?php if($width){?>
+  			<div class="column two">Period Total</div>
   			<?php foreach($headerRecords as $headerRecord){?>
   				<div class="column three" style="text-transform:capitalize;"><?php print strtolower($headerRecord['name'])?></div>
   			<?php }?>
