@@ -1,10 +1,12 @@
 <?php
 require_once('includes.php');
-$companies = dbFetch(dbQuery(sprintf("SELECT * FROM `accounts` WHERE `id` = '%s' LIMIT 1", getString('id'))));
+$id = getString('id');
+$companies = dbFetch(dbQuery(sprintf("SELECT * FROM `accounts` WHERE `id` = '%s' LIMIT 1", $id)));
 $width = 0;
 if(!is_null($companies)){
 	$offset = (Integer) getString('offset');
-	switch(getString('filter')){
+	$filter = getString('filter');
+	switch($filter){
 		case 'weekly':
 			$t = (time() + ($offset * (7*24*60*60)));
 			$title = 'WEEK ' . date('W', $t);
