@@ -13,7 +13,7 @@ if(!is_null($companies)){
 			$timeQuery = sprintf("AND `week` = WEEKOFYEAR(FROM_UNIXTIME(%d))", $t);
 			break;
 		case 'monthly':
-			$t = (time() + ($offset * (intval(date('t'))*24*60*60)));
+			$t = (time() + ($offset * (31*24*60*60)));
 			$title = date('M Y', $t);
 			$timeQuery = sprintf("AND YEAR(`startDate`) = YEAR(FROM_UNIXTIME(%d)) AND MONTH(`startDate`) = MONTH(FROM_UNIXTIME(%d))", $t, $t);
 			break;
