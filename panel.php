@@ -110,7 +110,9 @@
   			<?php foreach($headerRecords as $headerRecord){?>
   				<div class="column three" style="text-transform:capitalize;"><?php print strtolower($headerRecord['name'])?></div>
   			<?php }?>
-  			<?php }?>	
+  			<?php } else {
+  				print 'Sorry there is no spending data for this account for '.$title
+  			}?>	
   		</div>
   		<?php if($width){?>
   		<?php foreach($contentRecords as $contentRecord){?>
@@ -149,23 +151,7 @@
   			<?php }?>
   		</div>
   		<?php
-  		} else {
-
-			print 'Sorry there is no spending data for this account for '.$title;
-			
-			switch(getString('filter')){
-				case 'week':
-					print ' this week.';
-					break;
-				case 'month ':
-					print ' this month.';
-					break;
-				case 'year':
-					print ' this year.';
-					break;
-			}
-			 		
   		}
-  		?>
+		?>
   </body>
 </html>  
