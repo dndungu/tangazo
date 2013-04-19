@@ -55,6 +55,11 @@
     	.header .two, .header .three {
     		text-align:center;
     	}
+    	.navigation {
+    		width:24px;
+    		height:24px;
+    		display:inline-block;
+    	}
     </style>
     <title>Spending</title>
   </head>
@@ -89,8 +94,8 @@
   		<?php if($width){?>
   		<div class="row header">
   			<div class="column four">
-  				<a href="panel.php?filter=<?php print $filter?>&id=<?php print $id?>&offset=<?php print ($offset - 1)?>"><img src="images/previous.png"/></a>
-  				<span style="padding:0 0 10px 0;"><?php print $title?></span>
+  				<a class="navigation" href="panel.php?filter=<?php print $filter?>&id=<?php print $id?>&offset=<?php print ($offset - 1)?>"><img src="images/previous.png"/></a>
+  				<span style="margin:-10px 0 0 0;display:inline-block;"><?php print $title?></span>
   				<?php if($offset < 0){?>
   				<a href="panel.php?filter=<?php print $filter?>&id=<?php print $id?>&offset=<?php print ($offset + 1)?>"><img src="images/next.png"/></a>
   				<?php }?>
