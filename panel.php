@@ -111,7 +111,7 @@
   				<div class="column three" style="text-transform:capitalize;"><?php print strtolower($headerRecord['name'])?></div>
   			<?php }?>
   			<?php } else {
-  				print 'Sorry there is no spending data for this account for this period';
+  				print '&nbsp; Sorry there is no spending data for this account for this period &nbsp;';
   			}?>	
   		</div>
   		<?php if($width){?>
