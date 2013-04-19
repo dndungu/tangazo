@@ -9,7 +9,7 @@ if(!is_null($companies)){
 	switch($filter){
 		case 'weekly':
 			$t = (time() + ($offset * (7*24*60*60)));
-			$title = 'WEEK ' . date('W Y', $t);
+			$title = 'WEEK ' . date('W, Y', $t);
 			$timeQuery = sprintf("AND `week` = WEEKOFYEAR(FROM_UNIXTIME(%d))", $t);
 			break;
 		case 'monthly':
