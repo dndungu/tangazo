@@ -95,7 +95,7 @@
   		<div class="row header">
   			<div class="column four">
   				<a class="navigation" href="panel.php?filter=<?php print $filter?>&id=<?php print $id?>&offset=<?php print ($offset - 1)?>"><img src="images/previous.png"/></a>
-  				<span><?php print $title?><br/>&nbsp;</span>
+  				<span style="display:inline-block;"><?php print $title?><br/>&nbsp;</span>
   				<?php if($offset < 0){?>
   				<a class="navigation" href="panel.php?filter=<?php print $filter?>&id=<?php print $id?>&offset=<?php print ($offset + 1)?>"><img src="images/next.png"/></a>
   				<?php }?>
