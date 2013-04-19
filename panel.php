@@ -97,7 +97,6 @@
   	}  	
   ?>
   <body <?php print 'style="width:'.($width ? strval($width).'px' : '100%').';"'?>>
-  		<?php if($width){?>
   		<div class="row header">
   			<div class="column four">
   				<a class="navigation" href="panel.php?filter=<?php print $filter?>&id=<?php print $id?>&offset=<?php print ($offset - 1)?>"><img src="images/previous.png"/></a>
@@ -107,10 +106,13 @@
   				<?php }?>
   			</div>
   			<div class="column two">Period Total</div>
+  			<?php if($width){?>
   			<?php foreach($headerRecords as $headerRecord){?>
   				<div class="column three" style="text-transform:capitalize;"><?php print strtolower($headerRecord['name'])?></div>
-  			<?php }?>	  			
+  			<?php }?>
+  			<?php }?>	
   		</div>
+  		<?php if($width){?>
   		<?php foreach($contentRecords as $contentRecord){?>
   		<div class="row">
   			<div class="column four" style="text-transform:capitalize;">
