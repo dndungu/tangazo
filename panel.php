@@ -119,7 +119,7 @@
   				<div class="column three" style="text-transform:capitalize;"><?php print strtolower($headerRecord['name'])?></div>
   			<?php }?>
   			<?php } else {
-  				print '<div class="column four">There is no data for '.$title.'.</div>';
+  				print '<div class="column four">There is no data for the selected period.</div>';
   			}?>	
   		</div>
   		<?php if($width){?>
