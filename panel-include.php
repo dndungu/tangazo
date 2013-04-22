@@ -13,7 +13,7 @@ if(!is_null($companies)){
 		case 'weekly':
 			$t = (time() + ($offset * (7*24*60*60)));
 			$navigator[] = '<span class="navigator">Week<select name="week">';
-			for($i = 5; $i >= 1; $i--){
+			for($i = 4; $i >= 1; $i--){
 				$selected = $i == weekOfMonth($t) ? ' selected="selected"' : '';
 				$navigator[] = '<option value="'.$i.'"'.$selected.'>'.$i.'</option>';
 			}
