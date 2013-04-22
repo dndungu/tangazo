@@ -51,7 +51,6 @@ if(!is_null($companies)){
 				$navigator[] = '<option value="'.$i.'"'.$selected.'>'.$i.'</option>';
 			}
 			$navigator[] = '</select></span>';
-				
 			$title = implode("\n", $navigator);
 			$timeQuery = sprintf("AND YEAR(`startDate`) = YEAR(FROM_UNIXTIME(%d)) AND MONTH(`startDate`) = MONTH(FROM_UNIXTIME(%d))", $t, $t);
 			break;
