@@ -69,7 +69,6 @@
     	}
     	.navigator {
     		display:inline-block;
-    		margin:0 5px;
     	}
     	.navigator input {
     		display:block;
