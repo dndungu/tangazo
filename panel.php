@@ -59,7 +59,7 @@
     		width:24px;
     		height:24px;
     		display:inline-block;
-/*     		display:none; */
+    		display:none;
     	}
     	.navigation:first-child {
     		margin:0 20px 0 0;
