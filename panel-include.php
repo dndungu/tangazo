@@ -28,7 +28,7 @@ if(!is_null($companies)){
 			$navigator[] = '</span>';
 			
 			$navigator[] = '<span class="navigator">Year<select name="year">';
-			for($i = 1; $i <= 5; $i++){
+			for($i = 2000; $i <= 2013; $i++){
 				$navigator[] = '<option value="'.$i.'">'.$i.'</option>';
 			}
 			$navigator[] = '</select>';
