@@ -6,6 +6,9 @@ $width = 0;
 if(!is_null($companies)){
 	$offset = (Integer) getString('offset');
 	$filter = getString('filter');
+	$startYear = dbFetch(dbQuery("SELECT YEAR(`startDate`) AS `Y` FROM `msa_campaign` HAVING `Y` > 0 ORDER BY `Y` ASC LIMIT 1"));
+	$startYear = $startYear[0]['Y'];
+	$currentYear = date('Y');
 	switch($filter){
 		case 'weekly':
 			$t = (time() + ($offset * (7*24*60*60)));
@@ -28,7 +31,7 @@ if(!is_null($companies)){
 			$navigator[] = '</span>';
 			
 			$navigator[] = '<span class="navigator">Year<select name="year">';
-			for($i = 2000; $i <= 2013; $i++){
+			for($i = $startYear; $i <= $currentYear; $i++){
 				$navigator[] = '<option value="'.$i.'">'.$i.'</option>';
 			}
 			$navigator[] = '</select>';
