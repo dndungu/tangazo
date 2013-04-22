@@ -18,21 +18,24 @@ if(!is_null($companies)){
 // 			$title .= '<span class="navigator">Year<input type="text" name="year" value="'.date('Y', $t).'" size="4"/></span>';
 			$navigator[] = '<span class="navigator">Week<select name="week">';
 			for($i = 1; $i <= 5; $i++){
-				$navigator[] = '<option value="'.$i.'">'.$i.'</option>';
+				$selected = $i == weekOfMonth($t) ? ' selected="selected"' : '';
+				$navigator[] = '<option value="'.$i.'"'.$selected.'>'.$i.'</option>';
 			}
 			$navigator[] = '</select>';
 			$navigator[] = '</span>';
 			
 			$navigator[] = '<span class="navigator">Month<select name="month">';
 			for($i = 1; $i <= 12; $i++){
-				$navigator[] = '<option value="'.$i.'">'.$i.'</option>';
+				$selected = $i == date('n', $t) ? ' selected="selected"' : '';
+				$navigator[] = '<option value="'.$i.'"'.$selected.'>'.$i.'</option>';
 			}
 			$navigator[] = '</select>';
 			$navigator[] = '</span>';
 			
 			$navigator[] = '<span class="navigator">Year<select name="year">';
 			for($i = $startYear; $i <= $currentYear; $i++){
-				$navigator[] = '<option value="'.$i.'">'.$i.'</option>';
+				$selected = $i == date('Y', $t) ? ' selected="selected"' : '';
+				$navigator[] = '<option value="'.$i.'"'.$selected.'>'.$i.'</option>';
 			}
 			$navigator[] = '</select>';
 			$navigator[] = '</span>';
