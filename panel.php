@@ -66,6 +66,10 @@
     	.navigation:last-child {
     		margin:0 0 0 20px;
     	}
+    	input {
+    		display:inline-block;
+    		margin:0 0 0 10px;
+    	}
     </style>
     <title>Spending</title>
   </head>
