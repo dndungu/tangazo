@@ -131,4 +131,30 @@ function ensureLength(&$string, $length) {
 	}
 }
 
+function weekOfMonth($timestamp, $rollover = "sunday") {
+	
+	$date = date('Y-m-d', $timestamp);
+	
+	$cut = substr($date, 0, 8);
+	$daylen = 86400;
+
+	$first = strtotime($cut . "00");
+	$elapsed = ($timestamp - $first) / $daylen;
+
+	$i = 1;
+	$weeks = 1;
+
+	for($i; $i<=$elapsed; $i++) {
+		$dayfind = $cut . (strlen($i) < 2 ? '0' . $i : $i);
+		$daytimestamp = strtotime($dayfind);
+	
+		$day = strtolower(date("l", $daytimestamp));
+	
+		if($day == strtolower($rollover))  $weeks ++;
+	}
+
+	return $weeks;
+	
+}
+
 dbConnect();
