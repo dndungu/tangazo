@@ -10,9 +10,9 @@ if(!is_null($companies)){
 		case 'weekly':
 			$t = (time() + ($offset * (7*24*60*60)));
 // 			$title = 'WEEK ' . date('W, Y', $t);
-			$title = '<span><br/>Week<input type="text" name="week" value="'.weekOfMonth($t).'" size="1"/></span>';
-			$title .= '<span><br/>Month<input type="text" name="month" value="'.date('n', $t).'" size="2"/></span>';
-			$title .= '<span><br/>Year<input type="text" name="year" value="'.date('Y', $t).'" size="4"/></span>';
+			$title = '<span class="navigator">Week<input type="text" name="week" value="'.weekOfMonth($t).'" size="1"/></span>';
+			$title .= '<span class="navigator">Month<input type="text" name="month" value="'.date('n', $t).'" size="2"/></span>';
+			$title .= '<span class="navigator">Year<input type="text" name="year" value="'.date('Y', $t).'" size="4"/></span>';
 			$timeQuery = sprintf("AND `week` = WEEKOFYEAR(FROM_UNIXTIME(%d))", $t);
 			break;
 		case 'monthly':

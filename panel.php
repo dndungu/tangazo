@@ -67,6 +67,14 @@
     	.navigation:last-child {
     		margin:0 0 0 20px;
     	}
+    	.navigator {
+    		display:inline-block;
+    		margin:0 5px;
+    	}
+    	.navigator input {
+    		display:block;
+    		text-align:center;
+    	}
     </style>
     <title>Spending</title>
   </head>
