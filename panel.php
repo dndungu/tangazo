@@ -70,7 +70,7 @@
     	.navigator {
     		display:inline-block;
     	}
-    	.navigator input {
+    	.navigator select {
     		display:block;
     		text-align:center;
     	}
