@@ -59,16 +59,13 @@
     		width:24px;
     		height:24px;
     		display:inline-block;
+    		display:none;
     	}
     	.navigation:first-child {
     		margin:0 20px 0 0;
     	}
     	.navigation:last-child {
     		margin:0 0 0 20px;
-    	}
-    	input {
-    		clear:both;
-    		display:inline-block;
     	}
     </style>
     <title>Spending</title>
