@@ -67,8 +67,8 @@
     		margin:0 0 0 20px;
     	}
     	input {
+    		clear:both;
     		display:inline-block;
-    		margin:0 0 0 10px;
     	}
     </style>
     <title>Spending</title>
