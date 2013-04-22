@@ -10,9 +10,30 @@ if(!is_null($companies)){
 		case 'weekly':
 			$t = (time() + ($offset * (7*24*60*60)));
 // 			$title = 'WEEK ' . date('W, Y', $t);
-			$title = '<span class="navigator">Week<input type="text" name="week" value="'.weekOfMonth($t).'" size="1"/></span>';
-			$title .= '<span class="navigator">Month<input type="text" name="month" value="'.date('n', $t).'" size="2"/></span>';
-			$title .= '<span class="navigator">Year<input type="text" name="year" value="'.date('Y', $t).'" size="4"/></span>';
+// 			$title = '<span class="navigator">Week<input type="text" name="week" value="'.weekOfMonth($t).'" size="1"/></span>';
+// 			$title .= '<span class="navigator">Month<input type="text" name="month" value="'.date('n', $t).'" size="2"/></span>';
+// 			$title .= '<span class="navigator">Year<input type="text" name="year" value="'.date('Y', $t).'" size="4"/></span>';
+			$navigator[] = '<span class="navigator">Week<select name="week">';
+			for($i = 1; $i <= 5; $i++){
+				$navigator[] = '<option value="'.$i.'">'.$i.'</option>';
+			}
+			$navigator[] = '</select>';
+			$navigator[] = '</span>';
+			
+			$navigator[] = '<span class="navigator">Month<select name="month">';
+			for($i = 1; $i <= 12; $i++){
+				$navigator[] = '<option value="'.$i.'">'.$i.'</option>';
+			}
+			$navigator[] = '</select>';
+			$navigator[] = '</span>';
+			
+			$navigator[] = '<span class="navigator">Year<select name="year">';
+			for($i = 1; $i <= 5; $i++){
+				$navigator[] = '<option value="'.$i.'">'.$i.'</option>';
+			}
+			$navigator[] = '</select>';
+			$navigator[] = '</span>';
+				
 			$timeQuery = sprintf("AND `week` = WEEKOFYEAR(FROM_UNIXTIME(%d))", $t);
 			break;
 		case 'monthly':
