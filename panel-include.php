@@ -12,44 +12,58 @@ if(!is_null($companies)){
 	switch($filter){
 		case 'weekly':
 			$t = (time() + ($offset * (7*24*60*60)));
-// 			$title = 'WEEK ' . date('W, Y', $t);
-// 			$title = '<span class="navigator">Week<input type="text" name="week" value="'.weekOfMonth($t).'" size="1"/></span>';
-// 			$title .= '<span class="navigator">Month<input type="text" name="month" value="'.date('n', $t).'" size="2"/></span>';
-// 			$title .= '<span class="navigator">Year<input type="text" name="year" value="'.date('Y', $t).'" size="4"/></span>';
 			$navigator[] = '<span class="navigator">Week<select name="week">';
 			for($i = 1; $i <= 5; $i++){
 				$selected = $i == weekOfMonth($t) ? ' selected="selected"' : '';
 				$navigator[] = '<option value="'.$i.'"'.$selected.'>'.$i.'</option>';
 			}
-			$navigator[] = '</select>';
-			$navigator[] = '</span>';
+			$navigator[] = '</select></span>';
 			
 			$navigator[] = '<span class="navigator">Month<select name="month">';
 			for($i = 1; $i <= 12; $i++){
 				$selected = $i == date('n', $t) ? ' selected="selected"' : '';
 				$navigator[] = '<option value="'.$i.'"'.$selected.'>'.$i.'</option>';
 			}
-			$navigator[] = '</select>';
-			$navigator[] = '</span>';
+			$navigator[] = '</select></span>';
 			
 			$navigator[] = '<span class="navigator">Year<select name="year">';
 			for($i = $startYear; $i <= $currentYear; $i++){
 				$selected = $i == date('Y', $t) ? ' selected="selected"' : '';
 				$navigator[] = '<option value="'.$i.'"'.$selected.'>'.$i.'</option>';
 			}
-			$navigator[] = '</select>';
-			$navigator[] = '</span>';
+			$navigator[] = '</select></span>';			
+			
 			$title = implode("\n", $navigator);
+			
 			$timeQuery = sprintf("AND `week` = WEEKOFYEAR(FROM_UNIXTIME(%d))", $t);
 			break;
 		case 'monthly':
 			$t = (time() + ($offset * (31*24*60*60)));
-			$title = date('M Y', $t);
+			$navigator[] = '<span class="navigator">Month<select name="month">';
+			for($i = 1; $i <= 12; $i++){
+				$selected = $i == date('n', $t) ? ' selected="selected"' : '';
+				$navigator[] = '<option value="'.$i.'"'.$selected.'>'.$i.'</option>';
+			}
+			$navigator[] = '</select></span>';
+			$navigator[] = '<span class="navigator">Year<select name="year">';
+			for($i = $startYear; $i <= $currentYear; $i++){
+				$selected = $i == date('Y', $t) ? ' selected="selected"' : '';
+				$navigator[] = '<option value="'.$i.'"'.$selected.'>'.$i.'</option>';
+			}
+			$navigator[] = '</select></span>';
+				
+			$title = implode("\n", $navigator);
 			$timeQuery = sprintf("AND YEAR(`startDate`) = YEAR(FROM_UNIXTIME(%d)) AND MONTH(`startDate`) = MONTH(FROM_UNIXTIME(%d))", $t, $t);
 			break;
 		case 'yearly':
 			$t = (time() + ($offset * (365*24*60*60)));
-			$title = date('Y', $t);
+			$navigator[] = '<span class="navigator">Year<select name="year">';
+			for($i = $startYear; $i <= $currentYear; $i++){
+				$selected = $i == date('Y', $t) ? ' selected="selected"' : '';
+				$navigator[] = '<option value="'.$i.'"'.$selected.'>'.$i.'</option>';
+			}
+			$navigator[] = '</select></span>';			
+			$title = implode("\n", $navigator);
 			$timeQuery = sprintf("AND YEAR(`startDate`) = YEAR(FROM_UNIXTIME(%d))", $t);
 			break;
 		default:
