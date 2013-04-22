@@ -18,23 +18,19 @@ if(!is_null($companies)){
 				$navigator[] = '<option value="'.$i.'"'.$selected.'>'.$i.'</option>';
 			}
 			$navigator[] = '</select></span>';
-			
 			$navigator[] = '<span class="navigator">Month<select name="month">';
 			for($i = 12; $i >= 1; $i--){
 				$selected = $i == date('n', $t) ? ' selected="selected"' : '';
 				$navigator[] = '<option value="'.$i.'"'.$selected.'>'.$i.'</option>';
 			}
 			$navigator[] = '</select></span>';
-			
 			$navigator[] = '<span class="navigator">Year<select name="year">';
 			for($i = $currentYear; $i >= $startYear; $i--){
 				$selected = $i == date('Y', $t) ? ' selected="selected"' : '';
 				$navigator[] = '<option value="'.$i.'"'.$selected.'>'.$i.'</option>';
 			}
 			$navigator[] = '</select></span>';			
-			
 			$title = implode("\n", $navigator);
-			
 			$timeQuery = sprintf("AND `week` = WEEKOFYEAR(FROM_UNIXTIME(%d))", $t);
 			break;
 		case 'monthly':
