@@ -13,21 +13,21 @@ if(!is_null($companies)){
 		case 'weekly':
 			$t = (time() + ($offset * (7*24*60*60)));
 			$navigator[] = '<span class="navigator">Week<select name="week">';
-			for($i = 1; $i <= 5; $i++){
+			for($i = 5; $i >= 1; $i--){
 				$selected = $i == weekOfMonth($t) ? ' selected="selected"' : '';
 				$navigator[] = '<option value="'.$i.'"'.$selected.'>'.$i.'</option>';
 			}
 			$navigator[] = '</select></span>';
 			
 			$navigator[] = '<span class="navigator">Month<select name="month">';
-			for($i = 1; $i <= 12; $i++){
+			for($i = 12; $i >= 1; $i--){
 				$selected = $i == date('n', $t) ? ' selected="selected"' : '';
 				$navigator[] = '<option value="'.$i.'"'.$selected.'>'.$i.'</option>';
 			}
 			$navigator[] = '</select></span>';
 			
 			$navigator[] = '<span class="navigator">Year<select name="year">';
-			for($i = $startYear; $i <= $currentYear; $i++){
+			for($i = $currentYear; $i >= $startYear; $i--){
 				$selected = $i == date('Y', $t) ? ' selected="selected"' : '';
 				$navigator[] = '<option value="'.$i.'"'.$selected.'>'.$i.'</option>';
 			}
@@ -40,13 +40,13 @@ if(!is_null($companies)){
 		case 'monthly':
 			$t = (time() + ($offset * (31*24*60*60)));
 			$navigator[] = '<span class="navigator">Month<select name="month">';
-			for($i = 1; $i <= 12; $i++){
+			for($i = 12; $i >= 1; $i--){
 				$selected = $i == date('n', $t) ? ' selected="selected"' : '';
 				$navigator[] = '<option value="'.$i.'"'.$selected.'>'.$i.'</option>';
 			}
 			$navigator[] = '</select></span>';
 			$navigator[] = '<span class="navigator">Year<select name="year">';
-			for($i = $startYear; $i <= $currentYear; $i++){
+			for($i = $currentYear; $i >= $startYear; $i--){
 				$selected = $i == date('Y', $t) ? ' selected="selected"' : '';
 				$navigator[] = '<option value="'.$i.'"'.$selected.'>'.$i.'</option>';
 			}
@@ -57,7 +57,7 @@ if(!is_null($companies)){
 		case 'yearly':
 			$t = (time() + ($offset * (365*24*60*60)));
 			$navigator[] = '<span class="navigator">Year<select name="year">';
-			for($i = $startYear; $i <= $currentYear; $i++){
+			for($i = $currentYear; $i >= $startYear; $i--){
 				$selected = $i == date('Y', $t) ? ' selected="selected"' : '';
 				$navigator[] = '<option value="'.$i.'"'.$selected.'>'.$i.'</option>';
 			}
