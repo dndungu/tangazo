@@ -33,7 +33,7 @@ if(!is_null($companies)){
 			}
 			$navigator[] = '</select>';
 			$navigator[] = '</span>';
-				
+			$title = implode("\n", $navigator);
 			$timeQuery = sprintf("AND `week` = WEEKOFYEAR(FROM_UNIXTIME(%d))", $t);
 			break;
 		case 'monthly':
