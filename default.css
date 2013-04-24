@@ -1,0 +1,86 @@
+body {
+	overflow: auto;
+	margin: 0;
+	padding: 0;
+	background: transparent;
+	font-size: 100%;
+	font-family: Verdana, Arial, sans-serif;
+}
+
+.row {
+	font-weight: 400;
+	font-size: .75em;
+	float: left;
+	clear: both;
+	display: inline-block;
+	border-top: 1px solid #dfdfdf;
+}
+
+.row:last-child {
+	border-bottom: 1px solid #dfdfdf;
+}
+
+.column {
+	min-height: 1px;
+	overflow: hidden;
+	padding: 5px 10px;
+	display: inline-block;
+	float: left;
+	border-right: 1px solid #dfdfdf;
+	margin-bottom: -900px;
+	padding-bottom: 905px;
+}
+
+.column:first-child {
+	border-left: 1px solid #dfdfdf;
+}
+
+.four {
+	width: 200px;
+}
+
+.three {
+	width: 150px;
+	text-align: right;
+}
+
+.two {
+	width: 100px;
+	text-align: right;
+}
+
+.header {
+	background: #f0f0f0;
+}
+
+.header .column {
+	padding-bottom: 900px;
+}
+
+.header .two,.header .three {
+	text-align: center;
+}
+
+.navigation {
+	width: 24px;
+	height: 24px;
+	display: inline-block;
+	display: none;
+}
+
+.navigation:first-child {
+	margin: 0 20px 0 0;
+}
+
+.navigation:last-child {
+	margin: 0 0 0 20px;
+}
+
+.navigator {
+	display: inline-block;
+}
+
+.navigator select {
+	display: block;
+	text-align: center;
+}
