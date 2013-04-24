@@ -39,7 +39,7 @@ if(!is_null($companies)){
 			break;
 		case 'monthly':
 			$t = (time() + ($offset * (31*24*60*60)));
-			$navigator[] = '<span class="navigator">Month<select name="month" default="'.date('j').'" class="jumpto">';
+			$navigator[] = '<span class="navigator">Month<select name="month" default="'.date('n').'" class="jumpto">';
 			for($i = 12; $i >= 1; $i--){
 				$selected = $i == date('n', $t) ? ' selected="selected"' : '';
 				$navigator[] = '<option value="'.$i.'"'.$selected.'>'.$i.'</option>';
