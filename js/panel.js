@@ -28,8 +28,7 @@ var panel = {
 		var defaultWeek = parseInt(weekSelector.attr('default'));
 		var selectedWeek = parseInt(weekSelector.val());
 		var offset = (selectedYear === defaultYear) ? (selectedWeek - defaultWeek) : -((defaultWeek - 1) + ((defaultYear - selectedYear - 1) * 52) + (53 - selectedWeek));
-		console.info('default week :' + defaultWeek);
-		console.info('selected week :' + selectedWeek);
+		console.info(offset);
 		this.jumpTo(offset);
 	},
 	doJumpToMonth: function(){
