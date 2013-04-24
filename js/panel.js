@@ -4,7 +4,6 @@ var panel = {
 		var module = this;
 		$('select.jumpto', document).change(function(){
 			var subject = $(this);
-			console.info(filter.filter);
 			switch(filter.filter){
 				case 'weekly':
 					module.doJumpToWeek(subject);
@@ -25,11 +24,20 @@ var panel = {
 		
 	},
 	doJumpToMonth: function(){
-		
+		var subject = arguments[0];
+		var defaultMonth = parseInt(subject.attr('default'));
+		var selectedMonth = parseInt(subject.val());
+		var yearSelector = $('select[name="year"]', document);
+		var defaultYear = parseInt(yearSelector.attr('default'));
+		var currentYear = parseInt(yearSelector.val());
+		var offset = (currentYear === defaultYear) ? (selectedMonth - defaultMonth) : ((defaultMonth - 1) + ((defaultYear - selectedYear - 1) * 12) + (13 - selectedMonth));
+		this.jumpTo(offset);
 	},
 	doJumpToYear: function(){
 		var subject = arguments[0];
-		var offset = parseInt(subject.val()) - parseInt(subject.attr('default'));
+		var defaultYear = parseInt(subject.attr('default'));
+		var selectedYear = parseInt(subject.val());
+		var offset = selectedYear - defaultYear;
 		this.jumpTo(offset);
 	}
 };
