@@ -80,7 +80,7 @@ if(!is_null($companies)){
 			$mediaRecords[$row['mediaCode']] = $row['media'];
 			$contentRecords[$row['mediaCode']][$row['brandCode']] = $row;
 		}
-		$headerQuery[] = "SELECT `msa_campaign`.`brandCode`, `msa_brand`.`name` FROM `msa_campaign`";
+		$headerQuery[] = "SELECT `msa_campaign`.`brandCode`, `msa_brand`.`name`, SUM(`amount`) AS `total` FROM `msa_campaign`";
 		$headerQuery[] = "LEFT JOIN `msa_brand` ON (`msa_campaign`.`brandCode` = `msa_brand`.`code`)";
 		$headerQuery[] = "LEFT JOIN `accounts` ON (`msa_campaign`.`companyCode` = `accounts`.`code`)";
 		$contentQuery[] = $timeQuery;
