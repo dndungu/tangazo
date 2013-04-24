@@ -9,19 +9,32 @@ if(!is_null($companies)){
 	$startYear = dbFetch(dbQuery("SELECT YEAR(`startDate`) AS `Y` FROM `msa_campaign` HAVING `Y` > 0 ORDER BY `Y` ASC LIMIT 1"));
 	$startYear = $startYear[0]['Y'];
 	$currentYear = date('Y');
+	$activeWeeks = dbFetch(dbQuery(sprintf("SELECT `week` FROM `msa_campaign` WHERE YEAR(`startDate`) = YEAR(FROM_UNIXTIME(%d) GROUP BY `week` ORDER BY `week` DESC", $t)));
+	$activeMonths = dbFetch(dbQuery(sprintf("SELECT MONTH(`startDate`) AS `month` FROM `msa_campaign` WHERE YEAR(`startDate`) = YEAR(FROM_UNIXTIME(%d) GROUP BY `month`", $t)));
+	$activeYears = dbFetch(dbQuery(sprintf("SELECT YEAR(`startDate`) AS `year` FROM `msa_campaign` GROUP BY `Y`", $t)));
 	switch($filter){
 		case 'weekly':
 			$t = (time() + ($offset * (7*24*60*60)));
 			$currentWeek = date('W');
 			$navigator[] = '<span class="navigator">Week<select name="week" default="'.$currentWeek.'" class="jumpto">';
-			for($i = 52; $i >= 1; $i--){
-				$selected = $i == intval(date('W', $t)) ? ' selected="selected"' : '';
+// 			for($i = 52; $i >= 1; $i--){
+// 				$selected = $i == intval(date('W', $t)) ? ' selected="selected"' : '';
+// 				$navigator[] = '<option value="'.$i.'"'.$selected.'>'.$i.'</option>';
+// 			}
+			foreach($activeWeeks as $activeWeek){
+				$i = $activeWeek['week'];
+				$selected = ($i == intval(date('W', $t))) ? ' selected="selected"' : '';
 				$navigator[] = '<option value="'.$i.'"'.$selected.'>'.$i.'</option>';
 			}
 			$navigator[] = '</select></span>';
 						
 			$navigator[] = '<span class="navigator">Year<select name="year" default="'.$currentYear.'" class="jumpto">';
-			for($i = $currentYear; $i >= $startYear; $i--){
+// 			for($i = $currentYear; $i >= $startYear; $i--){
+// 				$selected = $i == date('Y', $t) ? ' selected="selected"' : '';
+// 				$navigator[] = '<option value="'.$i.'"'.$selected.'>'.$i.'</option>';
+// 			}
+			foreach($activeMonths as $activeMonth){
+				$i = $activeMonth['month'];
 				$selected = $i == date('Y', $t) ? ' selected="selected"' : '';
 				$navigator[] = '<option value="'.$i.'"'.$selected.'>'.$i.'</option>';
 			}
