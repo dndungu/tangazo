@@ -86,7 +86,7 @@ if(!is_null($companies)){
 		$contentQuery[] = $timeQuery;
 		$headerQuery[] = "WHERE 1 = 1";
 		$headerQuery[] = sprintf("AND `msa_campaign`.`companyCode` = %d", $companies[0]['code']);
-		$headerQuery[] = "GROUP BY `brandCode`";
+		$headerQuery[] = "GROUP BY `brandCode`, `mediaCode`";
 		$headerQuery[] = "HAVING `total` > 0";
 		$headerRecords = dbFetch(dbQuery(implode(" ", $headerQuery)));
 		$width = ((count($headerRecords)) * 180) + 600;
