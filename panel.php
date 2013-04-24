@@ -2,107 +2,14 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <style type="text/css">
-    	body {
-    		overflow:auto;
-    		margin:0;
-    		padding:0;
-    		background:transparent;
-    		font-size:100%;
-    		font-family: Verdana,Arial,sans-serif;
-    	}
-    	.row {
-    		font-weight:400;
-    		font-size:.75em;
-    		float:left;
-    		clear:both;
-    		display:inline-block;
-    		border-top:1px solid #dfdfdf;
-    	}
-    	.row:last-child {
-    		border-bottom:1px solid #dfdfdf;
-    	}
-    	.column {
-    		min-height:1px;
-    		overflow:hidden;
-    		padding:5px 10px;
-    		display:inline-block;
-    		float:left;
-    		border-right:1px solid #dfdfdf;
-    		margin-bottom:-900px;
-    		padding-bottom:905px;    		
-    	}
-    	.column:first-child {
-    		border-left:1px solid #dfdfdf;
-    	}
-    	.four {
-    		width:200px;
-    	}    	
-    	.three {
-    		width:150px;
-    		text-align:right;
-    	}
-    	.two {
-    		width:100px;
-    		text-align:right;
-    	}
-    	.header {
-    		background:#f0f0f0;
-    	}
-    	.header .column {
-    		padding-bottom:900px;
-    	}
-    	.header .two, .header .three {
-    		text-align:center;
-    	}
-    	.navigation {
-    		width:24px;
-    		height:24px;
-    		display:inline-block;
-    		display:none;
-    	}
-    	.navigation:first-child {
-    		margin:0 20px 0 0;
-    	}
-    	.navigation:last-child {
-    		margin:0 0 0 20px;
-    	}
-    	.navigator {
-    		display:inline-block;
-    	}
-    	.navigator select {
-    		display:block;
-    		text-align:center;
-    	}
-    </style>
+    <link href="default.css" media="all" rel="stylesheet" type="text/css" />
     <title>Spending</title>
+    <script type="text/javascript">
+    	var filter = {id: <?php print $ID?>, filter: <?php print $filter?>, offset: <?php print $offset?>};
+    </script>
   </head>
   <?php
   	require_once 'panel-include.php';
-  	$rowsTotal = 0;
-  	$records = array();
-  	function totalSort($a, $b){
-  		if($b['rowtotal'] == $a['rowtotal']) return 0;
-  		return $a['rowtotal'] > $b['rowtotal'] ? -1 : 1;
-  	}
-  	if(isset($contentRecords)){
-		foreach($contentRecords as $mediaCode => $contentRecord){
-			$total = 0	;
-			foreach($contentRecord as $brandRecord){
-				$total += $brandRecord['total'];
-			}
-			$rowsTotal += $total;
-			$contentRecord['rowtotal'] = $total;
-			$contentRecord['medianame'] = (strlen($mediaRecords[$mediaCode]) < 4 ? $mediaRecords[$mediaCode] : strtolower($mediaRecords[$mediaCode]));
-			$records[] = $contentRecord;
-			foreach($headerRecords as $headerRecordKey => $headerRecord){
-				@$headerRecords[$headerRecordKey]['rowtotal'] += $contentRecord[$headerRecord['brandCode']]['total'];
-			}
-		}
-		$contentRecords = $records;
-		usort($contentRecords, "totalSort");
-		usort($headerRecords, "totalSort");
-  	}  	
   ?>
   <body <?php print 'style="width:'.($width ? strval($width).'px' : '100%').';"'?>>
   		<div class="row header">
@@ -161,5 +68,12 @@
   		<?php
   		}
   		?>
+    <script type="text/javascript" src="js/jquery-1.8.2.min.js"></script>
+    <script type="text/javascript" src="js/panel.js"></script>
+    <script type="text/javascript">
+    	$(document).ready(function(){
+    		panel.init();
+        });
+    </script>  	  		
   </body>
 </html>  

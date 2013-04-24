@@ -12,19 +12,19 @@ if(!is_null($companies)){
 	switch($filter){
 		case 'weekly':
 			$t = (time() + ($offset * (7*24*60*60)));
-			$navigator[] = '<span class="navigator">Week<select name="week">';
+			$navigator[] = '<span class="navigator">Week<select name="week" class="jumpto">';
 			for($i = 4; $i >= 1; $i--){
 				$selected = $i == weekOfMonth($t) ? ' selected="selected"' : '';
 				$navigator[] = '<option value="'.$i.'"'.$selected.'>'.$i.'</option>';
 			}
 			$navigator[] = '</select></span>';
-			$navigator[] = '<span class="navigator">Month<select name="month">';
+			$navigator[] = '<span class="navigator">Month<select name="month" class="jumpto">';
 			for($i = 12; $i >= 1; $i--){
 				$selected = $i == date('n', $t) ? ' selected="selected"' : '';
 				$navigator[] = '<option value="'.$i.'"'.$selected.'>'.$i.'</option>';
 			}
 			$navigator[] = '</select></span>';
-			$navigator[] = '<span class="navigator">Year<select name="year">';
+			$navigator[] = '<span class="navigator">Year<select name="year" class="jumpto">';
 			for($i = $currentYear; $i >= $startYear; $i--){
 				$selected = $i == date('Y', $t) ? ' selected="selected"' : '';
 				$navigator[] = '<option value="'.$i.'"'.$selected.'>'.$i.'</option>';
@@ -91,5 +91,30 @@ if(!is_null($companies)){
 		$headerRecords = dbFetch(dbQuery(implode(" ", $headerQuery)));
 		$width = ((count($headerRecords)) * 180) + 600;
 	}
+}
+
+$rowsTotal = 0;
+$records = array();
+function totalSort($a, $b){
+	if($b['rowtotal'] == $a['rowtotal']) return 0;
+	return $a['rowtotal'] > $b['rowtotal'] ? -1 : 1;
+}
+if(isset($contentRecords)){
+	foreach($contentRecords as $mediaCode => $contentRecord){
+		$total = 0	;
+		foreach($contentRecord as $brandRecord){
+			$total += $brandRecord['total'];
+		}
+		$rowsTotal += $total;
+		$contentRecord['rowtotal'] = $total;
+		$contentRecord['medianame'] = (strlen($mediaRecords[$mediaCode]) < 4 ? $mediaRecords[$mediaCode] : strtolower($mediaRecords[$mediaCode]));
+		$records[] = $contentRecord;
+		foreach($headerRecords as $headerRecordKey => $headerRecord){
+			@$headerRecords[$headerRecordKey]['rowtotal'] += $contentRecord[$headerRecord['brandCode']]['total'];
+		}
+	}
+	$contentRecords = $records;
+	usort($contentRecords, "totalSort");
+	usort($headerRecords, "totalSort");
 }
 ?>
