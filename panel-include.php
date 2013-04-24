@@ -83,7 +83,7 @@ if(!is_null($companies)){
 		$headerQuery[] = "LEFT JOIN `msa_brand` ON (`msa_campaign`.`brandCode` = `msa_brand`.`code`)";
 		$headerQuery[] = "LEFT JOIN `accounts` ON (`msa_campaign`.`companyCode` = `accounts`.`code`)";
 		$contentQuery[] = $timeQuery;
-		$headerQuery[] = "WHERE `total` > 0";
+		$headerQuery[] = "WHERE `amount` > 0";
 		$headerQuery[] = sprintf("AND `msa_campaign`.`companyCode` = %d", $companies[0]['code']);
 		$headerQuery[] = "GROUP BY `brandCode`";
 		$headerRecords = dbFetch(dbQuery(implode(" ", $headerQuery)));
