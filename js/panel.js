@@ -9,7 +9,7 @@ var panel = {
 					module.doJumpToWeek(subject);
 					break;
 				case 'monthly':
-					module.doJumpToMonth(subject);
+					module.doJumpToMonth();
 					break;
 				case 'yearly':
 					module.doJumpToYear(subject);
@@ -24,9 +24,9 @@ var panel = {
 		
 	},
 	doJumpToMonth: function(){
-		var subject = arguments[0];
-		var defaultMonth = parseInt(subject.attr('default'));
-		var selectedMonth = parseInt(subject.val());
+		var monthSelector = $('select[name="month"]', document);
+		var defaultMonth = parseInt(monthSelector.attr('default'));
+		var selectedMonth = parseInt(monthSelector.val());
 		var yearSelector = $('select[name="year"]', document);
 		var defaultYear = parseInt(yearSelector.attr('default'));
 		var selectedYear = parseInt(yearSelector.val());
