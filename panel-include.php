@@ -97,7 +97,7 @@ function totalSort($a, $b){
 	if($b['rowtotal'] == $a['rowtotal']) return 0;
 	return $a['rowtotal'] > $b['rowtotal'] ? -1 : 1;
 }
-print_r($contentRecords);die();
+//print_r($contentRecords);die();
 if(isset($contentRecords)){
 	foreach($contentRecords as $mediaCode => $contentRecord){
 		$total = 0	;
