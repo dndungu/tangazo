@@ -22,8 +22,8 @@
   			</div>
   			<?php if($width){?>
   			<div class="column two">Period Total</div>
-  			<?php foreach($headerRecords as $headerRecord){?>
-  				<div class="column three" style="text-transform:capitalize;"><?php print strtolower($headerRecord['name'])?></div>
+  			<?php foreach($brandRecords as $brandRecord){?>
+  				<div class="column three" style="text-transform:capitalize;"><?php print strtolower($brandRecord['name'])?></div>
   			<?php }?>
   			<?php } else {
   				print '<div class="column four">There is no data for this period.</div>';
@@ -42,10 +42,10 @@
   				print number_format($contentRecord['rowtotal'], 2);
   				?>
   			</div>
-  			<?php foreach($headerRecords as $headerRecord){?>
+  			<?php foreach($brandRecords as $brandRecord){?>
   				<div class="column three">
   					<?php 
-  					print @number_format($contentRecord[$headerRecord['brandCode']]['total'], 2);
+  					print @number_format($contentRecord[$brandRecord['brandCode']]['total'], 2);
   					?>
   				</div>
   			<?php }?>
@@ -59,9 +59,9 @@
   			<div class="column two">
   				<?php print number_format($rowsTotal, 2);?>
   			</div>
-  			<?php foreach($headerRecords as $headerRecord){?>
+  			<?php foreach($brandRecords as $brandRecord){?>
   				<div class="column three">
-  					<?php print number_format($headerRecord['rowtotal'], 2)?>
+  					<?php print number_format($brandRecord['rowtotal'], 2)?>
   				</div>
   			<?php }?>
   		</div>
