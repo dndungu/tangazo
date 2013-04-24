@@ -33,7 +33,7 @@ if(!is_null($companies)){
 // 				$navigator[] = '<option value="'.$i.'"'.$selected.'>'.$i.'</option>';
 // 			}
 			foreach($activeYears as $activeYear){
-				$i = $activeYear['month'];
+				$i = $activeYear['year'];
 				$selected = $i == date('Y', $t) ? ' selected="selected"' : '';
 				$navigator[] = '<option value="'.$i.'"'.$selected.'>'.$i.'</option>';
 			}
