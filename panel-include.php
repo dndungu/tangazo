@@ -16,27 +16,27 @@ if(!is_null($companies)){
 			$activeYears = dbFetch(dbQuery("SELECT YEAR(`startDate`) AS `year` FROM `msa_campaign` WHERE `amount` > 0 GROUP BY `year` ORDER BY `year` DESC"));
 			$currentWeek = date('W');
 			$navigator[] = '<span class="navigator">Week<select name="week" default="'.$currentWeek.'" class="jumpto">';
-// 			for($i = 52; $i >= 1; $i--){
-// 				$selected = $i == intval(date('W', $t)) ? ' selected="selected"' : '';
-// 				$navigator[] = '<option value="'.$i.'"'.$selected.'>'.$i.'</option>';
-// 			}
-			foreach($activeWeeks as $activeWeek){
-				$i = $activeWeek['week'];
-				$selected = ($i == intval(date('W', $t))) ? ' selected="selected"' : '';
+			for($i = 52; $i >= 1; $i--){
+				$selected = $i == intval(date('W', $t)) ? ' selected="selected"' : '';
 				$navigator[] = '<option value="'.$i.'"'.$selected.'>'.$i.'</option>';
 			}
+// 			foreach($activeWeeks as $activeWeek){
+// 				$i = $activeWeek['week'];
+// 				$selected = ($i == intval(date('W', $t))) ? ' selected="selected"' : '';
+// 				$navigator[] = '<option value="'.$i.'"'.$selected.'>'.$i.'</option>';
+// 			}
 			$navigator[] = '</select></span>';
 						
 			$navigator[] = '<span class="navigator">Year<select name="year" default="'.$currentYear.'" class="jumpto">';
-// 			for($i = $currentYear; $i >= $startYear; $i--){
-// 				$selected = $i == date('Y', $t) ? ' selected="selected"' : '';
-// 				$navigator[] = '<option value="'.$i.'"'.$selected.'>'.$i.'</option>';
-// 			}
-			foreach($activeYears as $activeYear){
-				$i = $activeYear['year'];
+			for($i = $currentYear; $i >= $startYear; $i--){
 				$selected = $i == date('Y', $t) ? ' selected="selected"' : '';
 				$navigator[] = '<option value="'.$i.'"'.$selected.'>'.$i.'</option>';
 			}
+// 			foreach($activeYears as $activeYear){
+// 				$i = $activeYear['year'];
+// 				$selected = $i == date('Y', $t) ? ' selected="selected"' : '';
+// 				$navigator[] = '<option value="'.$i.'"'.$selected.'>'.$i.'</option>';
+// 			}
 			$navigator[] = '</select></span>';
 						
 			$title = implode("\n", $navigator);
