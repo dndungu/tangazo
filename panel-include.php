@@ -80,13 +80,14 @@ if(!is_null($companies)){
 			$mediaRecords[$row['mediaCode']] = $row['media'];
 			$contentRecords[$row['mediaCode']][$row['brandCode']] = $row;
 		}
-		$headerQuery[] = "SELECT `msa_campaign`.`brandCode`, `msa_brand`.`name`, `msa_campaign`.`mediaCode` FROM `msa_campaign`";
+		$headerQuery[] = "SELECT `msa_campaign`.`brandCode`, `msa_brand`.`name`, `msa_campaign`.`mediaCode`, SUM(`amount`) AS `total` FROM `msa_campaign`";
 		$headerQuery[] = "LEFT JOIN `msa_brand` ON (`msa_campaign`.`brandCode` = `msa_brand`.`code`)";
 		$headerQuery[] = "LEFT JOIN `accounts` ON (`msa_campaign`.`companyCode` = `accounts`.`code`)";
 		$contentQuery[] = $timeQuery;
-		$headerQuery[] = "WHERE `amount` > 0";
+		$headerQuery[] = "WHERE 1 = 1";
 		$headerQuery[] = sprintf("AND `msa_campaign`.`companyCode` = %d", $companies[0]['code']);
 		$headerQuery[] = "GROUP BY `brandCode`";
+		$headerQuery[] = "HAVING `total` > 0";
 		$headerRecords = dbFetch(dbQuery(implode(" ", $headerQuery)));
 		$width = ((count($headerRecords)) * 180) + 600;
 	}
@@ -101,16 +102,16 @@ function totalSort($a, $b){
 if(isset($contentRecords)){
 	foreach($contentRecords as $mediaCode => $contentRecord){
 		$mediaTotal = 0	;
-		foreach($contentRecord as $brandRecord){
+		foreach($contentRecord as $brandCode => $brandRecord){
 			$mediaTotal += $brandRecord['total'];
 		}
-		$rowsTotal += $mediaTotal;
 		$contentRecord['rowtotal'] = $mediaTotal;
 		$contentRecord['medianame'] = (strlen($mediaRecords[$mediaCode]) < 4 ? $mediaRecords[$mediaCode] : strtolower($mediaRecords[$mediaCode]));
 		$records[] = $contentRecord;
 		foreach($headerRecords as $headerRecordKey => $headerRecord){
 			@$headerRecords[$headerRecordKey]['rowtotal'] += $contentRecord[$headerRecord['brandCode']]['total'];
 		}
+		$rowsTotal += $mediaTotal;
 	}
 	$contentRecords = $records;
 	usort($contentRecords, "totalSort");
