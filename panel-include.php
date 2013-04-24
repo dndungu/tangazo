@@ -12,7 +12,7 @@ if(!is_null($companies)){
 	switch($filter){
 		case 'weekly':
 			$t = (time() + ($offset * (7*24*60*60)));
-			$currentWeek = date('W', $t);
+			$currentWeek = date('W');
 			$navigator[] = '<span class="navigator">Week<select name="week" default="'.$currentWeek.'" class="jumpto">';
 			for($i = 52; $i >= 1; $i--){
 				$selected = $i == $currentWeek ? ' selected="selected"' : '';
