@@ -29,9 +29,10 @@ var panel = {
 		var selectedMonth = parseInt(subject.val());
 		var yearSelector = $('select[name="year"]', document);
 		var defaultYear = parseInt(yearSelector.attr('default'));
-		var currentYear = parseInt(yearSelector.val());
+		var selectedYear = parseInt(yearSelector.val());
 		var offset = (currentYear === defaultYear) ? (selectedMonth - defaultMonth) : -((defaultMonth - 1) + ((defaultYear - selectedYear - 1) * 12) + (13 - selectedMonth));
-		console.info(selectedMonth - defaultMonth);
+		console.info('selected month : ' + selectedMonth);
+		console.info('default month : ' + defaultMonth);
 		this.jumpTo(offset);
 	},
 	doJumpToYear: function(){
