@@ -28,7 +28,7 @@ if(!is_null($companies)){
 			$navigator[] = '</select></span>';
 						
 			$title = implode("\n", $navigator);
-			$timeQuery = sprintf("AND `week` = WEEKOFYEAR(FROM_UNIXTIME(%d)) AND YEAR(`startDate`) = YEAR(FROM_UNIXTIME(%d))", $t);
+			$timeQuery = sprintf("AND `week` = WEEKOFYEAR(FROM_UNIXTIME(%d)) AND YEAR(`startDate`) = YEAR(FROM_UNIXTIME(%d))", $t, $t);
 			break;
 		case 'monthly':
 			$t = (time() + ($offset * (31*24*60*60)));
