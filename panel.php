@@ -1,3 +1,6 @@
+<?php
+	require_once 'panel-include.php';
+?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
   <head>
@@ -8,9 +11,6 @@
     	var filter = {id: "<?php print $id?>", filter: "<?php print $filter?>", offset: <?php print $offset?>};
     </script>
   </head>
-  <?php
-  	require_once 'panel-include.php';
-  ?>
   <body <?php print 'style="width:'.($width ? strval($width).'px' : '100%').';"'?>>
   		<div class="row header">
   			<div class="column four">
