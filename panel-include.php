@@ -80,14 +80,13 @@ if(!is_null($companies)){
 			$mediaRecords[$row['mediaCode']] = $row['media'];
 			$contentRecords[$row['mediaCode']][$row['brandCode']] = $row;
 		}
-		$headerQuery[] = "SELECT `msa_campaign`.`brandCode`, `msa_brand`.`name`, `msa_campaign`.`mediaCode`, SUM(`amount`) AS `total` FROM `msa_campaign`";
+		$headerQuery[] = "SELECT `msa_campaign`.`brandCode`, `msa_brand`.`name` FROM `msa_campaign`";
 		$headerQuery[] = "LEFT JOIN `msa_brand` ON (`msa_campaign`.`brandCode` = `msa_brand`.`code`)";
 		$headerQuery[] = "LEFT JOIN `accounts` ON (`msa_campaign`.`companyCode` = `accounts`.`code`)";
 		$contentQuery[] = $timeQuery;
 		$headerQuery[] = "WHERE `amount` > 0";
 		$headerQuery[] = sprintf("AND `msa_campaign`.`companyCode` = %d", $companies[0]['code']);
-		$headerQuery[] = "GROUP BY `mediaCode`";
- 		$headerQuery[] = "HAVING `total` > 0";
+		$headerQuery[] = "GROUP BY `brandCode`";
 		$headerRecords = dbFetch(dbQuery(implode(" ", $headerQuery)));
 		$width = ((count($headerRecords)) * 180) + 600;
 	}
