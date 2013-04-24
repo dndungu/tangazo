@@ -5,7 +5,7 @@
     <link href="default.css" media="all" rel="stylesheet" type="text/css" />
     <title>Spending</title>
     <script type="text/javascript">
-    	var filter = {id: <?php print $ID?>, filter: <?php print $filter?>, offset: <?php print $offset?>};
+    	var filter = {id: "<?php print $ID?>", filter: "<?php print $filter?>", offset: <?php print $offset?>};
     </script>
   </head>
   <?php
