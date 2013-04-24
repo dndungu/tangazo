@@ -83,7 +83,7 @@ if(!is_null($companies)){
 		$headerQuery[] = "LEFT JOIN `msa_brand` ON (`msa_campaign`.`brandCode` = `msa_brand`.`code`)";
 		$headerQuery[] = "LEFT JOIN `accounts` ON (`msa_campaign`.`companyCode` = `accounts`.`code`)";
 		$contentQuery[] = $timeQuery;
-		$headerQuery[] = "WHERE `amount` > 0";
+		$headerQuery[] = "WHERE `total` > 0";
 		$headerQuery[] = sprintf("AND `msa_campaign`.`companyCode` = %d", $companies[0]['code']);
 		$headerQuery[] = "GROUP BY `brandCode`";
 		$headerRecords = dbFetch(dbQuery(implode(" ", $headerQuery)));
@@ -97,15 +97,14 @@ function totalSort($a, $b){
 	if($b['rowtotal'] == $a['rowtotal']) return 0;
 	return $a['rowtotal'] > $b['rowtotal'] ? -1 : 1;
 }
-//print_r($contentRecords);die();
 if(isset($contentRecords)){
 	foreach($contentRecords as $mediaCode => $contentRecord){
-		$total = 0	;
+		$mediaTotal = 0	;
 		foreach($contentRecord as $brandRecord){
-			$total += $brandRecord['total'];
+			$mediaTotal += $brandRecord['total'];
 		}
-		$rowsTotal += $total;
-		$contentRecord['rowtotal'] = $total;
+		$rowsTotal += $mediaTotal;
+		$contentRecord['rowtotal'] = $mediaTotal;
 		$contentRecord['medianame'] = (strlen($mediaRecords[$mediaCode]) < 4 ? $mediaRecords[$mediaCode] : strtolower($mediaRecords[$mediaCode]));
 		$records[] = $contentRecord;
 		foreach($headerRecords as $headerRecordKey => $headerRecord){
