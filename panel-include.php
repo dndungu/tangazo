@@ -12,22 +12,23 @@ if(!is_null($companies)){
 	switch($filter){
 		case 'weekly':
 			$t = (time() + ($offset * (7*24*60*60)));
-			
-			$navigator[] = '<span class="navigator">Week<select name="week" class="jumpto">';
+			$arebaWeek = ceil(intval(date('j')) / 7);
+			$navigator[] = '<span class="navigator">Week<select name="week" default="'.$arebaWeek.'" class="jumpto">';
 			for($i = 4; $i >= 1; $i--){
-				$selected = $i == weekOfMonth($t) ? ' selected="selected"' : '';
+				//$selected = $i == weekOfMonth($t) ? ' selected="selected"' : '';
+				$selected = $i == $arebaWeek ? ' selected="selected"' : '';
 				$navigator[] = '<option value="'.$i.'"'.$selected.'>'.$i.'</option>';
 			}
 			$navigator[] = '</select></span>';
 			
-			$navigator[] = '<span class="navigator">Month<select name="month" class="jumpto">';
+			$navigator[] = '<span class="navigator">Month<select name="month" default="'.date('n').'" class="jumpto">';
 			for($i = 12; $i >= 1; $i--){
 				$selected = $i == date('n', $t) ? ' selected="selected"' : '';
 				$navigator[] = '<option value="'.$i.'"'.$selected.'>'.$i.'</option>';
 			}
 			$navigator[] = '</select></span>';
 			
-			$navigator[] = '<span class="navigator">Year<select name="year" class="jumpto">';
+			$navigator[] = '<span class="navigator">Year<select name="year" default="'.$currentYear.'" class="jumpto">';
 			for($i = $currentYear; $i >= $startYear; $i--){
 				$selected = $i == date('Y', $t) ? ' selected="selected"' : '';
 				$navigator[] = '<option value="'.$i.'"'.$selected.'>'.$i.'</option>';

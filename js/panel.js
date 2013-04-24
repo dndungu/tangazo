@@ -6,7 +6,7 @@ var panel = {
 			var subject = $(this);
 			switch(filter.filter){
 				case 'weekly':
-					module.doJumpToWeek(subject);
+					module.doJumpToWeek();
 					break;
 				case 'monthly':
 					module.doJumpToMonth();
@@ -21,6 +21,15 @@ var panel = {
 		location.href = 'panel.php?id=' + filter.id + '&filter=' + filter.filter + '&offset=' + arguments[0];
 	},
 	doJumpToWeek: function(){
+		var monthSelector = $('select[name="month"]', document);
+		var defaultMonth = parseInt(monthSelector.attr('default'));
+		var selectedMonth = parseInt(monthSelector.val());
+		var yearSelector = $('select[name="year"]', document);
+		var defaultYear = parseInt(yearSelector.attr('default'));
+		var selectedYear = parseInt(yearSelector.val());
+		var weekSelector = $('select[name="week"]', document);
+		var defaultWeek = parseInt(weekSelector.attr('default'));
+		var selectedWeek = parseInt(weekSelecter.val());
 		
 	},
 	doJumpToMonth: function(){
