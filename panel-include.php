@@ -68,10 +68,11 @@ if(!is_null($companies)){
 	$contentQuery[] = "LEFT JOIN `msa_media` ON `msa_campaign`.`mediaCode` = `msa_media`.`code`";
 	$contentQuery[] = "LEFT JOIN `msa_brand` ON `msa_campaign`.`brandCode` = `msa_brand`.`code`";
 	$contentQuery[] = "LEFT JOIN `accounts` ON `msa_campaign`.`companyCode` = `accounts`.`code`";
-	$contentQuery[] = "WHERE HAVING `total` > 0";
+	$contentQuery[] = "WHERE 1 = 1";
 	$contentQuery[] = $timeQuery;
 	$contentQuery[] = sprintf("AND `msa_campaign`.`companyCode` = %d", $companies[0]['code']);
 	$contentQuery[] = "GROUP BY `mediaCode`, `brandCode`";
+	$contentQuery[] = "HAVING `total` > 0";
 	$contentQuery[] = "ORDER BY `total` DESC";
 	$contentResults = dbQuery(implode(" ", $contentQuery));
 	if($contentResults->num_rows) {
