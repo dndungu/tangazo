@@ -72,6 +72,7 @@ if(!is_null($companies)){
 	$contentQuery[] = $timeQuery;
 	$contentQuery[] = sprintf("AND `msa_campaign`.`companyCode` = %d", $companies[0]['code']);
 	$contentQuery[] = "GROUP BY `mediaCode`, `brandCode`";
+	$contentQuery[] = "HAVING `total` > 0";
 	$contentQuery[] = "ORDER BY `total` DESC";
 	$contentResults = dbQuery(implode(" ", $contentQuery));
 	if($contentResults->num_rows) {
