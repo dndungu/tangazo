@@ -15,7 +15,7 @@ if(!is_null($companies)){
 			$currentWeek = date('W');
 			$navigator[] = '<span class="navigator">Week<select name="week" default="'.$currentWeek.'" class="jumpto">';
 			for($i = 52; $i >= 1; $i--){
-				$selected = $i == $currentWeek ? ' selected="selected"' : '';
+				$selected = $i == intval(date('W', $t)) ? ' selected="selected"' : '';
 				$navigator[] = '<option value="'.$i.'"'.$selected.'>'.$i.'</option>';
 			}
 			$navigator[] = '</select></span>';
