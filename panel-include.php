@@ -12,7 +12,7 @@ if(!is_null($companies)){
 	switch($filter){
 		case 'weekly':
 			$t = (time() + ($offset * (7*24*60*60)));
-			$activeWeeks = dbFetch(dbQuery(sprintf("SELECT `week` FROM `msa_campaign` WHERE `amount` > 0 AND YEAR(`startDate`) = YEAR(FROM_UNIXTIME(%d) GROUP BY `week` ORDER BY `week` DESC", $t)));
+			$activeWeeks = dbFetch(dbQuery(sprintf("SELECT `week` FROM `msa_campaign` WHERE `amount` > 0 AND YEAR(`startDate`) = YEAR(FROM_UNIXTIME(%d)) GROUP BY `week` ORDER BY `week` DESC", $t)));
 			$activeYears = dbFetch(dbQuery(sprintf("SELECT YEAR(`startDate`) AS `year` FROM WHERE `amount` > 0 AND `msa_campaign` GROUP BY `year`", $t)));
 			$currentWeek = date('W');
 			$navigator[] = '<span class="navigator">Week<select name="week" default="'.$currentWeek.'" class="jumpto">';
