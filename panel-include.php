@@ -87,6 +87,7 @@ if(!is_null($companies)){
 		$brandQuery[] = $timeQuery;
 		$brandQuery[] = sprintf("AND `msa_campaign`.`companyCode` = %d", $companies[0]['code']);
 		$brandQuery[] = "GROUP BY `brandCode`";
+		$brandQuery[] = "HAVING `total` > 0";
 		$brandRecords = dbFetch(dbQuery(implode(" ", $brandQuery)));
 		$width = ((count($brandRecords)) * 180) + 600;
 	}
