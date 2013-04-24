@@ -88,7 +88,7 @@ if(!is_null($companies)){
 		$headerQuery[] = sprintf("AND `msa_campaign`.`companyCode` = %d", $companies[0]['code']);
 		$headerQuery[] = "GROUP BY `brandCode`";
 		$headerRecords = dbFetch(dbQuery(implode(" ", $headerQuery)));
-//		print_r($headerRecords);die();
+		print_r($headerRecords);die();
 		$width = ((count($headerRecords)) * 180) + 600;
 	}
 }
