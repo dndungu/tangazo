@@ -29,7 +29,7 @@ var panel = {
 	},
 	doJumpToYear: function(){
 		var subject = arguments[0];
-		var offset = parseInt(subject.attr('default')) - subject.val();
+		var offset = parseInt(subject.val()) - parseInt(subject.attr('default'));
 		this.jumpTo(offset);
 	}
 };
