@@ -76,12 +76,10 @@ if(!is_null($companies)){
 	$contentQuery[] = "ORDER BY `total` DESC";
 	$contentResults = dbQuery(implode(" ", $contentQuery));
 	if($contentResults->num_rows) {
-		
 		while($row = $contentResults->fetch_assoc()){
 			$mediaRecords[$row['mediaCode']] = $row['media'];
 			$contentRecords[$row['mediaCode']][$row['brandCode']] = $row;
 		}
-		
 		$brandQuery[] = "SELECT `msa_campaign`.`brandCode`, `msa_brand`.`name`, SUM(`amount`) AS `total` FROM `msa_campaign`";
 		$brandQuery[] = "LEFT JOIN `msa_brand` ON (`msa_campaign`.`brandCode` = `msa_brand`.`code`)";
 		$brandQuery[] = "LEFT JOIN `accounts` ON (`msa_campaign`.`companyCode` = `accounts`.`code`)";
@@ -90,18 +88,9 @@ if(!is_null($companies)){
 		$brandQuery[] = sprintf("AND `msa_campaign`.`companyCode` = %d", $companies[0]['code']);
 		$brandQuery[] = "GROUP BY `brandCode`";
 		$brandRecords = dbFetch(dbQuery(implode(" ", $brandQuery)));
-		
 		$width = ((count($brandRecords)) * 180) + 600;
-		
-		$mediaQuery[] = "SELECT `msa_campaign`.`mediaCode`, `msa_media`.`name` FROM `msa_campaign`";
-		$mediaQuery[] = "LEFT JOIN `msa_media` ON (`msa_campaign`.`mediaCode` = `msa_media`.`code`)";
-		$mediaQuery[] = "LEFT JOIN `accounts` ON (`msa_campaign`.`companyCode` = `accounts`.`code`)";
-		$brandQuery[] = "WHERE `amount` > 0";
-		$brandQuery[] = $timeQuery;
-		$brandQuery[] = sprintf("AND `msa_campaign`.`companyCode` = %d", $companies[0]['code']);
 	}
 }
-
 $rowsTotal = 0;
 $records = array();
 function totalSort($a, $b){
