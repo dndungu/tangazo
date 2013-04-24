@@ -13,7 +13,6 @@ if(!is_null($companies)){
 		case 'weekly':
 			$t = (time() + ($offset * (7*24*60*60)));
 			$activeWeeks = dbFetch(dbQuery(sprintf("SELECT `week` FROM `msa_campaign` WHERE YEAR(`startDate`) = YEAR(FROM_UNIXTIME(%d) GROUP BY `week` ORDER BY `week` DESC", $t)));
-			$activeMonths = dbFetch(dbQuery(sprintf("SELECT MONTH(`startDate`) AS `month` FROM `msa_campaign` WHERE YEAR(`startDate`) = YEAR(FROM_UNIXTIME(%d) GROUP BY `month`", $t)));
 			$activeYears = dbFetch(dbQuery(sprintf("SELECT YEAR(`startDate`) AS `year` FROM `msa_campaign` GROUP BY `year`", $t)));
 			$currentWeek = date('W');
 			$navigator[] = '<span class="navigator">Week<select name="week" default="'.$currentWeek.'" class="jumpto">';
@@ -45,6 +44,8 @@ if(!is_null($companies)){
 			break;
 		case 'monthly':
 			$t = (time() + ($offset * (31*24*60*60)));
+			$activeMonths = dbFetch(dbQuery(sprintf("SELECT MONTH(`startDate`) AS `month` FROM `msa_campaign` WHERE YEAR(`startDate`) = YEAR(FROM_UNIXTIME(%d) GROUP BY `month`", $t)));
+			$activeYears = dbFetch(dbQuery(sprintf("SELECT YEAR(`startDate`) AS `year` FROM `msa_campaign` GROUP BY `year`", $t)));
 			$currentMonth = date('n');
 			$navigator[] = '<span class="navigator">Month<select name="month" default="'.$currentMonth.'" class="jumpto">';
 			for($i = 12; $i >= 1; $i--){
