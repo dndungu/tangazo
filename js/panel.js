@@ -4,6 +4,7 @@ var panel = {
 		var module = this;
 		$('select.jumpto', document).change(function(){
 			var subject = $(this);
+			console.info(filter.filter);
 			switch(filter.filter){
 				case 'weekly':
 					module.doJumpToWeek(subject);
