@@ -1,11 +1,15 @@
 <?php
 require_once('includes.php');
-$filter = getString('filter');
-$offset = (Integer) getString('offset');
 $id = getString('id');
-$companies = dbFetch(dbQuery(sprintf("SELECT * FROM `accounts` WHERE `id` = '%s' LIMIT 1", $id)));
+if(isset($_POST['type'])){
+	$companies = dbFetch(dbQuery(sprintf("SELECT * FROM `msa_media` WHERE `name` LIKE '%%s%' LIMIT 1", $id)));
+}else{
+	$companies = dbFetch(dbQuery(sprintf("SELECT * FROM `accounts` WHERE `id` = '%s' LIMIT 1", $id)));
+}
 $width = 0;
-//if(!is_null($companies)){
+if(!is_null($companies)){
+	$offset = (Integer) getString('offset');
+	$filter = getString('filter');
 	$startYear = dbFetch(dbQuery("SELECT YEAR(`startDate`) AS `Y` FROM `msa_campaign` HAVING `Y` > 0 ORDER BY `Y` ASC LIMIT 1"));
 	$startYear = $startYear[0]['Y'];
 	$currentYear = date('Y');
@@ -26,7 +30,7 @@ $width = 0;
 // 				$navigator[] = '<option value="'.$i.'"'.$selected.'>'.$i.'</option>';
 // 			}
 			$navigator[] = '</select></span>';
-						
+
 			$navigator[] = '<span class="navigator">Year<select name="year" default="'.$currentYear.'" class="jumpto">';
 			for($i = $currentYear; $i >= $startYear; $i--){
 				$selected = $i == date('Y', $t) ? ' selected="selected"' : '';
@@ -38,14 +42,13 @@ $width = 0;
 // 				$navigator[] = '<option value="'.$i.'"'.$selected.'>'.$i.'</option>';
 // 			}
 			$navigator[] = '</select></span>';
-						
+
 			$title = implode("\n", $navigator);
 			$timeQuery = sprintf("AND `week` = WEEKOFYEAR(FROM_UNIXTIME(%d)) AND YEAR(`startDate`) = YEAR(FROM_UNIXTIME(%d))", $t, $t);
 			break;
 		case 'monthly':
 			$t = (time() + ($offset * (31*24*60*60)));
-			$sql = sprintf("SELECT MONTH(`startDate`) AS `month` FROM `msa_campaign` WHERE YEAR(`startDate`) = YEAR(FROM_UNIXTIME(%d)) GROUP BY `month`", $t);
-			$activeMonths = dbFetch(dbQuery($sql));
+			$activeMonths = dbFetch(dbQuery(sprintf("SELECT MONTH(`startDate`) AS `month` FROM `msa_campaign` WHERE YEAR(`startDate`) = YEAR(FROM_UNIXTIME(%d) GROUP BY `month`", $t)));
 			$activeYears = dbFetch(dbQuery(sprintf("SELECT YEAR(`startDate`) AS `year` FROM `msa_campaign` GROUP BY `year`", $t)));
 			$currentMonth = date('n');
 			$navigator[] = '<span class="navigator">Month<select name="month" default="'.$currentMonth.'" class="jumpto">';
@@ -80,16 +83,14 @@ $width = 0;
 			break;
 	}	
 	$contentQuery[] = "SELECT `msa_media`.`name` AS `media`, `msa_brand`.`name` AS `brand`, `msa_campaign`.`mediaCode` AS `mediaCode`, `msa_campaign`.`brandCode` AS `brandCode`, SUM(`amount`) AS `total`, `week` FROM `msa_campaign`";
-	if(isset($_POST['type'])){
-		$contentQuery[] = sprintf("JOIN (SELECT * FROM `msa_media` WHERE `msa_media`.`name` LIKE '%%s%') `msa_media` ON `msa_campaign`.`mediaCode` = `msa_media`.`code`", $id);
-	}else{
-		$contentQuery[] = "LEFT JOIN `msa_media` ON `msa_campaign`.`mediaCode` = `msa_media`.`code`";
-	}
+	$contentQuery[] = "JOIN `msa_media` ON `msa_campaign`.`mediaCode` = `msa_media`.`code`";
 	$contentQuery[] = "LEFT JOIN `msa_brand` ON `msa_campaign`.`brandCode` = `msa_brand`.`code`";
 	$contentQuery[] = "LEFT JOIN `accounts` ON `msa_campaign`.`companyCode` = `accounts`.`code`";
 	$contentQuery[] = "WHERE `amount` > 0";
 	$contentQuery[] = $timeQuery;
-	if(!isset($_POST['type'])){
+	if(isset($_POST['type'])){
+		$contentQuery[] = sprintf("AND `msa_campaign`.`mediaCode` = %d", $companies[0]['code']);
+	}else{
 		$contentQuery[] = sprintf("AND `msa_campaign`.`companyCode` = %d", $companies[0]['code']);
 	}
 	$contentQuery[] = "GROUP BY `mediaCode`, `brandCode`";
@@ -112,7 +113,7 @@ $width = 0;
 		$brandRecords = dbFetch(dbQuery(implode(" ", $brandQuery)));
 		$width = ((count($brandRecords)) * 180) + 600;
 	}
-//}
+}
 $rowsTotal = 0;
 $records = array();
 function totalSort($a, $b){
