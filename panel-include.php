@@ -2,8 +2,7 @@
 require_once('includes.php');
 $id = getString('id');
 if(isset($_GET['type'])){
-	print sprintf("SELECT * FROM `msa_media` WHERE `name` LIKE '%%s%' LIMIT 1", $id);die();
-	$companies = dbFetch(dbQuery(sprintf("SELECT * FROM `msa_media` WHERE `name` LIKE '%%s%' LIMIT 1", $id)));
+	$companies = dbFetch(dbQuery(sprintf("SELECT * FROM `msa_media` WHERE `name` LIKE '%%%s%%' LIMIT 1", $id)));
 }else{
 	$companies = dbFetch(dbQuery(sprintf("SELECT * FROM `accounts` WHERE `id` = '%s' LIMIT 1", $id)));
 }
