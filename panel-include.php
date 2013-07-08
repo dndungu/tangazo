@@ -80,7 +80,11 @@ if(!is_null($companies)){
 			break;
 	}	
 	$contentQuery[] = "SELECT `msa_media`.`name` AS `media`, `msa_brand`.`name` AS `brand`, `msa_campaign`.`mediaCode` AS `mediaCode`, `msa_campaign`.`brandCode` AS `brandCode`, SUM(`amount`) AS `total`, `week` FROM `msa_campaign`";
-	$contentQuery[] = "JOIN `msa_media` ON `msa_campaign`.`mediaCode` = `msa_media`.`code`";
+	if(isset($_POST['type'])){
+		$contentQuery[] = "JOIN `msa_media` ON `msa_campaign`.`mediaCode` = `msa_media`.`code`";
+	}else{
+		$contentQuery[] = "LEFT JOIN `msa_media` ON `msa_campaign`.`mediaCode` = `msa_media`.`code`";
+	}
 	$contentQuery[] = "LEFT JOIN `msa_brand` ON `msa_campaign`.`brandCode` = `msa_brand`.`code`";
 	$contentQuery[] = "LEFT JOIN `accounts` ON `msa_campaign`.`companyCode` = `accounts`.`code`";
 	$contentQuery[] = "WHERE `amount` > 0";
