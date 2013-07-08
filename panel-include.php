@@ -85,8 +85,8 @@ if(!is_null($companies)){
 	$contentQuery[] = "LEFT JOIN `accounts` ON `msa_campaign`.`companyCode` = `accounts`.`code`";
 	$contentQuery[] = "WHERE `amount` > 0";
 	$contentQuery[] = $timeQuery;
-	if(isset($_POST['media_name'])){
-		$contentQuery[] = sprintf("AND `msa_media`.`name` LIKE %s", trim($_POST['media_name']));
+	if(isset($_POST['type'])){
+		$contentQuery[] = sprintf("AND `msa_media`.`name` LIKE %s", $id);
 	}else{
 		$contentQuery[] = sprintf("AND `msa_campaign`.`companyCode` = %d", $companies[0]['code']);
 	}
