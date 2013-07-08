@@ -1,7 +1,7 @@
 <?php
 require_once('includes.php');
 $id = getString('id');
-if(isset($_POST['type'])){
+if(isset($_GET['type'])){
 	print sprintf("SELECT * FROM `msa_media` WHERE `name` LIKE '%%s%' LIMIT 1", $id);die();
 	$companies = dbFetch(dbQuery(sprintf("SELECT * FROM `msa_media` WHERE `name` LIKE '%%s%' LIMIT 1", $id)));
 }else{
@@ -89,7 +89,7 @@ if(!is_null($companies)){
 	$contentQuery[] = "LEFT JOIN `accounts` ON `msa_campaign`.`companyCode` = `accounts`.`code`";
 	$contentQuery[] = "WHERE `amount` > 0";
 	$contentQuery[] = $timeQuery;
-	if(isset($_POST['type'])){
+	if(isset($_GET['type'])){
 		$contentQuery[] = sprintf("AND `msa_campaign`.`mediaCode` = %d", $companies[0]['code']);
 	}else{
 		$contentQuery[] = sprintf("AND `msa_campaign`.`companyCode` = %d", $companies[0]['code']);
