@@ -81,7 +81,7 @@ $width = 0;
 	}	
 	$contentQuery[] = "SELECT `msa_media`.`name` AS `media`, `msa_brand`.`name` AS `brand`, `msa_campaign`.`mediaCode` AS `mediaCode`, `msa_campaign`.`brandCode` AS `brandCode`, SUM(`amount`) AS `total`, `week` FROM `msa_campaign`";
 	if(isset($_POST['type'])){
-		$contentQuery[] = "JOIN `msa_media` ON `msa_campaign`.`mediaCode` = `msa_media`.`code`";
+		$contentQuery[] = sprintf("JOIN (SELECT * FROM `msa_media` WHERE `msa_media`.`name` LIKE '%s') `msa_media` ON `msa_campaign`.`mediaCode` = `msa_media`.`code`", $id);
 	}else{
 		$contentQuery[] = "LEFT JOIN `msa_media` ON `msa_campaign`.`mediaCode` = `msa_media`.`code`";
 	}
@@ -89,9 +89,7 @@ $width = 0;
 	$contentQuery[] = "LEFT JOIN `accounts` ON `msa_campaign`.`companyCode` = `accounts`.`code`";
 	$contentQuery[] = "WHERE `amount` > 0";
 	$contentQuery[] = $timeQuery;
-	if(isset($_POST['type'])){
-		$contentQuery[] = sprintf("AND `msa_media`.`name` LIKE %s", $id);
-	}else{
+	if(!isset($_POST['type'])){
 		$contentQuery[] = sprintf("AND `msa_campaign`.`companyCode` = %d", $companies[0]['code']);
 	}
 	$contentQuery[] = "GROUP BY `mediaCode`, `brandCode`";
