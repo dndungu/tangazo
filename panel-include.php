@@ -48,7 +48,7 @@ if(!is_null($companies)){
 			break;
 		case 'monthly':
 			$t = (time() + ($offset * (31*24*60*60)));
-			$activeMonths = dbFetch(dbQuery(sprintf("SELECT MONTH(`startDate`) AS `month` FROM `msa_campaign` WHERE YEAR(`startDate`) = YEAR(FROM_UNIXTIME(%d) GROUP BY `month`", $t)));
+			$activeMonths = dbFetch(dbQuery(sprintf("SELECT MONTH(`startDate`) AS `month` FROM `msa_campaign` WHERE YEAR(`startDate`) = YEAR(FROM_UNIXTIME(%d)) GROUP BY `month`", $t)));
 			$activeYears = dbFetch(dbQuery(sprintf("SELECT YEAR(`startDate`) AS `year` FROM `msa_campaign` GROUP BY `year`", $t)));
 			$currentMonth = date('n');
 			$navigator[] = '<span class="navigator">Month<select name="month" default="'.$currentMonth.'" class="jumpto">';
