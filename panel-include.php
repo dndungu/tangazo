@@ -81,7 +81,7 @@ $width = 0;
 	}	
 	$contentQuery[] = "SELECT `msa_media`.`name` AS `media`, `msa_brand`.`name` AS `brand`, `msa_campaign`.`mediaCode` AS `mediaCode`, `msa_campaign`.`brandCode` AS `brandCode`, SUM(`amount`) AS `total`, `week` FROM `msa_campaign`";
 	if(isset($_POST['type'])){
-		$contentQuery[] = sprintf("JOIN (SELECT * FROM `msa_media` WHERE `msa_media`.`name` LIKE '%s') `msa_media` ON `msa_campaign`.`mediaCode` = `msa_media`.`code`", $id);
+		$contentQuery[] = sprintf("JOIN (SELECT * FROM `msa_media` WHERE `msa_media`.`name` LIKE '%%s%') `msa_media` ON `msa_campaign`.`mediaCode` = `msa_media`.`code`", $id);
 	}else{
 		$contentQuery[] = "LEFT JOIN `msa_media` ON `msa_campaign`.`mediaCode` = `msa_media`.`code`";
 	}
