@@ -1,11 +1,11 @@
 <?php
 require_once('includes.php');
+$filter = getString('filter');
+$offset = (Integer) getString('offset');
 $id = getString('id');
 $companies = dbFetch(dbQuery(sprintf("SELECT * FROM `accounts` WHERE `id` = '%s' LIMIT 1", $id)));
 $width = 0;
-if(!is_null($companies)){
-	$offset = (Integer) getString('offset');
-	$filter = getString('filter');
+//if(!is_null($companies)){
 	$startYear = dbFetch(dbQuery("SELECT YEAR(`startDate`) AS `Y` FROM `msa_campaign` HAVING `Y` > 0 ORDER BY `Y` ASC LIMIT 1"));
 	$startYear = $startYear[0]['Y'];
 	$currentYear = date('Y');
@@ -114,7 +114,7 @@ if(!is_null($companies)){
 		$brandRecords = dbFetch(dbQuery(implode(" ", $brandQuery)));
 		$width = ((count($brandRecords)) * 180) + 600;
 	}
-}
+//}
 $rowsTotal = 0;
 $records = array();
 function totalSort($a, $b){
