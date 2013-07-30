@@ -12,7 +12,7 @@ require_once 'panel-include.php';
     </script>
 </head>
 <body <?php print 'style="width:'.($width ? strval($width).'px' : '100%').';"'?>>
-	<div class="row header" style="padding: 10px 0;">
+	<div class="row header" style="padding: 10px 0;width:100%;">
 		<form action="filter.php" method="GET">
 			<div class="four" style="display: inline-block;">
 				<select name="type">
