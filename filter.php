@@ -14,22 +14,18 @@ require_once 'panel-include.php';
 <body <?php print 'style="width:'.($width ? strval($width).'px' : '100%').';"'?>>
 	<div class="row header" style="padding: 10px 0;width:100%;">
 		<form action="filter.php" method="GET">
-			<div class="four" style="display: inline-block;">
-				<select name="type">
-					<option value="company">Company</option>
-					<option value="brand">Brand</option>
-					<option value="media">Media</option>
-				</select>
-				<select name="filter">
-					<option value="weekly">Weekly</option>
-					<option value="monthly">Monthly</option>
-					<option value="yearly">Yearly</option>
-				</select>
-			</div>
-			<div class="four" style="display: inline-block;">
-				<input type="text" name="keywords" style="width:100%;"/>
-			</div>
-			<div class="column four"></div>
+			<select name="type">
+				<option value="company">Company</option>
+				<option value="brand">Brand</option>
+				<option value="media">Media</option>
+			</select>
+			&nbsp;&nbsp;
+			<select name="filter">
+				<option value="weekly">Weekly</option>
+				<option value="monthly">Monthly</option>
+				<option value="yearly">Yearly</option>
+			</select>
+			<input type="text" name="keywords" style="width:100%;"/>
 		</form>
 	</div>
 	<div class="row header">
