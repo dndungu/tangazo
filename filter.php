@@ -25,7 +25,7 @@ require_once 'panel-include.php';
 				<option value="monthly">Monthly</option>
 				<option value="yearly">Yearly</option>
 			</select>
-			<input type="text" name="keywords" size="32"/>
+			<input type="text" name="keywords" size="16"/>
 		</form>
 	</div>
 	<div class="row header">
