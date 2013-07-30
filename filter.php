@@ -18,7 +18,9 @@
   					<input type="text" name="keywords"/>
   				</div>
   				<div class="column two">
-  					
+  					<input type="radio" name="type" value="company"/> Company &nbsp; &nbsp;
+  					<input type="radio" name="type" value="brand"/> Brand &nbsp; &nbsp;
+  					<input type="radio" name="type" value="media"/> Media 
   				</div>
   			</div>
   			<div class="row">
