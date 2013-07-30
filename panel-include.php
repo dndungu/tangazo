@@ -2,6 +2,7 @@
 require_once('includes.php');
 if(isset($_GET['company'])){
 	$company = getString('company');
+	$id = $company;
 	$companies = dbFetch(dbQuery(sprintf("SELECT * FROM `accounts` WHERE MATCH(name) AGAINST('%s') LIMIT 1", $company)));
 	$companyCode = $companies[0]['code'];
 }
