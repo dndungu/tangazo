@@ -1,11 +1,6 @@
 <?php
 require_once('includes.php');
-if(isset($_GET['company'])){
-	$company = getString('company');
-	$id = $company;
-	$companies = dbFetch(dbQuery(sprintf("SELECT * FROM `accounts` WHERE MATCH(name) AGAINST('%s') LIMIT 1", $company)));
-	$companyCode = $companies[0]['code'];
-}
+
 $width = 0;
 $offset = (Integer) getString('offset');
 $filter = getString('filter');
@@ -76,8 +71,20 @@ $contentQuery[] = "LEFT JOIN `msa_brand` ON `msa_campaign`.`brandCode` = `msa_br
 $contentQuery[] = "LEFT JOIN `accounts` ON `msa_campaign`.`companyCode` = `accounts`.`code`";
 $contentQuery[] = "WHERE `amount` > 0";
 $contentQuery[] = $timeQuery;
-$contentQuery[] = sprintf("AND `msa_campaign`.`companyCode` = %d", $companyCode);
-$contentQuery[] = "GROUP BY `mediaCode`, `brandCode`";
+switch ($_GET['type']){
+	case 'company':
+		$id = getString('keywords');
+		$companies = dbFetch(dbQuery(sprintf("SELECT * FROM `accounts` WHERE MATCH(name) AGAINST('%s') LIMIT 1", $id)));
+		$contentQuery[] = sprintf("AND `msa_campaign`.`companyCode` = %d", $companies[0]['code']);
+		$contentQuery[] = "GROUP BY `mediaCode`, `brandCode`";
+		break;
+	case 'brand':
+		
+		break;
+	case 'media':
+		
+		break;
+}
 $contentQuery[] = "HAVING `total` > 0";
 $contentQuery[] = "ORDER BY `total` DESC";
 $contentResults = dbQuery(implode(" ", $contentQuery));
