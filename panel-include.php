@@ -103,16 +103,18 @@ if($contentResults->num_rows) {
 	switch(getString('type')){
 		case 'company':
 			$brandQuery[] = sprintf("AND `msa_campaign`.`companyCode` = %d", $filterCode);
+			$brandQuery[] = "GROUP BY `brandCode`";
 			break;
 		case 'brand':
-			
+			$brandQuery[] = sprintf("AND `msa_campaign`.`brandCode` = %d", $filterCode);
+			$brandQuery[] = "GROUP BY `brandCode`";
 			break;
 		case 'media':
-			
+			$brandQuery[] = sprintf("AND `msa_campaign`.`mediaCode` = %d", $filterCode);
+			$brandQuery[] = "GROUP BY `brandCode`";
 			break;
 	}
 	
-	$brandQuery[] = "GROUP BY `brandCode`";
 	$brandQuery[] = "HAVING `total` > 0";
 	$brandRecords = dbFetch(dbQuery(implode(" ", $brandQuery)));
 	$width = ((count($brandRecords)) * 180) + 600;
