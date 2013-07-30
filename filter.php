@@ -20,7 +20,7 @@ require_once 'panel-include.php';
 				<option value="weekly">Weekly</option>
 			</select>
 			&nbsp;&nbsp;
-			<input type="text" name="keywords" size="16"/>
+			<input type="text" name="keywords" size="16" value="<?php echo getString('keywords')?>"/>
 			&nbsp;&nbsp;
 			<select name="type">
 				<option value="company">Filter By Company</option>
