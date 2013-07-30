@@ -4,7 +4,11 @@ $id = getString('id');
 if(isset($_GET['type'])){
 	$companies = dbFetch(dbQuery(sprintf("SELECT * FROM `msa_media` WHERE `name` LIKE '%%%s%%' LIMIT 1", $id)));
 }else{
-	$companies = dbFetch(dbQuery(sprintf("SELECT * FROM `accounts` WHERE `id` = '%s' LIMIT 1", $id)));
+	if(isset($_GET['id'])){
+		$companies = dbFetch(dbQuery(sprintf("SELECT * FROM `accounts` WHERE `id` = '%s' LIMIT 1", $id)));
+	}else{
+		$companies = dbFetch(dbQuery(sprintf("SELECT * FROM `accounts` WHERE `id` = '%s' LIMIT 1", $id)));
+	}
 }
 $width = 0;
 $title = null;
