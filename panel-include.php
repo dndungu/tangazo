@@ -24,11 +24,6 @@ if(!is_null($companies)){
 				$selected = $i == intval(date('W', $t)) ? ' selected="selected"' : '';
 				$navigator[] = '<option value="'.$i.'"'.$selected.'>'.$i.'</option>';
 			}
-// 			foreach($activeWeeks as $activeWeek){
-// 				$i = $activeWeek['week'];
-// 				$selected = ($i == intval(date('W', $t))) ? ' selected="selected"' : '';
-// 				$navigator[] = '<option value="'.$i.'"'.$selected.'>'.$i.'</option>';
-// 			}
 			$navigator[] = '</select></span>';
 
 			$navigator[] = '<span class="navigator">Year<select name="year" default="'.$currentYear.'" class="jumpto">';
@@ -36,11 +31,6 @@ if(!is_null($companies)){
 				$selected = $i == date('Y', $t) ? ' selected="selected"' : '';
 				$navigator[] = '<option value="'.$i.'"'.$selected.'>'.$i.'</option>';
 			}
-// 			foreach($activeYears as $activeYear){
-// 				$i = $activeYear['year'];
-// 				$selected = $i == date('Y', $t) ? ' selected="selected"' : '';
-// 				$navigator[] = '<option value="'.$i.'"'.$selected.'>'.$i.'</option>';
-// 			}
 			$navigator[] = '</select></span>';
 
 			$title = implode("\n", $navigator);

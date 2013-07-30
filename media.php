@@ -11,6 +11,7 @@
 			<h1 class="column grid10of10">Media Spending</h1>
 			<ul class="column grid10of10">
 				<li><a href="index.php">Upload</a></li>
+				<li><a href="filter.php">Filter</a></li>
 				<li><a href="spending.php">Spending</a></li>
 				<li><a href="companies.php">Companies</a></li>
 				<li><a href="brands.php">Brands</a></li>
