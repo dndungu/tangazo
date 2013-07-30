@@ -13,7 +13,7 @@
   </head>
   <body <?php print 'style="width:'.($width ? strval($width).'px' : '100%').';"'?>>
   		<div class="row header">
-  			<div class="row clearfix" style="padding:10px 0;">
+  			<div class="clearfix" style="padding:10px 0;">
   				<form action="filter.php" method="GET">
 	  				<div class="four" style="display:inline-block;">
 	  					<input type="radio" name="type" value="company" checked="checked"/> Company &nbsp; &nbsp;
@@ -31,7 +31,7 @@
 	  				<div class="column four"></div>
   				</form>
   			</div>
-  			<div class="row">
+  			<div class="clearfix">
 	  			<div class="column four">
 	  				<a class="navigation" href="panel.php?filter=<?php print $filter?>&id=<?php print $id?>&offset=<?php print ($offset - 1)?>"><img src="images/previous.png"/></a>
 	  				<span style="display:inline-block;"><?php print $title?></span>
