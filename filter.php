@@ -15,17 +15,18 @@ require_once 'panel-include.php';
 	<div class="row header" style="padding: 10px 0;width:100%;">
 		<form action="filter.php" method="GET" style="padding:0 0 0 12px;">
 			<select name="filter">
-				<option value="weekly">Weekly</option>
-				<option value="monthly">Monthly</option>
 				<option value="yearly">Yearly</option>
+				<option value="monthly">Monthly</option>
+				<option value="weekly">Weekly</option>
 			</select>
 			&nbsp;&nbsp;
-			<select name="type">
-				<option value="company">Company</option>
-				<option value="brand">Brand</option>
-				<option value="media">Media</option>
-			</select>
 			<input type="text" name="keywords" size="16"/>
+			&nbsp;&nbsp;
+			<select name="type">
+				<option value="company">Filter By Company</option>
+				<option value="brand">Filter By Brand</option>
+				<option value="media">Filter By Media</option>
+			</select>
 			<button type="submit" name="submit">Filter</button>
 		</form>
 	</div>
