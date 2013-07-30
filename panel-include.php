@@ -1,11 +1,8 @@
 <?php
 require_once('includes.php');
 $id = getString('id');
-if(isset($_GET['type'])){
-	$companies = dbFetch(dbQuery(sprintf("SELECT * FROM `msa_media` WHERE `name` LIKE '%%%s%%' LIMIT 1", $id)));
-}else{
-	$companies = dbFetch(dbQuery(sprintf("SELECT * FROM `accounts` WHERE `id` = '%s' LIMIT 1", $id)));
-}
+$companies = dbFetch(dbQuery(sprintf("SELECT * FROM `accounts` WHERE `id` = '%s' OR MATCH('%s') AGAINST(`name`) LIMIT 1", $id, $id)));
+$companyCode = $companies[0]['code'];
 $width = 0;
 $offset = (Integer) getString('offset');
 $filter = getString('filter');
@@ -76,13 +73,7 @@ $contentQuery[] = "LEFT JOIN `msa_brand` ON `msa_campaign`.`brandCode` = `msa_br
 $contentQuery[] = "LEFT JOIN `accounts` ON `msa_campaign`.`companyCode` = `accounts`.`code`";
 $contentQuery[] = "WHERE `amount` > 0";
 $contentQuery[] = $timeQuery;
-if(isset($companies)){
-	if(isset($_GET['type'])){
-		$contentQuery[] = sprintf("AND `msa_campaign`.`mediaCode` = %d", $companies[0]['code']);
-	}else{
-		$contentQuery[] = sprintf("AND `msa_campaign`.`companyCode` = %d", $companies[0]['code']);
-	}
-}
+$contentQuery[] = sprintf("AND `msa_campaign`.`companyCode` = %d", $companyCode);
 $contentQuery[] = "GROUP BY `mediaCode`, `brandCode`";
 $contentQuery[] = "HAVING `total` > 0";
 $contentQuery[] = "ORDER BY `total` DESC";
@@ -97,9 +88,7 @@ if($contentResults->num_rows) {
 	$brandQuery[] = "LEFT JOIN `accounts` ON (`msa_campaign`.`companyCode` = `accounts`.`code`)";
 	$brandQuery[] = "WHERE `amount` > 0";
 	$brandQuery[] = $timeQuery;
-	if(isset($companies)){
-		$brandQuery[] = sprintf("AND `msa_campaign`.`companyCode` = %d", $companies[0]['code']);
-	}
+	$brandQuery[] = sprintf("AND `msa_campaign`.`companyCode` = %d", $companyCode);
 	$brandQuery[] = "GROUP BY `brandCode`";
 	$brandQuery[] = "HAVING `total` > 0";
 	$brandRecords = dbFetch(dbQuery(implode(" ", $brandQuery)));
