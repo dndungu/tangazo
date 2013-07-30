@@ -22,7 +22,7 @@ require_once 'panel-include.php';
 				</select> 
 			</div>
 			<div class="four" style="display: inline-block;">
-				<select name="type">
+				<select name="filter">
 					<option value="weekly">Weekly</option>
 					<option value="monthly">Monthly</option>
 					<option value="yearly">Yearly</option>
