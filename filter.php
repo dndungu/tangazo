@@ -14,20 +14,22 @@
   <body <?php print 'style="width:'.($width ? strval($width).'px' : '100%').';"'?>>
   		<div class="row header">
   			<div class="row">
-  				<div class="column four">
-  					<input type="radio" name="type" value="company" checked="checked"/> Company &nbsp; &nbsp;
-  					<input type="radio" name="type" value="brand"/> Brand &nbsp; &nbsp;
-  					<input type="radio" name="type" value="media"/> Media 
-  				</div>
-  				<div class="column four">
-  					<input type="radio" name="filter" value="weekly" checked="checked"/> Weekly &nbsp; &nbsp;
-  					<input type="radio" name="filter" value="monthly" checked="checked"/> Monthly &nbsp; &nbsp;
-  					<input type="radio" name="filter" value="yearly" checked="checked"/> Yearly
-  				</div>
-  				<div class="column four">
-  					<input type="text" name="keywords" style="width:100%;"/>
-  				</div>
-  				<div class="column four"></div>
+  				<form action="filter.php" method="GET">
+	  				<div class="four">
+	  					<input type="radio" name="type" value="company" checked="checked"/> Company &nbsp; &nbsp;
+	  					<input type="radio" name="type" value="brand"/> Brand &nbsp; &nbsp;
+	  					<input type="radio" name="type" value="media"/> Media 
+	  				</div>
+	  				<div class="four">
+	  					<input type="radio" name="filter" value="weekly" checked="checked"/> Weekly &nbsp; &nbsp;
+	  					<input type="radio" name="filter" value="monthly" checked="checked"/> Monthly &nbsp; &nbsp;
+	  					<input type="radio" name="filter" value="yearly" checked="checked"/> Yearly
+	  				</div>
+	  				<div class="four">
+	  					<input type="text" name="keywords" style="width:100%;"/>
+	  				</div>
+	  				<div class="column four"></div>
+  				</form>
   			</div>
   			<div class="row">
 	  			<div class="column four">
