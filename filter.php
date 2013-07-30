@@ -15,7 +15,7 @@
   		<div class="row header">
   			<div class="row">
   				<div class="column four">
-  					<input type="radio" name="type" value="company"/> Company &nbsp; &nbsp;
+  					<input type="radio" name="type" value="company" checked="checked"/> Company &nbsp; &nbsp;
   					<input type="radio" name="type" value="brand"/> Brand &nbsp; &nbsp;
   					<input type="radio" name="type" value="media"/> Media 
   				</div>
