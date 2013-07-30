@@ -15,17 +15,17 @@
   		<div class="row header">
   			<div class="row">
   				<form action="filter.php" method="GET">
-	  				<div class="four">
+	  				<div class="four" style="display:inline-block;">
 	  					<input type="radio" name="type" value="company" checked="checked"/> Company &nbsp; &nbsp;
 	  					<input type="radio" name="type" value="brand"/> Brand &nbsp; &nbsp;
 	  					<input type="radio" name="type" value="media"/> Media 
 	  				</div>
-	  				<div class="four">
+	  				<div class="four" style="display:inline-block;">
 	  					<input type="radio" name="filter" value="weekly" checked="checked"/> Weekly &nbsp; &nbsp;
 	  					<input type="radio" name="filter" value="monthly" checked="checked"/> Monthly &nbsp; &nbsp;
 	  					<input type="radio" name="filter" value="yearly" checked="checked"/> Yearly
 	  				</div>
-	  				<div class="four">
+	  				<div class="four" style="display:inline-block;">
 	  					<input type="text" name="keywords" style="width:100%;"/>
 	  				</div>
 	  				<div class="column four"></div>
