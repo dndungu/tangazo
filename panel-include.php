@@ -7,6 +7,7 @@ if(isset($_GET['type'])){
 	$companies = dbFetch(dbQuery(sprintf("SELECT * FROM `accounts` WHERE `id` = '%s' LIMIT 1", $id)));
 }
 $width = 0;
+$title = null;
 if(!is_null($companies)){
 	$offset = (Integer) getString('offset');
 	$filter = getString('filter');
