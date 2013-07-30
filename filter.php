@@ -14,16 +14,16 @@ require_once 'panel-include.php';
 <body <?php print 'style="width:'.($width ? strval($width).'px' : '100%').';"'?>>
 	<div class="row header" style="padding: 10px 0;width:100%;">
 		<form action="filter.php" method="GET" style="padding:0 0 0 12px;">
-			<select name="type">
-				<option value="company">Company</option>
-				<option value="brand">Brand</option>
-				<option value="media">Media</option>
-			</select>
-			&nbsp;&nbsp;
 			<select name="filter">
 				<option value="weekly">Weekly</option>
 				<option value="monthly">Monthly</option>
 				<option value="yearly">Yearly</option>
+			</select>
+			&nbsp;&nbsp;
+			<select name="type">
+				<option value="company">Company</option>
+				<option value="brand">Brand</option>
+				<option value="media">Media</option>
 			</select>
 			<input type="text" name="keywords" size="16"/>
 			<button type="submit" name="submit">Filter</button>
