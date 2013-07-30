@@ -9,6 +9,7 @@ if(isset($_GET['type'])){
 $width = 0;
 $title = null;
 $filter = null;
+$offset = null;
 if(!is_null($companies)){
 	$offset = (Integer) getString('offset');
 	$filter = getString('filter');
