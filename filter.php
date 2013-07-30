@@ -27,6 +27,7 @@
   				<div class="column four">
   					<input type="text" name="keywords" style="width:100%;"/>
   				</div>
+  				<div class="column four"></div>
   			</div>
   			<div class="row">
 	  			<div class="column four">
