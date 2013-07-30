@@ -26,6 +26,7 @@ require_once 'panel-include.php';
 				<option value="yearly">Yearly</option>
 			</select>
 			<input type="text" name="keywords" size="16"/>
+			<button type="submit" name="submit">Filter</button>
 		</form>
 	</div>
 	<div class="row header">
