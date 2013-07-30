@@ -71,7 +71,7 @@ $contentQuery[] = "LEFT JOIN `msa_brand` ON `msa_campaign`.`brandCode` = `msa_br
 $contentQuery[] = "LEFT JOIN `accounts` ON `msa_campaign`.`companyCode` = `accounts`.`code`";
 $contentQuery[] = "WHERE `amount` > 0";
 $contentQuery[] = $timeQuery;
-switch ($_GET['type']){
+switch (getString('type')){
 	case 'company':
 		$id = getString('keywords');
 		$companies = dbFetch(dbQuery(sprintf("SELECT * FROM `accounts` WHERE MATCH(name) AGAINST('%s') LIMIT 1", $id)));
