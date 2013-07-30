@@ -19,9 +19,7 @@ require_once 'panel-include.php';
 					<option value="company">Company</option>
 					<option value="brand">Brand</option>
 					<option value="media">Media</option>
-				</select> 
-			</div>
-			<div class="four" style="display: inline-block;">
+				</select>
 				<select name="filter">
 					<option value="weekly">Weekly</option>
 					<option value="monthly">Monthly</option>
@@ -29,7 +27,7 @@ require_once 'panel-include.php';
 				</select>
 			</div>
 			<div class="four" style="display: inline-block;">
-				<input type="text" name="keywords" style="width: 100%;" />
+				<input type="text" name="keywords" style="width:100%;"/>
 			</div>
 			<div class="column four"></div>
 		</form>
