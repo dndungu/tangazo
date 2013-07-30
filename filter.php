@@ -20,13 +20,13 @@ require_once 'panel-include.php';
 				<option value="weekly">Weekly</option>
 			</select>
 			&nbsp;&nbsp;
-			<input type="text" name="keywords" size="16" value="<?php echo getString('keywords')?>"/>
-			&nbsp;&nbsp;
 			<select name="type">
-				<option value="company">Filter By Company</option>
-				<option value="brand">Filter By Brand</option>
-				<option value="media">Filter By Media</option>
+				<option value="company">Search By Company</option>
+				<option value="brand">Search By Brand</option>
+				<option value="media">Search By Media</option>
 			</select>
+			&nbsp;&nbsp;
+			<input type="text" name="keywords" size="16" value="<?php echo getString('keywords')?>"/>
 			<button type="submit" name="submit">Filter</button>
 		</form>
 	</div>
