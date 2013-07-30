@@ -1,8 +1,10 @@
 <?php
 require_once('includes.php');
-$company = getString('company');
-$companies = dbFetch(dbQuery(sprintf("SELECT * FROM `accounts` WHERE MATCH(name) AGAINST('%s') LIMIT 1", $company)));
-$companyCode = $companies[0]['code'];
+if(isset($_GET['company'])){
+	$company = getString('company');
+	$companies = dbFetch(dbQuery(sprintf("SELECT * FROM `accounts` WHERE MATCH(name) AGAINST('%s') LIMIT 1", $company)));
+	$companyCode = $companies[0]['code'];
+}
 $width = 0;
 $offset = (Integer) getString('offset');
 $filter = getString('filter');

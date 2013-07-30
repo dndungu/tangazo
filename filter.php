@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <link href="default.css" media="all" rel="stylesheet" type="text/css" />
-    <title>Filter</title>
+    <title>Filtered Spending</title>
     <script type="text/javascript">
     	var filter = {id: "<?php print $id?>", filter: "<?php print $filter?>", offset: <?php print $offset?>};
     </script>
