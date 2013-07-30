@@ -7,6 +7,12 @@ body {
 	font-family: Verdana, Arial, sans-serif;
 }
 
+.clearfix:after {
+	content: "";
+	display: table;
+	clear: both;
+}
+
 .row {
 	font-weight: 400;
 	font-size: .75em;

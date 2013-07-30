@@ -13,7 +13,7 @@
   </head>
   <body <?php print 'style="width:'.($width ? strval($width).'px' : '100%').';"'?>>
   		<div class="row header">
-  			<div class="row">
+  			<div class="row clearfix" style="padding:10px 0;">
   				<form action="filter.php" method="GET">
 	  				<div class="four" style="display:inline-block;">
 	  					<input type="radio" name="type" value="company" checked="checked"/> Company &nbsp; &nbsp;
