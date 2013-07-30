@@ -1,7 +1,7 @@
 <?php
 require_once('includes.php');
-$id = getString('id');
-$companies = dbFetch(dbQuery(sprintf("SELECT * FROM `accounts` WHERE `id` = '%s' OR MATCH('%s') AGAINST(`name`) LIMIT 1", $id, $id)));
+$company = getString('company');
+$companies = dbFetch(dbQuery(sprintf("SELECT * FROM `accounts` WHERE MATCH(name) AGAINST('%s') LIMIT 1", $company)));
 $companyCode = $companies[0]['code'];
 $width = 0;
 $offset = (Integer) getString('offset');
