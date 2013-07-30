@@ -13,7 +13,7 @@ require_once 'panel-include.php';
 </head>
 <body <?php print 'style="width:'.($width ? strval($width).'px' : '100%').';"'?>>
 	<div class="row header" style="padding: 10px 0;width:100%;">
-		<form action="filter.php" method="GET">
+		<form action="filter.php" method="GET" style="padding:0 0 0 20px;">
 			<select name="type">
 				<option value="company">Company</option>
 				<option value="brand">Brand</option>
