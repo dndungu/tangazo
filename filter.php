@@ -13,21 +13,31 @@
   </head>
   <body <?php print 'style="width:'.($width ? strval($width).'px' : '100%').';"'?>>
   		<div class="row header">
-  			<div class="column four">
-  				<a class="navigation" href="panel.php?filter=<?php print $filter?>&id=<?php print $id?>&offset=<?php print ($offset - 1)?>"><img src="images/previous.png"/></a>
-  				<span style="display:inline-block;"><?php print $title?></span>
-  				<?php if($offset < 0){?>
-  				<a class="navigation" href="panel.php?filter=<?php print $filter?>&id=<?php print $id?>&offset=<?php print ($offset + 1)?>"><img src="images/next.png"/></a>
-  				<?php }?>
+  			<div class="row">
+  				<div class="column four">
+  					<input type="text" name="keywords"/>
+  				</div>
+  				<div class="column two">
+  					
+  				</div>
   			</div>
-  			<?php if($width){?>
-  			<div class="column two">Period Total</div>
-  			<?php foreach($brandRecords as $brandRecord){?>
-  				<div class="column three" style="text-transform:capitalize;"><?php print strtolower($brandRecord['name'])?></div>
-  			<?php }?>
-  			<?php } else {
-  				print '<div class="column four">There is no data for this period.</div>';
-  			}?>	
+  			<div class="row">
+	  			<div class="column four">
+	  				<a class="navigation" href="panel.php?filter=<?php print $filter?>&id=<?php print $id?>&offset=<?php print ($offset - 1)?>"><img src="images/previous.png"/></a>
+	  				<span style="display:inline-block;"><?php print $title?></span>
+	  				<?php if($offset < 0){?>
+	  				<a class="navigation" href="panel.php?filter=<?php print $filter?>&id=<?php print $id?>&offset=<?php print ($offset + 1)?>"><img src="images/next.png"/></a>
+	  				<?php }?>
+	  			</div>
+	  			<?php if($width){?>
+	  			<div class="column two">Period Total</div>
+	  			<?php foreach($brandRecords as $brandRecord){?>
+	  				<div class="column three" style="text-transform:capitalize;"><?php print strtolower($brandRecord['name'])?></div>
+	  			<?php }?>
+	  			<?php } else {
+	  				print '<div class="column four">There is no data for this period.</div>';
+	  			}?>
+  			</div>
   		</div>
   		<?php if($width){?>
   		<?php foreach($contentRecords as $contentRecord){?>
