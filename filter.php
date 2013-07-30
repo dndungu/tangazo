@@ -15,10 +15,18 @@ require_once 'panel-include.php';
 	<div class="row header" style="padding: 10px 0;">
 		<form action="filter.php" method="GET">
 			<div class="four" style="display: inline-block;">
-				<input type="radio" name="type" value="company" checked="checked" /> Company &nbsp; &nbsp; <input type="radio" name="type" value="brand" /> Brand &nbsp; &nbsp; <input type="radio" name="type" value="media" /> Media
+				<select name="type">
+					<option value="company">Company</option>
+					<option value="brand">Brand</option>
+					<option value="media">Media</option>
+				</select> 
 			</div>
 			<div class="four" style="display: inline-block;">
-				<input type="radio" name="filter" value="weekly" checked="checked" /> Weekly &nbsp; &nbsp; <input type="radio" name="filter" value="monthly" checked="checked" /> Monthly &nbsp; &nbsp; <input type="radio" name="filter" value="yearly" checked="checked" /> Yearly
+				<select name="type">
+					<option value="weekly">Weekly</option>
+					<option value="monthly">Monthly</option>
+					<option value="yearly">Yearly</option>
+				</select>
 			</div>
 			<div class="four" style="display: inline-block;">
 				<input type="text" name="keywords" style="width: 100%;" />
