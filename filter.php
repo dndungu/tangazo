@@ -20,6 +20,11 @@
   					<input type="radio" name="type" value="media"/> Media 
   				</div>
   				<div class="column four">
+  					<input type="radio" name="filter" value="weekly" checked="checked"/> Weekly &nbsp; &nbsp;
+  					<input type="radio" name="filter" value="monthly" checked="checked"/> Monthly &nbsp; &nbsp;
+  					<input type="radio" name="filter" value="yearly" checked="checked"/> Yearly
+  				</div>
+  				<div class="column four">
   					<input type="text" name="keywords"/>
   				</div>
   			</div>
