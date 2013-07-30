@@ -75,7 +75,8 @@ switch (getString('type')){
 	case 'company':
 		$id = getString('keywords');
 		$companies = dbFetch(dbQuery(sprintf("SELECT * FROM `accounts` WHERE MATCH(name) AGAINST('%s') LIMIT 1", $id)));
-		$contentQuery[] = sprintf("AND `msa_campaign`.`companyCode` = %d", $companies[0]['code']);
+		$filterCode = $companies[0]['code'];
+		$contentQuery[] = sprintf("AND `msa_campaign`.`companyCode` = %d", $filterCode);
 		$contentQuery[] = "GROUP BY `mediaCode`, `brandCode`";
 		break;
 	case 'brand':
@@ -98,7 +99,19 @@ if($contentResults->num_rows) {
 	$brandQuery[] = "LEFT JOIN `accounts` ON (`msa_campaign`.`companyCode` = `accounts`.`code`)";
 	$brandQuery[] = "WHERE `amount` > 0";
 	$brandQuery[] = $timeQuery;
-	$brandQuery[] = sprintf("AND `msa_campaign`.`companyCode` = %d", $companyCode);
+	
+	switch(getString('type')){
+		case 'company':
+			$brandQuery[] = sprintf("AND `msa_campaign`.`companyCode` = %d", $filterCode);
+			break;
+		case 'brand':
+			
+			break;
+		case 'media':
+			
+			break;
+	}
+	
 	$brandQuery[] = "GROUP BY `brandCode`";
 	$brandQuery[] = "HAVING `total` > 0";
 	$brandRecords = dbFetch(dbQuery(implode(" ", $brandQuery)));
