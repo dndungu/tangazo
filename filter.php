@@ -27,7 +27,7 @@
 						<input type="button" id="deleteRecords" name="campaign" value="DELETE"/>
 					</div>
 					<div class="column grid9of10 align-right">
-						<input type="text" name="from" placeholder="DD-MM-YYY"/>&nbsp;to&nbsp;<input type="text" name="to" placeholder="DD-MM-YYYY"/>
+						<input type="text" name="from" placeholder="DD-MM-YYYY" size="10"/>&nbsp;to&nbsp;<input type="text" name="to" placeholder="DD-MM-YYYY" size="10"/>
 					</div>					
 				</div>			
 				<div class="column grid1of10 align-center">
