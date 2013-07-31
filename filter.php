@@ -24,6 +24,7 @@
 			<div class="gridColumns">
 				<div class="row">
 					<div class="column grid1of10 align-center">
+						&nbsp;<br/>
 						<input type="button" id="deleteRecords" name="campaign" value="DELETE"/>
 					</div>
 				</div>			
