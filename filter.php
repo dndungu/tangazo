@@ -4,9 +4,6 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <link href="style.css" media="all" rel="stylesheet" type="text/css" />
 <style type="text/css">
-.content {
-	overflow:auto;
-}
 .header .column {
 	font-weight:bold;
 }
@@ -45,7 +42,7 @@
 			$spending[$record['companyCode']][$record['mediaCode']] = $record['amount'];
 		}
 		?>
-		<div class="content">
+		<div class="content" style="width:<?php print ((count($media)+1)*90)?>px;">
 			<div class="row header">
 				<div class="column"></div>
 				<?php foreach($media as $outlet){?>
