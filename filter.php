@@ -17,9 +17,6 @@
 	border-bottom:1px solid #DDD;
 }
 
-.report-content .row:first-child {
-	border-top:1px solid #DDD;
-}
 .report-content .column {
 	overflow:hidden;
 	margin-bottom:-9999px;
