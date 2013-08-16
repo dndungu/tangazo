@@ -24,7 +24,7 @@
 	border-left:1px solid #DDD;
 }
 .report-content .column:first-child {
-	width:180px;
+	width:240px;
 	border-left:0 none;
 }
 </style>
