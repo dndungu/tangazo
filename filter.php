@@ -19,10 +19,11 @@
 .report-content .column {
 	width: 90px;
 	text-align:left;
-	border-right:1px solid #DDD;
+	border-left:1px solid #DDD;
 }
 .report-content .column:first-child {
 	width:180px;
+	border-left:0 none;
 }
 </style>
 <title>Media Spending :: Company Report</title>
