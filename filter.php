@@ -14,6 +14,10 @@
 	font-size:.75em;
 }
 .report-content .row {
+	border-bottom:1px solid #DDD;
+}
+
+.report-content .row:first-child {
 	border-top:1px solid #DDD;
 }
 .report-content .column {
