@@ -23,8 +23,6 @@
 .report-content .column {
 	min-height:20px;
 	overflow:hidden;
-	margin-bottom:-999px;
-	padding-bottom:999px;
 	width: 120px;
 	text-align:left;
 	border-left:1px solid #DDD;
