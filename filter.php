@@ -72,37 +72,39 @@
 	$query[] = 'GROUP BY `companyCode`, `mediaCode`';
 	$query[] = 'ORDER BY `amount` DESC';
 	$records = dbFetch(dbQuery(implode(' ', $query)));
-	foreach($records as $record){
-		$companyCode = $record['companyCode'];
-		$mediaCode = $record['mediaCode'];
-		$company = $record['company'];
-		$companies[$companyCode] = $company;
-		$outlets[$mediaCode] = $record['media'];
-		$spending[$companyCode][$mediaCode] = $record['amount'];
-	}
-	?>
-	<div class="report-content" style="width:<?php print (251 + (count($outlets) * 171))?>px;">
-		<div class="row header">
-			<div class="column">&nbsp;</div>
-			<?php foreach($outlets as $mediaCode => $outlet){?>
-			<div class="column" mediaCode="<?php print $mediaCode?>">
-				<?php print $outlet?>
+	if(!is_null($records)) {
+		foreach($records as $record){
+			$companyCode = $record['companyCode'];
+			$mediaCode = $record['mediaCode'];
+			$company = $record['company'];
+			$companies[$companyCode] = $company;
+			$outlets[$mediaCode] = $record['media'];
+			$spending[$companyCode][$mediaCode] = $record['amount'];
+		}
+		?>
+		<div class="report-content" style="width:<?php print (251 + (count($outlets) * 171))?>px;">
+			<div class="row header">
+				<div class="column">&nbsp;</div>
+				<?php foreach($outlets as $mediaCode => $outlet){?>
+				<div class="column" mediaCode="<?php print $mediaCode?>">
+					<?php print $outlet?>
+				</div>
+				<?php }?>
+			</div>
+			<?php foreach($companies as $companyCode => $company){?>
+			<div class="row">
+				<div class="column">
+					<?php print $company?>
+				</div>
+				<?php foreach($outlets as $mediaCode => $outlet){?>
+				<div class="column">
+					<?php @print number_format($spending[$companyCode][$mediaCode])?>
+				</div>
+				<?php }?>
 			</div>
 			<?php }?>
 		</div>
-		<?php foreach($companies as $companyCode => $company){?>
-		<div class="row">
-			<div class="column">
-				<?php print $company?>
-			</div>
-			<?php foreach($outlets as $mediaCode => $outlet){?>
-			<div class="column">
-				<?php @print number_format($spending[$companyCode][$mediaCode])?>
-			</div>
-			<?php }?>
-		</div>
-		<?php }?>
-	</div>
+	<?php }?>
 	<script type="text/javascript" src="js/jquery-1.8.2.min.js"></script>
 </body>
 </html>
