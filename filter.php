@@ -14,7 +14,7 @@
 	font-size:.75em;
 }
 .report-content .row {
-	border-bottom:1px solid #DDD;
+	border-top:1px solid #DDD;
 }
 .report-content .column {
 	margin-bottom:-9999px;
