@@ -30,7 +30,7 @@
 		?>
 		<div class="content">
 			
-			print_r($records);
+			<?php print_r($records);?>
 			
 		</div>
 	</div>
