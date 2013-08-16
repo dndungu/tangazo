@@ -41,7 +41,6 @@
 </head>
 <body>
 	<div class="header row">
-		<h1 class="column grid10of10">Media Spending</h1>
 		<ul class="column grid10of10">
 			<li><a href="index.php">Upload</a></li>
 			<li><a href="filter.php" class="current">Filter</a></li>
