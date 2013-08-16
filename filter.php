@@ -79,7 +79,9 @@
 					<?php print $company?>
 				</div>
 				<?php foreach($media as $mediaCode => $outlet){?>
-				<div class="column"><?php @print number_format($spending[$companyCode][$mediaCode])?></div>
+				<div class="column">
+					<?php @print $spending[$companyCode][$mediaCode]?>
+				</div>
 				<?php }?>
 			</div>
 		<?php }?>
