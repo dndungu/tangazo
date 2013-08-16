@@ -4,6 +4,9 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <link href="style.css" media="all" rel="stylesheet" type="text/css" />
 <style type="text/css">
+.content {
+	overflow:auto;
+}
 .header .column {
 	font-weight:bold;
 }
@@ -37,9 +40,9 @@
 		$query[] = 'GROUP BY `companyCode`, `mediaCode`';
 		$records = dbFetch(dbQuery(implode(' ', $query)));
 		foreach($records as $record){
-				$companies[$record['companyCode']] = $record['company'];
-				$media[$record['mediaCode']] = $record['media'];
-				$spending[$record['companyCode']][$record['mediaCode']] = $record['amount'];
+			$companies[$record['companyCode']] = $record['company'];
+			$media[$record['mediaCode']] = $record['media'];
+			$spending[$record['companyCode']][$record['mediaCode']] = $record['amount'];
 		}
 		?>
 		<div class="content">
@@ -53,7 +56,7 @@
 			</div>
 			<?php foreach($companies as $company){?>
 			<div class="row">
-				<div class="column">$company</div>
+				<div class="column"><?php print $company?></div>
 				<?php foreach($media as $outlet){?>
 				<div class="column">0.00</div>
 				<?php }?>
