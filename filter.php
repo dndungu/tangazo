@@ -4,6 +4,9 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <link href="style.css" media="all" rel="stylesheet" type="text/css" />
 <style type="text/css">
+.content {
+	overflow:auto;
+}
 .header .column, .column:first-child {
 	font-weight:bold;
 }
@@ -46,23 +49,27 @@
 		}
 		$columns = count($media);
 		?>
-		<div class="content" style="width:<?php print (200 + ($columns * 110))?>px;">
-			<div class="row header">
-				<div class="column">&nbsp;</div>
-				<?php foreach($media as $outlet){?>
-				<div class="column">
-					<?php print $outlet?>
+		<div class="content">
+			<div style="display:block;width:<?php print (200 + ($columns * 110))?>px;">
+				<div class="row header">
+					<div class="column">&nbsp;</div>
+					<?php foreach($media as $outlet){?>
+					<div class="column">
+						<?php print $outlet?>
+					</div>
+					<?php }?>
 				</div>
+				<?php foreach($companies as $company){?>
+					<div class="row">
+						<div class="column">
+							<?php print $company?>
+						</div>
+						<?php foreach($media as $outlet){?>
+						<div class="column">0.00</div>
+						<?php }?>
+					</div>
 				<?php }?>
 			</div>
-			<?php foreach($companies as $company){?>
-			<div class="row">
-				<div class="column"><?php print $company?></div>
-				<?php foreach($media as $outlet){?>
-				<div class="column">0.00</div>
-				<?php }?>
-			</div>
-			<?php }?>
 		</div>
 	</div>
 	<script type="text/javascript" src="js/jquery-1.8.2.min.js"></script>
