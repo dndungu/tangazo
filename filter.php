@@ -65,7 +65,7 @@
 	$query[] = 'WHERE `msa_campaign`.`amount` > 0';
 	$query[] = 'GROUP BY `companyCode`, `mediaCode`';
 	$query[] = 'ORDER BY `amount` DESC';
-	$query[] = 'LIMIT 1000';
+	$query[] = 'LIMIT 100';
 	$records = dbFetch(dbQuery(implode(' ', $query)));
 	foreach($records as $record){
 		$companyCode = $record['companyCode'];
