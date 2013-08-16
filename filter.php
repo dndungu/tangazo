@@ -19,7 +19,7 @@
 .report-content .column {
 	margin-bottom:-9999px;
 	padding-bottom:9999px;
-	width: 90px;
+	width: 120px;
 	text-align:left;
 	border-left:1px solid #DDD;
 }
