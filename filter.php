@@ -7,13 +7,13 @@
 .content {
 	overflow:auto;
 }
-.header .column, .column:first-child {
+.content .header .column, .column:first-child {
 	font-weight:bold;
 }
-.column {
+.content .column {
 	width: 90px;
 }
-.column:first-child {
+.content .column:first-child {
 	width:180px;
 }
 </style>
