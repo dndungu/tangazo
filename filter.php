@@ -55,7 +55,7 @@
 				<div class="column">0.00</div>
 				<?php }?>
 			</div>
-			<?php {?>
+			<?php }?>
 		</div>
 	</div>
 	<script type="text/javascript" src="js/jquery-1.8.2.min.js"></script>
