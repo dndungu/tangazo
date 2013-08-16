@@ -6,6 +6,7 @@
 <style type="text/css">
 .content {
 	overflow:auto;
+	height:600px;
 }
 .content .header .column, .column:first-child {
 	font-weight:bold;
