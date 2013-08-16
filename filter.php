@@ -68,7 +68,7 @@
 	$query[] = 'JOIN `accounts` ON (`msa_campaign`.`companyCode` = `accounts`.`code`)';
 	$query[] = 'JOIN `msa_media` ON (`msa_campaign`.`mediaCode` = `msa_media`.`code`)';
 	$query[] = 'WHERE `msa_campaign`.`amount` > 0';
-	$query[] = sprintf("AND `startDate` >= %s AND `startDate` <= %s", $from, $to);
+	$query[] = sprintf("AND `startDate` BETWEEN '%s' AND '%s'", $from, $to);
 	$query[] = 'GROUP BY `companyCode`, `mediaCode`';
 	$query[] = 'ORDER BY `amount` DESC';
 	$query[] = 'LIMIT 100';
