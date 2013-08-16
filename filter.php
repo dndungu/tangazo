@@ -19,8 +19,8 @@
 
 .report-content .column {
 	overflow:hidden;
-	margin-bottom:-9999px;
-	padding-bottom:9999px;
+	margin-bottom:-99px;
+	padding-bottom:99px;
 	width: 120px;
 	text-align:left;
 	border-left:1px solid #DDD;
