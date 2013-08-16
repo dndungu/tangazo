@@ -3,6 +3,11 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <link href="style.css" media="all" rel="stylesheet" type="text/css" />
+<style type="text/css">
+.column {
+	width:90px;
+}
+</style>
 <title>Media Spending :: Imports</title>
 </head>
 <body>
@@ -28,10 +33,26 @@
 			$query[] = 'JOIN `msa_media` ON (`msa_campaign`.`mediaCode` = `msa_media`.`code`)';
 			$query[] = 'GROUP BY `companyCode`, `mediaCode`';
 			$records = dbFetch(dbQuery(implode(' ', $query)));
+			foreach($records as $record){
+				$companies[$record['companyCode']] = $record['company'];
+				$media[$record['mediaCode']] = $record['media'];
+				$spending[$record['companyCode']][$record['mediaCode']] = $record['amount'];
+			}
+			
 		?>
 		<div class="content">
-			
-			<?php print_r($records);?>
+			<div class="row">
+				<div class="column"></div>
+				<?php foreach($media as $outlet){?>
+					<div class="column"><?php print $outlet?></div>					
+				<?php }?>
+			</div>
+			<?php foreach($companies as $company){?>
+				<div class="column">$company</div>
+				<?php foreach($media as $outlet){?>
+					<div class="column">0.00</div>					
+				<?php }?>
+			<?php {?>
 			
 		</div>
 	</div>
