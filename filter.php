@@ -14,7 +14,7 @@
 	display: block;
 }
 
-.report-content .header .column,.column:first-child {
+.report-content .header .column,.report-content .column:first-child {
 	font-weight: bold;
 	font-size: .75em;
 	color:#888;
