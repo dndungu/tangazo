@@ -12,7 +12,7 @@
 	font-size:.75em;
 }
 .content .row {
-	border-bottom:1px solid #DDD;
+	border-bottom:1px solid #	;
 }
 .content .column {
 	width: 90px;
@@ -65,13 +65,13 @@
 					</div>
 					<?php }?>
 				</div>
-				<?php foreach($companies as $company){?>
+				<?php foreach($companies as $companyCode => $company){?>
 					<div class="row">
 						<div class="column">
 							<?php print $company?>
 						</div>
-						<?php foreach($media as $outlet){?>
-						<div class="column">0.00</div>
+						<?php foreach($media as $mediaCode => $outlet){?>
+						<div class="column">$spending[$companyCode][$mediaCode]</div>
 						<?php }?>
 					</div>
 				<?php }?>
