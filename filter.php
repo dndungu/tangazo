@@ -9,6 +9,7 @@
 }
 .content .header .column, .column:first-child {
 	font-weight:bold;
+	font-size:.75em;
 }
 .content .column {
 	width: 90px;
