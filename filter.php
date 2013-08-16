@@ -18,6 +18,7 @@
 }
 
 .report-content .column {
+	min-height:20px;
 	overflow:hidden;
 	margin-bottom:-999px;
 	padding-bottom:999px;
