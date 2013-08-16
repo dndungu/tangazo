@@ -4,6 +4,10 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <link href="style.css" media="all" rel="stylesheet" type="text/css" />
 <style type="text/css">
+.report-content .row {
+	padding:0;
+	margin:0;
+}
 .report-content {
 	float: left;
 	background-color: #FFF;
