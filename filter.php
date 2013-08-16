@@ -71,7 +71,6 @@
 	$query[] = sprintf("AND `startDate` BETWEEN '%s' AND '%s'", $from, $to);
 	$query[] = 'GROUP BY `companyCode`, `mediaCode`';
 	$query[] = 'ORDER BY `amount` DESC';
-	$query[] = 'LIMIT 100';
 	$records = dbFetch(dbQuery(implode(' ', $query)));
 	foreach($records as $record){
 		$companyCode = $record['companyCode'];
