@@ -20,107 +20,15 @@
 				<li><a href="subsections.php">Sub Sections</a></li>
 			</ul>
 		</div>
+		<?php
+			$query[] = 'SELECT SUM(`msa_campaign`.`amount`) AS `amount`, `accounts`.`name` AS `company`, `msa_media`.`name` AS `media`';
+			$query[] = 'FROM `msa_campaign`';
+			$query[] = 'JOIN `accounts` ON (`msa_campaign`.`companyCode` = `accounts`.`code`)';
+			$query[] = 'JOIN `msa_media` ON (`msa_campaign`.`mediaCode` = `msa_media`.`code`)';
+			$records = dbFetch(dbQuery(implode(' ', $query)));
+		?>
 		<div class="content">
-			<div class="gridColumns">
-				<div class="row">
-					<div class="column grid1of10 align-center">
-						<input type="button" id="deleteRecords" name="campaign" value="DELETE"/>
-					</div>
-					<div class="column grid9of10 align-right">
-						<input type="text" name="from" placeholder="DD-MM-YYYY" size="10"/>&nbsp;to&nbsp;<input type="text" name="to" placeholder="DD-MM-YYYY" size="10"/>
-					</div>					
-				</div>			
-				<div class="column grid1of10 align-center">
-					<input name="campaign" id="selectall" type="checkbox"/>
-				</div>
-				<div class="column grid2of10">
-					Company
-				</div>
-				<div class="column grid2of10">
-					Brand
-				</div>
-				<div class="column grid2of10">
-					Media
-				</div>
-				<div class="column grid1of10">
-					Section
-				</div>
-				<div class="column grid1of10">
-					Week
-				</div>
-				<div class="column grid1of10">
-					Amount
-				</div>
-			</div>
-			<?php
-			require_once('includes.php');
-			$page = getInteger('p');
-			$import = getInteger('i');
-			$page = $page ? $page : 1;
-			$offset = (($page - 1) * $config['PAGE_SIZE']);
-			$query[] = "SELECT `msa_campaign`.`ID` AS `ID`, `accounts`.`name` AS `company`, `msa_brand`.`name` AS `brand`, `msa_media`.`name` AS `media`, `msa_section`.`name` AS `section`, `amount`, `week` FROM `msa_campaign`";
-			$query[] = "LEFT JOIN `accounts` ON (`msa_campaign`.`companyCode` = `accounts`.`code`)";
-			$query[] = "LEFT JOIN `msa_brand` ON (`msa_campaign`.`brandCode` = `msa_brand`.`code`)";
-			$query[] = "LEFT JOIN `msa_media` ON (`msa_campaign`.`mediaCode` = `msa_media`.`code`)";
-			$query[] = "LEFT JOIN `msa_section` ON (`msa_campaign`.`sectionCode` = `msa_section`.`code`)";
-			$query[] = "WHERE `accounts`.code IS NOT NULL";
-			if($import){
-				$query[] = sprintf("AND `msa_campaign`.`importID` = %d", $import);
-			}
-			$query[] = "ORDER BY `msa_campaign`.`week` DESC";
-			if(!$import){
-				$query[] = sprintf("LIMIT %d, %d", $offset, $config['PAGE_SIZE']);
-			}
-			$recordsCount = dbFetch(dbQuery("SELECT COUNT(*) AS `count` FROM `msa_campaign` {$query[1]} {$query[2]} {$query[3]} {$query[4]}"));
-			$pages = $recordsCount[0]['count'] / $config['PAGE_SIZE'];
-			$records = dbFetch(dbQuery(implode(" ", $query))); 
-			?>
-			<div class="row gridRecords">
-				<?php foreach($records as $record){?>
-				<div class="row">
-					<div class="column grid1of10 align-center">
-						<input name="selectone" class="selectone" type="checkbox" value="<?php print $record['ID']?>"/>
-					</div>
-					<div class="column grid2of10">
-						<?php print $record['company']?>
-					</div>
-					<div class="column grid2of10">
-						<?php print $record['brand']?>
-					</div>
-					<div class="column grid2of10">
-						<?php print $record['media']?>
-					</div>
-					<div class="column grid1of10">
-						<?php print $record['section']?>
-					</div>
-					<div class="column grid1of10">
-						<?php print $record['week']?>
-					</div>
-					<div class="column grid1of10">
-						<?php print $record['amount']?>
-					</div>					
-				</div>
-				<?php }?>
-			</div>
-			<div class="row gridFooter">
-				<?php if(!$import){?>
-				<div class="column grid10of10">
-					<?php 
-					if($pages > 1 && $page > 1){
-						print '<a href="?p='.($page-1).'">PREVIOUS</a>';
-					}
-					?>
-					<?php print $offset?> to <?php print count($records)?> of <?php print $recordsCount[0]['count']?>
-					<?php
-					if($pages > 1){
-						if($page < $pages) {
-							print '<a href="?p='.($page+1).'">NEXT</a>';
-						}
-					}
-					?>
-				</div>
-				<?php }?>
-			</div>
+			print_r($records);
 		</div>
 	</div>
     <script type="text/javascript" src="js/jquery-1.8.2.min.js"></script>
