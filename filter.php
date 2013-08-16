@@ -46,7 +46,7 @@
 		$query[] = 'JOIN `accounts` ON (`msa_campaign`.`companyCode` = `accounts`.`code`)';
 		$query[] = 'JOIN `msa_media` ON (`msa_campaign`.`mediaCode` = `msa_media`.`code`)';
 		$query[] = 'WHERE `msa_campaign`.`amount` > 0';
-		$query[] = 'GROUP BY `companyCode`, `mediaCode` LIMIT 10';
+		$query[] = 'GROUP BY `companyCode`, `mediaCode` LIMIT 100';
 		$records = dbFetch(dbQuery(implode(' ', $query)));
 		foreach($records as $record){
 			$companies[$record['companyCode']] = $record['company'];
