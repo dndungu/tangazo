@@ -47,7 +47,7 @@
 		?>
 		<div class="content" style="width:<?php print ((count($media)+1)*90)?>px;">
 			<div class="row header">
-				<div class="column"></div>
+				<div class="column">&nbsp;</div>
 				<?php foreach($media as $outlet){?>
 				<div class="column">
 					<?php print $outlet?>
