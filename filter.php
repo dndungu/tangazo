@@ -21,6 +21,7 @@
 }
 
 .report-content .column {
+	padding:0 5px;
 	overflow:hidden;
 	width: 180px;
 	text-align:left;
