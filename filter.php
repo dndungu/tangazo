@@ -36,18 +36,12 @@
 				</div>
 				<div class="column grid2of10">
 					Company
-					<br/>
-					<input type="text" name="company" placeholder="Search by company"/>
 				</div>
 				<div class="column grid2of10">
 					Brand
-					<br/>
-					<input type="text" name="brand" placeholder="Search by brand"/>
 				</div>
 				<div class="column grid2of10">
 					Media
-					<br/>
-					<input type="text" name="media" placeholder="Search by media"/>
 				</div>
 				<div class="column grid1of10">
 					Section
