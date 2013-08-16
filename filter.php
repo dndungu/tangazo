@@ -45,7 +45,7 @@
 			$spending[$record['companyCode']][$record['mediaCode']] = $record['amount'];
 		}
 		?>
-		<div class="content" style="width:<?php print ((count($media)+1)*90)?>px;">
+		<div class="content" style="width:<?php print ((count($media)+1)*110)?>px;">
 			<div class="row header">
 				<div class="column">&nbsp;</div>
 				<?php foreach($media as $outlet){?>
