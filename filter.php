@@ -71,6 +71,7 @@
 	$query[] = sprintf("AND `startDate` BETWEEN '%s' AND '%s'", $from, $to);
 	$query[] = 'GROUP BY `companyCode`, `mediaCode`';
 	$query[] = 'ORDER BY `amount` DESC';
+	print implode(' ', $query);die();
 	$records = dbFetch(dbQuery(implode(' ', $query)));
 	if(!is_null($records)) {
 		foreach($records as $record){
