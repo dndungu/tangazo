@@ -4,19 +4,24 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <link href="style.css" media="all" rel="stylesheet" type="text/css" />
 <style type="text/css">
-.content .header .column, .column:first-child {
+.report-content {
+	float:left;
+	background-color:#FFF;
+	display:block;
+}
+.report-content .header .column, .column:first-child {
 	font-weight:bold;
 	font-size:.75em;
 }
-.content .row {
+.report-content .row {
 	border-bottom:1px solid #DDD;
 }
-.content .column {
+.report-content .column {
 	text-align:left;
 	width: 90px;
 	border-right:1px solid #DDD;
 }
-.content .column:first-child {
+.report-content .column:first-child {
 	width:180px;
 }
 </style>
@@ -54,7 +59,7 @@
 	}
 	$columns = count($media);
 	?>
-	<div style="float:left;background-color:#FFF;display:block;width:<?php print (200 + ($columns * 110))?>px;">
+	<div class="report-content" style="width:<?php print (200 + ($columns * 110))?>px;">
 		<div class="row header">
 			<div class="column">&nbsp;</div>
 			<?php foreach($media as $outlet){?>
