@@ -17,6 +17,8 @@
 	border-bottom:1px solid #DDD;
 }
 .report-content .column {
+	margin-bottom:-9999px;
+	padding-bottom:9999px;
 	width: 90px;
 	text-align:left;
 	border-left:1px solid #DDD;
