@@ -45,7 +45,7 @@
 </head>
 <body>
 	<div class="header row">
-		<h2 class="column grid10of10">Spending	by	Company	Between	<input type="text" size="12" name="from"/>	and	<input type="text" size="12" name="from"/></h2>
+		<h1 class="column grid10of10" style="text-align:left;">Spending	by	Company	Between	<input type="text" size="12" name="from"/>	and	<input type="text" size="12" name="from"/></h1>
 		<ul class="column grid10of10">
 			<li><a href="index.php">Upload</a></li>
 			<li><a href="filter.php" class="current">Filter</a></li>
