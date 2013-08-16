@@ -105,7 +105,8 @@
 			<?php }?>
 		</div>
 	<?php }else{?>
-	<div class="report-content" style="width:100%;height:200px;">
+	<div class="report-content" style="width:100%;height:200px;text-align:left;">
+		<br/>
 		I did not find any records matching dates <?php print $from?> to <?php print $to?>
 	</div>
 	<?php }?>
