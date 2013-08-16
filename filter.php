@@ -14,10 +14,6 @@
 	display: block;
 }
 
-.report-content .header .column {
-	border-top: 1px solid #DDD;
-}
-
 .report-content .header .column,.column:first-child {
 	font-weight: bold;
 	font-size: .75em;
