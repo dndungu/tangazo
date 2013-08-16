@@ -45,7 +45,11 @@
 </head>
 <body>
 	<div class="header row">
-		<h1 class="column grid10of10" style="text-align:left;">Spending	by	Company	Between	<input type="text" size="10" name="from" placeholder="15-08-2013"/>	and	<input type="text" size="10" name="from" placeholder="16-07-2013"/></h1>
+		<?php
+			$from = isset($_POST['from']) ? $_POST['from'] : date('d-m-Y', (time() - 31*24*60*60));
+			$to = isset($_POST['to']) ? $_POST['to'] : date('d-m-Y');
+		?>
+		<h1 class="column grid10of10" style="text-align:left;">Spending	by	Company	Between	<input type="text" size="10" name="from" value="<?php print $from?>" placeholder="15-08-2013"/>	and	<input type="text" size="10" name="to" value="<?php print $to?>" placeholder="16-07-2013"/></h1>
 		<ul class="column grid10of10">
 			<li><a href="index.php">Upload</a></li>
 			<li><a href="filter.php" class="current">Filter</a></li>
@@ -64,6 +68,7 @@
 	$query[] = 'JOIN `accounts` ON (`msa_campaign`.`companyCode` = `accounts`.`code`)';
 	$query[] = 'JOIN `msa_media` ON (`msa_campaign`.`mediaCode` = `msa_media`.`code`)';
 	$query[] = 'WHERE `msa_campaign`.`amount` > 0';
+	$query[] = sprintf("AND `startDate` >= %s AND `startDate` <= %s", $from, $to);
 	$query[] = 'GROUP BY `companyCode`, `mediaCode`';
 	$query[] = 'ORDER BY `amount` DESC';
 	$query[] = 'LIMIT 100';
