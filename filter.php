@@ -62,7 +62,7 @@
 	}
 	$columns = count($media);
 	?>
-	<div class="report-content" style="width:<?php print (200 + ($columns * 110))?>px;">
+	<div class="report-content" style="width:<?php print (200 + ($columns * 220))?>px;">
 		<div class="row header">
 			<div class="column">&nbsp;</div>
 			<?php foreach($media as $outlet){?>
