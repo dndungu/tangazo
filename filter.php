@@ -30,6 +30,8 @@
 	text-align: left;
 	border-left: 1px solid #DDD;
 	overflow: hidden;
+	margin-bottom:-999px;
+	padding-bottom:999px;
 }
 
 .report-content .column:first-child {
