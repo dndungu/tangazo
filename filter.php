@@ -68,17 +68,19 @@
 	$query[] = 'LIMIT 1000';
 	$records = dbFetch(dbQuery(implode(' ', $query)));
 	foreach($records as $record){
-		$companies[$record['companyCode']] = $record['company'];
-		$media[$record['mediaCode']] = $record['media'];
-		$spending[$record['companyCode']][$record['mediaCode']] = $record['amount'];
+		$companyCode = $record['companyCode'];
+		$mediaCode = $record['mediaCode'];
+		$company = $record['company'];
+		$companies[$companyCode] = $company;
+		$outlets[$mediaCode] = $record['media'];
+		$spending[$companyCode][$mediaCode] = $record['amount'];
 	}
-	$columns = count($media);
 	?>
-	<div class="report-content" style="width:<?php print (251 + ($columns * 171))?>px;">
+	<div class="report-content" style="width:<?php print (251 + (count($outlets) * 171))?>px;">
 		<div class="row header">
 			<div class="column">&nbsp;</div>
-			<?php foreach($media as $outlet){?>
-			<div class="column">
+			<?php foreach($outlets as $mediaCode => $outlet){?>
+			<div class="column" mediaCode="<?php print $mediaCode?>">
 				<?php print $outlet?>
 			</div>
 			<?php }?>
@@ -88,7 +90,7 @@
 			<div class="column">
 				<?php print $company?>
 			</div>
-			<?php foreach($media as $mediaCode => $outlet){?>
+			<?php foreach($outlets as $mediaCode => $outlet){?>
 			<div class="column">
 				<?php @print number_format($spending[$companyCode][$mediaCode])?>
 			</div>
