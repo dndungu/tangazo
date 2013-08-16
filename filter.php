@@ -48,10 +48,12 @@
 				<?php }?>
 			</div>
 			<?php foreach($companies as $company){?>
-				<div class="column">$company</div>
-				<?php foreach($media as $outlet){?>
-					<div class="column">0.00</div>					
-				<?php }?>
+				<div class="row">
+					<div class="column">$company</div>
+					<?php foreach($media as $outlet){?>
+						<div class="column">0.00</div>					
+					<?php }?>
+				</div>
 			<?php {?>
 			
 		</div>
