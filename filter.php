@@ -12,6 +12,7 @@
 	border-bottom:1px solid #DDD;
 }
 .content .column {
+	text-align:left;
 	width: 90px;
 	border-right:1px solid #DDD;
 }
