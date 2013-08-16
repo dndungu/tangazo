@@ -37,9 +37,8 @@
 				$companies[$record['companyCode']] = $record['company'];
 				$media[$record['mediaCode']] = $record['media'];
 				$spending[$record['companyCode']][$record['mediaCode']] = $record['amount'];
-			}
-
-			?>
+		}
+		?>
 		<div class="content">
 			<div class="row">
 				<div class="column"></div>
