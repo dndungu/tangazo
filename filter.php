@@ -31,7 +31,6 @@
 					</div>					
 				</div>			
 				<div class="column grid1of10 align-center">
-					&nbsp;<br/>
 					<input name="campaign" id="selectall" type="checkbox"/>
 				</div>
 				<div class="column grid2of10">
