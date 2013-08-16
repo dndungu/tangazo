@@ -22,7 +22,7 @@
 
 .report-content .column {
 	overflow:hidden;
-	width: 120px;
+	width: 180px;
 	text-align:left;
 	border-left:1px solid #DDD;
 }
