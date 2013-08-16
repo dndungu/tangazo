@@ -12,7 +12,7 @@
 	font-size:.75em;
 }
 .content .row {
-	border-bottom:1px solid #	;
+	border-bottom:1px solid #DDD;
 }
 .content .column {
 	width: 90px;
