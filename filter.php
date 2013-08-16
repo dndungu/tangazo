@@ -54,27 +54,25 @@
 	}
 	$columns = count($media);
 	?>
-	<div class="content">
-		<div style="display:block;width:<?php print (200 + ($columns * 110))?>px;">
-			<div class="row header">
-				<div class="column">&nbsp;</div>
-				<?php foreach($media as $outlet){?>
-				<div class="column">
-					<?php print $outlet?>
-				</div>
-				<?php }?>
+	<div style="background-color:#FFF;display:block;width:<?php print (200 + ($columns * 110))?>px;">
+		<div class="row header">
+			<div class="column">&nbsp;</div>
+			<?php foreach($media as $outlet){?>
+			<div class="column">
+				<?php print $outlet?>
 			</div>
-			<?php foreach($companies as $companyCode => $company){?>
-				<div class="row">
-					<div class="column">
-						<?php print $company?>
-					</div>
-					<?php foreach($media as $mediaCode => $outlet){?>
-					<div class="column"><?php //print $spending[$companyCode][$mediaCode]?></div>
-					<?php }?>
-				</div>
 			<?php }?>
 		</div>
+		<?php foreach($companies as $companyCode => $company){?>
+			<div class="row">
+				<div class="column">
+					<?php print $company?>
+				</div>
+				<?php foreach($media as $mediaCode => $outlet){?>
+				<div class="column"><?php //print $spending[$companyCode][$mediaCode]?></div>
+				<?php }?>
+			</div>
+		<?php }?>
 	</div>
 	<script type="text/javascript" src="js/jquery-1.8.2.min.js"></script>
 </body>
