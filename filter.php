@@ -12,6 +12,8 @@
 }
 .content .column {
 	width: 90px;
+	border-right:1px solid #CCC;
+	border-bottom:1px solid #CCC;
 }
 .content .column:first-child {
 	width:180px;
