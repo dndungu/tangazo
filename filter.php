@@ -17,6 +17,7 @@
 	border-top:1px solid #DDD;
 }
 .report-content .column {
+	overflow:hidden;
 	margin-bottom:-9999px;
 	padding-bottom:9999px;
 	width: 120px;
