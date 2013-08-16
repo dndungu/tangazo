@@ -17,15 +17,15 @@
 	border-bottom:1px solid #DDD;
 }
 .report-content .column {
-	text-align:left;
 	width: 90px;
+	text-align:left;
 	border-right:1px solid #DDD;
 }
 .report-content .column:first-child {
 	width:180px;
 }
 </style>
-<title>Media Spending :: Imports</title>
+<title>Media Spending :: Company Report</title>
 </head>
 <body>
 	<div class="header row">
