@@ -26,7 +26,7 @@
 .report-content .column {
 	padding: 5px;
 	overflow: hidden;
-	width: 180px;
+	width: 160px;
 	text-align: left;
 	border-left: 1px solid #DDD;
 	overflow: hidden;
@@ -71,7 +71,7 @@
 	}
 	$columns = count($media);
 	?>
-	<div class="report-content" style="width:<?php print (200 + ($columns * 220))?>px;">
+	<div class="report-content" style="width:<?php print (251 + ($columns * 171))?>px;">
 		<div class="row header">
 			<div class="column">&nbsp;</div>
 			<?php foreach($media as $outlet){?>
