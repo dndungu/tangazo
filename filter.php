@@ -28,7 +28,9 @@
 			$records = dbFetch(dbQuery(implode(' ', $query)));
 		?>
 		<div class="content">
+			
 			print_r($records);
+			
 		</div>
 	</div>
     <script type="text/javascript" src="js/jquery-1.8.2.min.js"></script>
