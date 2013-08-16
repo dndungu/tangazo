@@ -63,7 +63,7 @@
 	</div>
 	<?php
 	require_once('includes.php');
-	$query[] = 'SELECT SUM(`msa_campaign`.`amount`) AS `amount`, `accounts`.`name` AS `company`, `companyCode`, `msa_media`.`name` AS `media`, `mediaCode`';
+	$query[] = 'SELECT `accounts`.`name` AS `company`, `companyCode`, `msa_media`.`name` AS `media`, `mediaCode`, SUM(`msa_campaign`.`amount`) AS `amount`';
 	$query[] = 'FROM `msa_campaign`';
 	$query[] = 'JOIN `accounts` ON (`msa_campaign`.`companyCode` = `accounts`.`code`)';
 	$query[] = 'JOIN `msa_media` ON (`msa_campaign`.`mediaCode` = `msa_media`.`code`)';
@@ -71,7 +71,6 @@
 	$query[] = sprintf("AND `startDate` BETWEEN '%s' AND '%s'", $from, $to);
 	$query[] = 'GROUP BY `companyCode`, `mediaCode`';
 	$query[] = 'ORDER BY `amount` DESC';
-	print implode(' ', $query);die();
 	$records = dbFetch(dbQuery(implode(' ', $query)));
 	if(!is_null($records)) {
 		foreach($records as $record){
