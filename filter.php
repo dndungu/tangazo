@@ -46,8 +46,8 @@
 <body>
 	<div class="header row">
 		<?php
-			$from = isset($_POST['from']) ? $_POST['from'] : date('Y-m-d', (time() - 7*24*60*60));
-			$to = isset($_POST['to']) ? $_POST['to'] : date('Y-m-d');
+			$from = isset($_POST['from']) ? $_POST['from'] : date('Y-d-m', (time() - 31*24*60*60));
+			$to = isset($_POST['to']) ? $_POST['to'] : date('Y-d-m');
 		?>
 		<h1 class="column grid10of10" style="text-align:left;">Spending	by	Company	Between	<input type="text" size="10" name="from" value="<?php print $from?>" placeholder="<?php print $from?>"/>	and	<input type="text" size="10" name="to" value="<?php print $to?>" placeholder="<?php print $to?>"/></h1>
 		<ul class="column grid10of10">
