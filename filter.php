@@ -5,31 +5,36 @@
 <link href="style.css" media="all" rel="stylesheet" type="text/css" />
 <style type="text/css">
 .report-content {
-	float:left;
-	background-color:#FFF;
-	display:block;
+	float: left;
+	background-color: #FFF;
+	display: block;
 }
+
 .report-content .header .column {
-	border-top:1px solid #DDD;
+	border-top: 1px solid #DDD;
 }
-.report-content .header .column, .column:first-child {
-	font-weight:bold;
-	font-size:.75em;
+
+.report-content .header .column,.column:first-child {
+	font-weight: bold;
+	font-size: .75em;
 }
+
 .report-content .row {
-	border-bottom:1px solid #DDD;
+	border-bottom: 1px solid #DDD;
 }
 
 .report-content .column {
-	padding:0 5px;
-	overflow:hidden;
+	padding: 5px;
+	overflow: hidden;
 	width: 180px;
-	text-align:left;
-	border-left:1px solid #DDD;
+	text-align: left;
+	border-left: 1px solid #DDD;
+	overflow: hidden;
 }
+
 .report-content .column:first-child {
-	width:240px;
-	border-left:0 none;
+	width: 240px;
+	border-left: 0 none;
 }
 </style>
 <title>Media Spending :: Company Report</title>
@@ -76,16 +81,16 @@
 			<?php }?>
 		</div>
 		<?php foreach($companies as $companyCode => $company){?>
-			<div class="row">
-				<div class="column">
-					<?php print $company?>
-				</div>
-				<?php foreach($media as $mediaCode => $outlet){?>
-				<div class="column">
-					<?php @print number_format($spending[$companyCode][$mediaCode])?>
-				</div>
-				<?php }?>
+		<div class="row">
+			<div class="column">
+				<?php print $company?>
 			</div>
+			<?php foreach($media as $mediaCode => $outlet){?>
+			<div class="column">
+				<?php @print number_format($spending[$companyCode][$mediaCode])?>
+			</div>
+			<?php }?>
+		</div>
 		<?php }?>
 	</div>
 	<script type="text/javascript" src="js/jquery-1.8.2.min.js"></script>
