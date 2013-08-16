@@ -49,7 +49,7 @@
 			$from = isset($_POST['from']) ? $_POST['from'] : date('Y-m-d', (time() - 6*31*24*60*60));
 			$to = isset($_POST['to']) ? $_POST['to'] : date('Y-m-d');
 		?>
-		<h1 class="column grid10of10" style="text-align:left;">Spending	by	Company	Between	<input type="text" size="10" name="from" value="<?php print $from?>" placeholder="15-08-2013"/>	and	<input type="text" size="10" name="to" value="<?php print $to?>" placeholder="16-07-2013"/></h1>
+		<h1 class="column grid10of10" style="text-align:left;">Spending	by	Company	Between	<input type="text" size="10" name="from" value="<?php print $from?>" placeholder="<?php print $from?>"/>	and	<input type="text" size="10" name="to" value="<?php print $to?>" placeholder="<?php print $to?>"/></h1>
 		<ul class="column grid10of10">
 			<li><a href="index.php">Upload</a></li>
 			<li><a href="filter.php" class="current">Filter</a></li>
