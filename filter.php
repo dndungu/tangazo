@@ -4,11 +4,14 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <link href="style.css" media="all" rel="stylesheet" type="text/css" />
 <style type="text/css">
-.header .column {
+.header .column, .column:first-child {
 	font-weight:bold;
 }
 .column {
 	width: 90px;
+}
+.column:first-child {
+	width:180px;
 }
 </style>
 <title>Media Spending :: Imports</title>
