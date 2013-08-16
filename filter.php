@@ -65,7 +65,6 @@
 	$query[] = 'WHERE `msa_campaign`.`amount` > 0';
 	$query[] = 'GROUP BY `companyCode`, `mediaCode`';
 	$query[] = 'ORDER BY `amount` DESC';
-	$query[] = 'LIMIT 100';
 	$records = dbFetch(dbQuery(implode(' ', $query)));
 	foreach($records as $record){
 		$companies[$record['companyCode']] = $record['company'];
@@ -90,7 +89,7 @@
 			</div>
 			<?php foreach($media as $mediaCode => $outlet){?>
 			<div class="column">
-				<?php @print number_format($spending[$companyCode][$mediaCode])?>
+				<?php print @number_format($spending[$companyCode][$mediaCode])?>
 			</div>
 			<?php }?>
 		</div>
