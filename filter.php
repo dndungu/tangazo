@@ -54,7 +54,7 @@
 	}
 	$columns = count($media);
 	?>
-	<div style="background-color:#FFF;display:block;width:<?php print (200 + ($columns * 110))?>px;">
+	<div style="float:left;background-color:#FFF;display:block;width:<?php print (200 + ($columns * 110))?>px;">
 		<div class="row header">
 			<div class="column">&nbsp;</div>
 			<?php foreach($media as $outlet){?>
