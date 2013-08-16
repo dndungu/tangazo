@@ -4,6 +4,9 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <link href="style.css" media="all" rel="stylesheet" type="text/css" />
 <style type="text/css">
+.header .column {
+	font-weight:bold;
+}
 .column {
 	width: 90px;
 }
@@ -40,7 +43,7 @@
 		}
 		?>
 		<div class="content">
-			<div class="row">
+			<div class="row header">
 				<div class="column"></div>
 				<?php foreach($media as $outlet){?>
 				<div class="column">
