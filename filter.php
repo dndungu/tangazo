@@ -108,7 +108,7 @@
 	<div class="report-content" style="width:100%;height:200px;">
 		I did not find any records matching dates <?php print $from?> to <?php print $to?>
 	</div>
-	<?php ?>
+	<?php }?>
 	<script type="text/javascript" src="js/jquery-1.8.2.min.js"></script>
 </body>
 </html>
