@@ -27,7 +27,7 @@
 	padding: 10px 5px;
 	overflow: hidden;
 	width: 160px;
-	text-align: left;
+	text-align: right;
 	border-left: 1px solid #DDD;
 	overflow: hidden;
 	margin-bottom:-999px;
@@ -36,6 +36,7 @@
 
 .report-content .column:first-child {
 	width: 240px;
+	text-align: left;
 	border-left: 0 none;
 }
 </style>
