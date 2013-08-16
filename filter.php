@@ -45,24 +45,24 @@
 			$spending[$record['companyCode']][$record['mediaCode']] = $record['amount'];
 		}
 		?>
-		<div class="content">
-			<div class="row header">
-				<div class="column"></div>
+<!-- 		<div class="content"> -->
+<!-- 			<div class="row header"> -->
+<!-- 				<div class="column"></div> -->
 				<?php foreach($media as $outlet){?>
-				<div class="column">
+<!-- 				<div class="column"> -->
 					<?php print $outlet?>
-				</div>
+<!-- 				</div> -->
 				<?php }?>
-			</div>
+<!-- 			</div> -->
 			<?php foreach($companies as $company){?>
-			<div class="row">
+<!-- 			<div class="row"> -->
 				<div class="column"><?php print $company?></div>
 				<?php foreach($media as $outlet){?>
-				<div class="column">0.00</div>
+<!-- 				<div class="column">0.00</div> -->
 				<?php }?>
-			</div>
+<!-- 			</div> -->
 			<?php }?>
-		</div>
+<!-- 		</div> -->
 	</div>
 	<script type="text/javascript" src="js/jquery-1.8.2.min.js"></script>
 </body>
