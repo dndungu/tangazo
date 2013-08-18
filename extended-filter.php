@@ -131,8 +131,8 @@
 					<div class="column" mediacode="<?php print $mediaCode?>">
 						<?php
 							$companyTotal = 0;
-							foreach($spending[$companyCode] as $companyBrands){
-								foreach($companyBrands[$mediaCode] as $amount){
+							foreach($spending[$companyCode] as $brandCode => $mediaSpending){
+								foreach($mediaSpending[$mediaCode] as $amount){
 									$companyTotal += $amount;
 								}
 							}
