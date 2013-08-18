@@ -1,6 +1,6 @@
 <?php
 	require_once('includes.php');
-	$from = isset($_POST['from']) ? $_POST['from'] : date('Y-m-d', (time() - 31*24*60*60));
+	$from = isset($_POST['from']) ? $_POST['from'] : date('Y-m-d', (time() - 7*24*60*60));
 	$to = isset($_POST['to']) ? $_POST['to'] : date('Y-m-d');
 	$companyFilter = isset($_POST['company']) && strlen(trim($_POST['company'])) ? trim($_POST['company']) : null;
 	$mediaFilter = isset($_POST['media']) && strlen(trim($_POST['media'])) ? trim($_POST['media']) : null;
