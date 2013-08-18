@@ -49,6 +49,7 @@
 	font-weight: bold;
 	font-size: .75em;
 	color:#444;
+	text-transform:capitalize;
 }
 
 .report-content .row {
@@ -110,7 +111,7 @@ input[type="text"] {
 			<?php foreach($companies as $companyCode => $company){?>
 			<div class="row">
 				<div class="column">
-					<?php print ucwords($company)?>
+					<?php print strtolower($company)?>
 				</div>
 				<?php foreach($outlets as $mediaCode => $outlet){?>
 				<div class="column" mediacode="<?php print $mediaCode?>">
