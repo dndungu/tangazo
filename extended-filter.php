@@ -116,7 +116,7 @@
 						</div>
 						<?php foreach($outlets as $mediaCode => $outlet){?>
 						<div class="column" mediacode="<?php print $mediaCode?>">
-							<?php @print number_format($spending[$companyCode][$brandCode][$mediaCode])?>
+							<?php @print number_format($spending[$brandCode][$mediaCode])?>
 						</div>
 						<?php }?>
 					</div>					
