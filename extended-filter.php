@@ -14,13 +14,13 @@
 	if(!is_null($companyFilter)){
 		$keywords = explode(',', $companyFilter);
 		foreach($keywords as $keyword){
-			$query[] = sprintf("AND MATCH (`accounts`.`name`) AGAINST('+%s*', IN BOOLEAN MODE)", mysqli_real_escape_string($dbConnection, trim($keyword)));
+			$query[] = sprintf("AND MATCH (`accounts`.`name`) AGAINST(+%s*, IN BOOLEAN MODE)", mysqli_real_escape_string($dbConnection, trim($keyword)));
 		}
 	}
 	if(!is_null($mediaFilter)){
 		$keywords = explode(',', $mediaFilter);
 		foreach($keywords as $keyword){
-			$query[] = sprintf("MATCH (`msa_media`.`name`) AGAINST('%s')", mysqli_real_escape_string($dbConnection, trim($keyword)));
+			$query[] = sprintf("MATCH (`msa_media`.`name`) AGAINST(+%s*, IN BOOLEAN MODE)", mysqli_real_escape_string($dbConnection, trim($keyword)));
 		}
 	}
 	$query[] = 'GROUP BY `brandCode`, `mediaCode`';
