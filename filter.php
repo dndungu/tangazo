@@ -1,3 +1,28 @@
+<?php
+	$from = isset($_POST['from']) ? $_POST['from'] : date('Y-m-d', (time() - 14*24*60*60));
+	$to = isset($_POST['to']) ? $_POST['to'] : date('Y-m-d');
+	require_once('includes.php');
+	$query[] = 'SELECT `accounts`.`name` AS `company`, `companyCode`, `msa_media`.`name` AS `media`, `mediaCode`, SUM(`msa_campaign`.`amount`) AS `amount`';
+	$query[] = 'FROM `msa_campaign`';
+	$query[] = 'JOIN `accounts` ON (`msa_campaign`.`companyCode` = `accounts`.`code`)';
+	$query[] = 'JOIN `msa_media` ON (`msa_campaign`.`mediaCode` = `msa_media`.`code`)';
+	$query[] = 'WHERE `msa_campaign`.`amount` > 0';
+	$query[] = sprintf("AND `startDate` BETWEEN '%s' AND '%s'", $from, $to);
+	$query[] = 'GROUP BY `companyCode`, `mediaCode`';
+	$query[] = 'ORDER BY `amount` DESC';
+	$records = dbFetch(dbQuery(implode(' ', $query)));
+	if(!is_null($records)) {
+		foreach($records as $record){
+			$companyCode = $record['companyCode'];
+			$mediaCode = $record['mediaCode'];
+			$company = $record['company'];
+			$companies[$companyCode] = $company;
+			$outlets[$mediaCode] = $record['media'];
+			$spending[$companyCode][$mediaCode] = $record['amount'];
+		}
+	}
+?>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
@@ -46,10 +71,6 @@
 </head>
 <body>
 	<div class="header row">
-		<?php
-			$from = isset($_POST['from']) ? $_POST['from'] : date('Y-m-d', (time() - 14*24*60*60));
-			$to = isset($_POST['to']) ? $_POST['to'] : date('Y-m-d');
-		?>
 		<form action="filter.php" method="post" enctype="application/x-www-form-urlencoded">
 			<h1 class="column grid10of10" style="text-align:left;">Spending	by	Company	Between	<input type="text" size="10" name="from" value="<?php print $from?>" class="datepicker" placeholder="<?php print $from?>"/>	and	<input type="text" size="10" name="to" value="<?php print $to?>" class="datepicker" placeholder="<?php print $to?>"/> &#160; <button type="submit">FILTER</button></h1>
 		</form>
@@ -66,26 +87,8 @@
 		</ul>
 	</div>
 	<?php
-	require_once('includes.php');
-	$query[] = 'SELECT `accounts`.`name` AS `company`, `companyCode`, `msa_media`.`name` AS `media`, `mediaCode`, SUM(`msa_campaign`.`amount`) AS `amount`';
-	$query[] = 'FROM `msa_campaign`';
-	$query[] = 'JOIN `accounts` ON (`msa_campaign`.`companyCode` = `accounts`.`code`)';
-	$query[] = 'JOIN `msa_media` ON (`msa_campaign`.`mediaCode` = `msa_media`.`code`)';
-	$query[] = 'WHERE `msa_campaign`.`amount` > 0';
-	$query[] = sprintf("AND `startDate` BETWEEN '%s' AND '%s'", $from, $to);
-	$query[] = 'GROUP BY `companyCode`, `mediaCode`';
-	$query[] = 'ORDER BY `amount` DESC';
-	$records = dbFetch(dbQuery(implode(' ', $query)));
 	if(!is_null($records)) {
-		foreach($records as $record){
-			$companyCode = $record['companyCode'];
-			$mediaCode = $record['mediaCode'];
-			$company = $record['company'];
-			$companies[$companyCode] = $company;
-			$outlets[$mediaCode] = $record['media'];
-			$spending[$companyCode][$mediaCode] = $record['amount'];
-		}
-		?>
+	?>
 		<div class="report-content" style="width:<?php print (251 + (count($outlets) * 171))?>px;">
 			<div class="row header">
 				<div class="column">&nbsp;</div>
