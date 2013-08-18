@@ -11,6 +11,12 @@
 	$query[] = 'JOIN `msa_media` ON (`msa_campaign`.`mediaCode` = `msa_media`.`code`)';
 	$query[] = 'WHERE `msa_campaign`.`amount` > 0';
 	$query[] = sprintf("AND `startDate` BETWEEN '%s' AND '%s'", $from, $to);
+	if(!is_null($companyFilter)){
+		$query[] = sprintf("AND MATCH (`accounts`.`name`) AGAINST('%s')", mysqli_real_escape_string($dbConnection, $companyFilter));
+	}
+	if(!is_null($mediaFilter)){
+		$query[] = sprintf("AND MATCH (`msa_media`.`name`) AGAINST('%s')", mysqli_real_escape_string($dbConnection, $mediaFilter));
+	}
 	$query[] = 'GROUP BY `brandCode`, `mediaCode`';
 	$query[] = 'ORDER BY `amount` DESC';
 	$records = dbFetch(dbQuery(implode(' ', $query)));
