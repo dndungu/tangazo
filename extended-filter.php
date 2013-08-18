@@ -75,6 +75,9 @@
 	text-align: left;
 	border-left: 0 none;
 }
+.report-content .row:first-child .column {
+	border-left: 1px solid transparent;
+}
 </style>
 <title>Media Spending :: Company Report</title>
 <link rel="stylesheet" type="text/css" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css"/>
