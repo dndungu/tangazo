@@ -94,7 +94,7 @@ input[type="text"] {
 	padding:5px;
 }
 </style>
-<title>Media Spending :: Company Report</title>
+<title>Media Spending :: Extended Company Report</title>
 <link rel="stylesheet" type="text/css" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css"/>
 </head>
 <body>
