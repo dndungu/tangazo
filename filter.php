@@ -56,6 +56,7 @@
 		<ul class="column grid10of10">
 			<li><a href="index.php">Upload</a></li>
 			<li><a href="filter.php" class="current">Filter</a></li>
+			<li><a href="extended-filter.php">Extended Filter</a></li>
 			<li><a href="spending.php">Spending</a></li>
 			<li><a href="companies.php">Companies</a></li>
 			<li><a href="brands.php">Brands</a></li>
