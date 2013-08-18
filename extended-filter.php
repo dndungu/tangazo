@@ -78,6 +78,9 @@
 .report-content .row:first-child .column {
 	border-left: 1px solid transparent;
 }
+.company-row {
+	background-color:#EEE;
+}
 </style>
 <title>Media Spending :: Company Report</title>
 <link rel="stylesheet" type="text/css" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css"/>
@@ -124,7 +127,7 @@
 						<?php }?>
 					</div>					
 				<?php }?>
-				<div class="row">
+				<div class="row company-row">
 					<div class="column">
 						<strong>
 							<?php print strtolower($companies[$companyCode])?>
