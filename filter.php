@@ -74,6 +74,7 @@
 }
 input[type="text"] {
 	border:1px solid #CCC;
+	padding:5px;
 }
 </style>
 <title>Media Spending :: Company Report</title>
