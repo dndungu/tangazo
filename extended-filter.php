@@ -109,12 +109,14 @@
 				<?php }?>
 			</div>
 			<?php foreach($brands as $companyCode => $companyBrands){?>
+				<?php $companyTotal = 0?>
 				<?php foreach ($companyBrands as $brandCode => $brand){?>
 					<div class="row">
 						<div class="column">
 							<?php print strtolower($companyBrands[$brandCode])?>
 						</div>
 						<?php foreach($outlets as $mediaCode => $outlet){?>
+						<?php @$companyTotal += $spending[$brandCode][$mediaCode]?>
 						<div class="column" mediacode="<?php print $mediaCode?>">
 							<?php @print number_format($spending[$brandCode][$mediaCode])?>
 						</div>
@@ -129,7 +131,7 @@
 					</div>
 					<?php foreach($outlets as $mediaCode => $outlet){?>
 					<div class="column" mediacode="<?php print $mediaCode?>">
-						<?php //@print number_format($spending[$companyCode][$mediaCode])?>
+						<?php print number_format($companyTotal)?>
 					</div>
 					<?php }?>
 				</div>			
