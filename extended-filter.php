@@ -81,6 +81,10 @@
 .company-row {
 	background-color:#EEE;
 }
+input[type="text"] {
+	border:1px solid #CCC;
+	padding:5px;
+}
 </style>
 <title>Media Spending :: Company Report</title>
 <link rel="stylesheet" type="text/css" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css"/>
