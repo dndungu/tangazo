@@ -46,6 +46,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <link href="style.css" media="all" rel="stylesheet" type="text/css" />
+<link rel="stylesheet" type="text/css" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css"/>
 <style type="text/css">
 .report-content .row {
 	padding:0;
@@ -98,7 +99,6 @@ input[type="text"] {
 }
 </style>
 <title>Media Spending :: Extended Company Report</title>
-<link rel="stylesheet" type="text/css" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css"/>
 </head>
 <body>
 	<div class="header row">
