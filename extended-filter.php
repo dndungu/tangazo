@@ -75,8 +75,8 @@
 	text-align: right;
 	border-left: 1px solid #DDD;
 	overflow: hidden;
-	margin-bottom:-999px;
-	padding-bottom:999px;
+	margin-bottom:-99px;
+	padding-bottom:99px;
 }
 
 .report-content .column:first-child {
