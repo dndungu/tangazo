@@ -123,7 +123,9 @@
 				<?php }?>
 				<div class="row">
 					<div class="column">
-						<?php print strtolower($companies[$companyCode])?>
+						<strong>
+							<?php print strtolower($companies[$companyCode])?>
+						</strong>
 					</div>
 					<?php foreach($outlets as $mediaCode => $outlet){?>
 					<div class="column" mediacode="<?php print $mediaCode?>">
