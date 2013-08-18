@@ -93,6 +93,9 @@ input[type="text"] {
 	border:1px solid #CCC;
 	padding:5px;
 }
+.ui-datepicker-div {
+	font-size:.75em;
+}
 </style>
 <title>Media Spending :: Extended Company Report</title>
 <link rel="stylesheet" type="text/css" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css"/>
