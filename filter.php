@@ -72,7 +72,7 @@
 <body>
 	<div class="header row">
 		<form action="filter.php" method="post" enctype="application/x-www-form-urlencoded">
-			<h1 class="column grid10of10" style="text-align:left;">Spending	by	Company	Between	<input type="text" size="10" name="from" value="<?php print $from?>" class="datepicker" placeholder="<?php print $from?>"/>	and	<input type="text" size="10" name="to" value="<?php print $to?>" class="datepicker" placeholder="<?php print $to?>"/> &#160; <button type="submit">FILTER</button></h1>
+			<h1 class="column grid10of10" style="text-align:left;">Spending	by <input type="text" name="company" value="" placeholder="All companies"/> Between	<input type="text" size="10" name="from" value="<?php print $from?>" class="datepicker" placeholder="<?php print $from?>"/>	and	<input type="text" size="10" name="to" value="<?php print $to?>" class="datepicker" placeholder="<?php print $to?>"/> &#160; <button type="submit">FILTER</button></h1>
 		</form>
 		<ul class="column grid10of10">
 			<li><a href="index.php">Upload</a></li>
