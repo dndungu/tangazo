@@ -12,7 +12,7 @@
 	$query[] = 'WHERE `msa_campaign`.`amount` > 0';
 	$query[] = sprintf("AND `startDate` BETWEEN '%s' AND '%s'", mysqli_real_escape_string($dbConnection, $from), mysqli_real_escape_string($dbConnection, $to));
 	if(!is_null($companyFilter)){
-		$query[] = sprintf("MATCH (`accounts`.`name`) AGAINST('%s')", mysqli_real_escape_string($dbConnection, $companyFilter));
+		$query[] = sprintf("AND MATCH (`accounts`.`name`) AGAINST('%s')", mysqli_real_escape_string($dbConnection, $companyFilter));
 	}
 	$query[] = 'GROUP BY `companyCode`, `mediaCode`';
 	$query[] = 'ORDER BY `amount` DESC';
