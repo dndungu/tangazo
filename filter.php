@@ -13,10 +13,18 @@
 	$query[] = 'WHERE `msa_campaign`.`amount` > 0';
 	$query[] = sprintf("AND `startDate` BETWEEN '%s' AND '%s'", mysqli_real_escape_string($dbConnection, $from), mysqli_real_escape_string($dbConnection, $to));
 	if(!is_null($companyFilter)){
-		$query[] = sprintf("AND MATCH (`accounts`.`name`) AGAINST('%s')", mysqli_real_escape_string($dbConnection, $companyFilter));
+		$keywords = explode(',', $companyFilter);
+		foreach($keywords as $keyword){
+			$companyQuery[] = sprintf("MATCH (`accounts`.`name`) AGAINST('+%s*' IN BOOLEAN MODE)", mysqli_real_escape_string($dbConnection, trim($keyword)));
+		}
+		$query[] = sprintf("AND (%s)", implode(' OR ', $companyQuery));
 	}
 	if(!is_null($mediaFilter)){
-		$query[] = sprintf("AND MATCH (`msa_media`.`name`) AGAINST('%s')", mysqli_real_escape_string($dbConnection, $mediaFilter));
+		$keywords = explode(',', $mediaFilter);
+		foreach($keywords as $keyword){
+			$mediaQuery[] = sprintf("MATCH (`msa_media`.`name`) AGAINST('+%s*' IN BOOLEAN MODE)", mysqli_real_escape_string($dbConnection, trim($keyword)));
+		}
+		$query[] = sprintf("AND (%s)", implode(' OR ', $mediaQuery));
 	}
 	$query[] = 'GROUP BY `companyCode`, `mediaCode`';
 	$query[] = 'ORDER BY `amount` DESC';
