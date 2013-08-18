@@ -11,7 +11,19 @@
 	$query[] = sprintf("AND `startDate` BETWEEN '%s' AND '%s'", $from, $to);
 	$query[] = 'GROUP BY `brandCode`, `mediaCode`';
 	$query[] = 'ORDER BY `amount` DESC';
-	$records = dbFetch(dbQuery(implode(' ', $query)));		
+	$records = dbFetch(dbQuery(implode(' ', $query)));
+	if(!is_null($records)){
+		foreach($records as $record){
+			$companyCode = $record['companyCode'];
+			$brandCode = $record['brandCode'];
+			$mediaCode = $record['mediaCode'];
+			$company = $record['company'];
+			$companies[$companyCode] = $company;
+			$brands[$brandCode] = $record['brand'];
+			$outlets[$mediaCode] = $record['media'];
+			$spending[$brandCode][$mediaCode] = $record['amount'];
+		}
+	}		
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
@@ -78,16 +90,6 @@
 	</div>
 	<?php
 	if(!is_null($records)) {
-		foreach($records as $record){
-			$companyCode = $record['companyCode'];
-			$brandCode = $record['brandCode'];
-			$mediaCode = $record['mediaCode'];
-			$company = $record['company'];
-			$companies[$companyCode] = $company;
-			$brands[$brandCode] = $record['brand'];
-			$outlets[$mediaCode] = $record['media'];
-			$spending[$brandCode][$mediaCode] = $record['amount'];
-		}
 		?>
 		<div class="report-content" style="width:<?php print (251 + (count($outlets) * 171))?>px;">
 			<div class="row header">
@@ -111,7 +113,7 @@
 			</div>
 			<?php }?>
 		</div>
-	<?php }else{?>
+	<?php } else { ?>
 	<div class="report-content" style="width:100%;height:200px;text-align:left;">
 		<br/>
 		&#160; I did not find any records matching dates <?php print $from?> to <?php print $to?>
