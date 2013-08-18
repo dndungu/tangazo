@@ -58,6 +58,10 @@
 	display: block;
 }
 
+.report-content .header .column {
+	font-weight: bold;
+}
+
 .report-content .header .column,.report-content .column:first-child {
 	font-size: .75em;
 	color:#444;
