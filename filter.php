@@ -4,13 +4,14 @@
 	global $dbConnection;
 	$from = isset($_POST['from']) ? $_POST['from'] : date('Y-m-d', (time() - 14*24*60*60));
 	$to = isset($_POST['to']) ? $_POST['to'] : date('Y-m-d');
+	$companyFilter = isset($_POST['company']) && strlen(trim($_POST['company'])) ? trim($_POST['company']) : null; 
 	$query[] = 'SELECT `accounts`.`name` AS `company`, `companyCode`, `msa_media`.`name` AS `media`, `mediaCode`, SUM(`msa_campaign`.`amount`) AS `amount`';
 	$query[] = 'FROM `msa_campaign`';
 	$query[] = 'JOIN `accounts` ON (`msa_campaign`.`companyCode` = `accounts`.`code`)';
 	$query[] = 'JOIN `msa_media` ON (`msa_campaign`.`mediaCode` = `msa_media`.`code`)';
 	$query[] = 'WHERE `msa_campaign`.`amount` > 0';
-	if(isset($_POST['company']) && strlen(trim($_POST['company']))){
-		$query[] = sprintf("MATCH `accounts`.`name` AGAINST('%s')", mysqli_real_escape_string($dbConnection, $_POST['company']));
+	if(!is_null($companyFilter)){
+		$query[] = sprintf("MATCH `accounts`.`name` AGAINST('%s')", mysqli_real_escape_string($dbConnection, $companyFilter));
 	}
 	$query[] = sprintf("AND `startDate` BETWEEN '%s' AND '%s'", mysqli_real_escape_string($dbConnection, $from), mysqli_real_escape_string($dbConnection, $to));
 	$query[] = 'GROUP BY `companyCode`, `mediaCode`';
