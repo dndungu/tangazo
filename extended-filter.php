@@ -18,6 +18,7 @@
 	font-weight: bold;
 	font-size: .75em;
 	color:#444;
+	text-transform:capitalize;
 }
 
 .report-content .row {
