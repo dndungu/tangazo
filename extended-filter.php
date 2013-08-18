@@ -27,7 +27,7 @@
 			$mediaCode = $record['mediaCode'];
 			$company = $record['company'];
 			$companies[$companyCode] = $company;
-			$brands[$brandCode] = $record['brand'];
+			$brands[$companyCode][$brandCode] = $record['brand'];
 			$outlets[$mediaCode] = $record['media'];
 			$spending[$brandCode][$mediaCode] = $record['amount'];
 		}
@@ -108,17 +108,29 @@
 				</div>
 				<?php }?>
 			</div>
-			<?php foreach($brands as $brandCode => $brand){?>
-			<div class="row">
-				<div class="column">
-					<?php print strtolower($brand)?>
-				</div>
-				<?php foreach($outlets as $mediaCode => $outlet){?>
-				<div class="column" mediacode="<?php print $mediaCode?>">
-					<?php @print number_format($spending[$companyCode][$mediaCode])?>
-				</div>
+			<?php foreach($brands as $companyCode => $companyBrands){?>
+				<?php foreach ($companyBrands as $brandCode => $brand){?>
+					<div class="row">
+						<div class="column">
+							<?php print strtolower($companyBrands[$brandCode])?>
+						</div>
+						<?php foreach($outlets as $mediaCode => $outlet){?>
+						<div class="column" mediacode="<?php print $mediaCode?>">
+							<?php @print number_format($spending[$companyCode][$brandCode][$mediaCode])?>
+						</div>
+						<?php }?>
+					</div>					
 				<?php }?>
-			</div>
+				<div class="row">
+					<div class="column">
+						<?php print strtolower($companies[$companyCode])?>
+					</div>
+					<?php foreach($outlets as $mediaCode => $outlet){?>
+					<div class="column" mediacode="<?php print $mediaCode?>">
+						<?php //@print number_format($spending[$companyCode][$mediaCode])?>
+					</div>
+					<?php }?>
+				</div>			
 			<?php }?>
 		</div>
 	<?php } else { ?>
