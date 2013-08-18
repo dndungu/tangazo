@@ -67,7 +67,7 @@
 	</div>
 	<?php
 	require_once('includes.php');
-	$query[] = 'SELECT `accounts`.`name` AS `company`, `companyCode`, `msa_brand`.`name` AS `brand`, `brandCode`, `msa_media`.`name` AS `media`, `mediaCode`, SUM(`msa_campaign`.`amount`) AS `amount`';
+	$query[] = 'SELECT `accounts`.`name` AS `company`, `msa_campaign`.`companyCode`, `msa_brand`.`name` AS `brand`, `brandCode`, `msa_media`.`name` AS `media`, `mediaCode`, SUM(`msa_campaign`.`amount`) AS `amount`';
 	$query[] = 'FROM `msa_campaign`';
 	$query[] = 'JOIN `accounts` ON (`msa_campaign`.`companyCode` = `accounts`.`code`)';
 	$query[] = 'JOIN `msa_brand` ON (`msa_campaign`.`brandCode` = `msa_brand`.`code`)';
