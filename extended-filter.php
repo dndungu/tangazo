@@ -102,7 +102,7 @@
 			<?php foreach($brands as $brandCode => $brand){?>
 			<div class="row">
 				<div class="column">
-					<?php print $brand?>
+					<?php print strtolower($brand)?>
 				</div>
 				<?php foreach($outlets as $mediaCode => $outlet){?>
 				<div class="column" mediacode="<?php print $mediaCode?>">
