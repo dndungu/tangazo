@@ -72,7 +72,7 @@
 	$query[] = 'JOIN `msa_media` ON (`msa_campaign`.`mediaCode` = `msa_media`.`code`)';
 	$query[] = 'WHERE `msa_campaign`.`amount` > 0';
 	$query[] = sprintf("AND `startDate` BETWEEN '%s' AND '%s'", $from, $to);
-	$query[] = 'GROUP BY `companyCode`, `mediaCode`';
+	$query[] = 'GROUP BY `msa_campaign`.`companyCode`, `msa_campaign`.`mediaCode`';
 	$query[] = 'ORDER BY `amount` DESC';
 	$records = dbFetch(dbQuery(implode(' ', $query)));
 	if(!is_null($records)) {
