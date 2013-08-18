@@ -90,7 +90,6 @@
 				<div class="column">&nbsp;</div>
 				<?php foreach($outlets as $mediaCode => $outlet){?>
 				<div class="column" mediacode="<?php print $mediaCode?>">
-					<br/>
 					<?php print $outlet?> [<a href="javascript:removeColumn('<?php print $mediaCode?>')" title="Remove this column">X</a>]
 				</div>
 				<?php }?>
