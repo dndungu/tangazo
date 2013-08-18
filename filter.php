@@ -65,8 +65,8 @@
 	text-align: left;
 	border-left: 0 none;
 }
-input {
-	border:1px inset #CCC;
+input[type="text"] {
+	border:1px solid #CCC;
 }
 </style>
 <title>Media Spending :: Company Report</title>
