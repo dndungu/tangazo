@@ -106,7 +106,7 @@ input[type="text"] {
 	?>
 		<div class="report-content" style="width:<?php print (251 + (count($outlets) * 171))?>px;">
 			<div class="row header">
-				<div class="column">&nbsp;</div>
+				<div class="column"><strong>Companies</strong></div>
 				<?php foreach($outlets as $mediaCode => $outlet){?>
 				<div class="column" mediacode="<?php print $mediaCode?>">
 					<?php print $outlet?> [<a href="javascript:removeColumn('<?php print $mediaCode?>')" title="Remove this column">X</a>]
