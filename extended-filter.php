@@ -48,7 +48,7 @@
 <body>
 	<div class="header row">
 		<?php
-			print_r($_POST);die();
+// 			print_r($_POST);die();
 			$from = isset($_POST['from']) ? $_POST['from'] : date('Y-m-d', (time() - 14*24*60*60));
 			$to = isset($_POST['to']) ? $_POST['to'] : date('Y-m-d');
 		?>
