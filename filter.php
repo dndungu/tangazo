@@ -84,9 +84,11 @@
 	text-align: left;
 	border-left: 0 none;
 }
+button,input[type="text"] {
+	padding:5px;
+}
 input[type="text"] {
 	border:1px solid #CCC;
-	padding:5px;
 }
 .ui-datepicker-div {
 	font-size:.75em;
