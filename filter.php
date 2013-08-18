@@ -101,7 +101,7 @@
 			<?php foreach($companies as $companyCode => $company){?>
 			<div class="row">
 				<div class="column">
-					<?php print $company?>
+					<?php print strtolower($company)?>
 				</div>
 				<?php foreach($outlets as $mediaCode => $outlet){?>
 				<div class="column" mediacode="<?php print $mediaCode?>">
