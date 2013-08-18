@@ -117,7 +117,7 @@
 	<script type="text/javascript" src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
 	<script>
 		$(function() {
-			$( ".datepicker" ).datepicker();
+			$( ".datepicker" ).datepicker({altFormat: "yyyy-mm-dd"});
 		});
 	</script>	
 </body>
