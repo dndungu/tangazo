@@ -1,3 +1,18 @@
+<?php
+	$from = isset($_POST['from']) ? $_POST['from'] : date('Y-m-d', (time() - 14*24*60*60));
+	$to = isset($_POST['to']) ? $_POST['to'] : date('Y-m-d');
+	require_once('includes.php');
+	$query[] = 'SELECT `accounts`.`name` AS `company`, `msa_campaign`.`companyCode`, `msa_brand`.`name` AS `brand`, `brandCode`, `msa_media`.`name` AS `media`, `mediaCode`, SUM(`msa_campaign`.`amount`) AS `amount`';
+	$query[] = 'FROM `msa_campaign`';
+	$query[] = 'JOIN `accounts` ON (`msa_campaign`.`companyCode` = `accounts`.`code`)';
+	$query[] = 'JOIN `msa_brand` ON (`msa_campaign`.`brandCode` = `msa_brand`.`code`)';
+	$query[] = 'JOIN `msa_media` ON (`msa_campaign`.`mediaCode` = `msa_media`.`code`)';
+	$query[] = 'WHERE `msa_campaign`.`amount` > 0';
+	$query[] = sprintf("AND `startDate` BETWEEN '%s' AND '%s'", $from, $to);
+	$query[] = 'GROUP BY `brandCode`, `mediaCode`';
+	$query[] = 'ORDER BY `amount` DESC';
+	$records = dbFetch(dbQuery(implode(' ', $query)));		
+?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
@@ -46,11 +61,6 @@
 </head>
 <body>
 	<div class="header row">
-		<?php
-			print_r($_POST);die();
-			$from = isset($_POST['from']) ? $_POST['from'] : date('Y-m-d', (time() - 14*24*60*60));
-			$to = isset($_POST['to']) ? $_POST['to'] : date('Y-m-d');
-		?>
 		<form action="extended-filter.php" method="post" enctype="application/x-www-form-urlencoded">
 			<h1 class="column grid10of10" style="text-align:left;">Spending	by	Company	Between	<input type="text" size="10" name="from" value="<?php print $from?>" class="datepicker" placeholder="<?php print $from?>"/>	and	<input type="text" size="10" name="to" value="<?php print $to?>" class="datepicker" placeholder="<?php print $to?>"/> &#160; <button type="submit" name="submit" value="filter">FILTER</button></h1>
 		</form>
@@ -67,17 +77,6 @@
 		</ul>
 	</div>
 	<?php
-	require_once('includes.php');
-	$query[] = 'SELECT `accounts`.`name` AS `company`, `msa_campaign`.`companyCode`, `msa_brand`.`name` AS `brand`, `brandCode`, `msa_media`.`name` AS `media`, `mediaCode`, SUM(`msa_campaign`.`amount`) AS `amount`';
-	$query[] = 'FROM `msa_campaign`';
-	$query[] = 'JOIN `accounts` ON (`msa_campaign`.`companyCode` = `accounts`.`code`)';
-	$query[] = 'JOIN `msa_brand` ON (`msa_campaign`.`brandCode` = `msa_brand`.`code`)';
-	$query[] = 'JOIN `msa_media` ON (`msa_campaign`.`mediaCode` = `msa_media`.`code`)';
-	$query[] = 'WHERE `msa_campaign`.`amount` > 0';
-	$query[] = sprintf("AND `startDate` BETWEEN '%s' AND '%s'", $from, $to);
-	$query[] = 'GROUP BY `brandCode`, `mediaCode`';
-	$query[] = 'ORDER BY `amount` DESC';
-	$records = dbFetch(dbQuery(implode(' ', $query)));
 	if(!is_null($records)) {
 		foreach($records as $record){
 			$companyCode = $record['companyCode'];
