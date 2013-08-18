@@ -15,7 +15,6 @@
 }
 
 .report-content .header .column,.report-content .column:first-child {
-	font-weight: bold;
 	font-size: .75em;
 	color:#444;
 	text-transform:capitalize;
