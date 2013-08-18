@@ -29,7 +29,7 @@
 			$companies[$companyCode] = $company;
 			$brands[$companyCode][$brandCode] = $record['brand'];
 			$outlets[$mediaCode] = $record['media'];
-			$spending[$brandCode][$mediaCode] = $record['amount'];
+			$spending[$companyCode][$brandCode][$mediaCode] = $record['amount'];
 		}
 	}		
 ?>
@@ -109,16 +109,14 @@
 				<?php }?>
 			</div>
 			<?php foreach($brands as $companyCode => $companyBrands){?>
-				<?php $companyTotal = 0?>
 				<?php foreach ($companyBrands as $brandCode => $brand){?>
 					<div class="row">
 						<div class="column">
 							<?php print strtolower($companyBrands[$brandCode])?>
 						</div>
 						<?php foreach($outlets as $mediaCode => $outlet){?>
-						<?php @$companyTotal += $spending[$brandCode][$mediaCode]?>
 						<div class="column" mediacode="<?php print $mediaCode?>">
-							<?php @print number_format($spending[$brandCode][$mediaCode])?>
+							<?php @print number_format($spending[$companyCode][$brandCode][$mediaCode])?>
 						</div>
 						<?php }?>
 					</div>					
@@ -131,6 +129,14 @@
 					</div>
 					<?php foreach($outlets as $mediaCode => $outlet){?>
 					<div class="column" mediacode="<?php print $mediaCode?>">
+						<?php
+							$companyTotal = 0;
+							foreach($spending[$companyCode] as $companyBrands){
+								foreach($companyBrands[$mediaCode] as $amount){
+									$companyTotal += $amount;
+								}
+							}
+						?>
 						<?php print number_format($companyTotal)?>
 					</div>
 					<?php }?>
