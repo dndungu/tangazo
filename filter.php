@@ -1,13 +1,18 @@
 <?php
+	require_once('includes.php');
+	dbConnect();
+	global $dbConnection;
 	$from = isset($_POST['from']) ? $_POST['from'] : date('Y-m-d', (time() - 14*24*60*60));
 	$to = isset($_POST['to']) ? $_POST['to'] : date('Y-m-d');
-	require_once('includes.php');
 	$query[] = 'SELECT `accounts`.`name` AS `company`, `companyCode`, `msa_media`.`name` AS `media`, `mediaCode`, SUM(`msa_campaign`.`amount`) AS `amount`';
 	$query[] = 'FROM `msa_campaign`';
 	$query[] = 'JOIN `accounts` ON (`msa_campaign`.`companyCode` = `accounts`.`code`)';
 	$query[] = 'JOIN `msa_media` ON (`msa_campaign`.`mediaCode` = `msa_media`.`code`)';
 	$query[] = 'WHERE `msa_campaign`.`amount` > 0';
-	$query[] = sprintf("AND `startDate` BETWEEN '%s' AND '%s'", $from, $to);
+	if(isset($_POST['company']) && strlen(trim($_POST['company']))){
+		$query[] = sprintf("MATCH `accounts`.`name` AGAINST('%s')", mysql_real_escape_String($dbConnection, $_POST['company']));
+	}
+	$query[] = sprintf("AND `startDate` BETWEEN '%s' AND '%s'", mysql_real_escape_String($dbConnection, $from), mysql_real_escape_String($dbConnection, $to));
 	$query[] = 'GROUP BY `companyCode`, `mediaCode`';
 	$query[] = 'ORDER BY `amount` DESC';
 	$records = dbFetch(dbQuery(implode(' ', $query)));
