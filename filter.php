@@ -110,7 +110,7 @@ input[type="text"] {
 			<?php foreach($companies as $companyCode => $company){?>
 			<div class="row">
 				<div class="column">
-					<?php print strtolower($company)?>
+					<?php print ucwords($company)?>
 				</div>
 				<?php foreach($outlets as $mediaCode => $outlet){?>
 				<div class="column" mediacode="<?php print $mediaCode?>">
