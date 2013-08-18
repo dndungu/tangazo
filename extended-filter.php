@@ -1,7 +1,9 @@
 <?php
+	require_once('includes.php');
 	$from = isset($_POST['from']) ? $_POST['from'] : date('Y-m-d', (time() - 14*24*60*60));
 	$to = isset($_POST['to']) ? $_POST['to'] : date('Y-m-d');
-	require_once('includes.php');
+	$companyFilter = isset($_POST['company']) && strlen(trim($_POST['company'])) ? trim($_POST['company']) : null;
+	$mediaFilter = isset($_POST['media']) && strlen(trim($_POST['media'])) ? trim($_POST['media']) : null;
 	$query[] = 'SELECT `accounts`.`name` AS `company`, `msa_campaign`.`companyCode`, `msa_brand`.`name` AS `brand`, `brandCode`, `msa_media`.`name` AS `media`, `mediaCode`, SUM(`msa_campaign`.`amount`) AS `amount`';
 	$query[] = 'FROM `msa_campaign`';
 	$query[] = 'JOIN `accounts` ON (`msa_campaign`.`companyCode` = `accounts`.`code`)';
@@ -74,7 +76,7 @@
 <body>
 	<div class="header row">
 		<form action="extended-filter.php" method="post" enctype="application/x-www-form-urlencoded">
-			<h1 class="column grid10of10" style="text-align:left;">Spending	by	Company	Between	<input type="text" size="10" name="from" value="<?php print $from?>" class="datepicker" placeholder="<?php print $from?>"/>	and	<input type="text" size="10" name="to" value="<?php print $to?>" class="datepicker" placeholder="<?php print $to?>"/> &#160; <button type="submit" name="submit" value="filter">FILTER</button></h1>
+			<h1 style="text-align:left;">Spending	by <input type="text" size="16" name="company" value="<?php print $companyFilter?>" placeholder="all companies"/> on <input type="text" name="media" value="<?php print $mediaFilter?>" placeholder="all media outlets"/> between	<input type="text" size="10" name="from" value="<?php print $from?>" class="datepicker" placeholder="<?php print $from?>"/>	and	<input type="text" size="10" name="to" value="<?php print $to?>" class="datepicker" placeholder="<?php print $to?>"/> &#160; <button type="submit">FILTER</button></h1>
 		</form>
 		<ul class="column grid10of10">
 			<li><a href="index.php">Upload</a></li>
