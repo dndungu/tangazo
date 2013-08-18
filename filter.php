@@ -89,8 +89,8 @@
 			<div class="row header">
 				<div class="column">&nbsp;</div>
 				<?php foreach($outlets as $mediaCode => $outlet){?>
-				<div class="column" mediaCode="<?php print $mediaCode?>">
-					<?php print $outlet?>
+				<div class="column" mediacode="<?php print $mediaCode?>">
+					<?php print $outlet?> [<a href="javascript:removeColumn('<?php print $mediaCode?>')"></a>]
 				</div>
 				<?php }?>
 			</div>
@@ -100,7 +100,7 @@
 					<?php print $company?>
 				</div>
 				<?php foreach($outlets as $mediaCode => $outlet){?>
-				<div class="column">
+				<div class="column" mediacode="<?php print $mediaCode?>">
 					<?php @print number_format($spending[$companyCode][$mediaCode])?>
 				</div>
 				<?php }?>
@@ -119,6 +119,9 @@
 		$(function() {
 			$( ".datepicker" ).datepicker({dateFormat : "yy-mm-dd"});
 		});
+		function removeColumn(mediaCode){
+			$('div[mediaCode="' + mediaCode + '"]').remove();
+		}
 	</script>	
 </body>
 </html>
