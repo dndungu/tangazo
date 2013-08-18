@@ -138,7 +138,9 @@
 								@$companyTotal += $mediaSpending[$mediaCode];
 							}
 						?>
-						<?php print number_format($companyTotal)?>
+						<strong>
+							<?php print number_format($companyTotal)?>
+						</strong>
 					</div>
 					<?php }?>
 				</div>			
