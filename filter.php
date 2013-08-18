@@ -10,9 +10,9 @@
 	$query[] = 'JOIN `msa_media` ON (`msa_campaign`.`mediaCode` = `msa_media`.`code`)';
 	$query[] = 'WHERE `msa_campaign`.`amount` > 0';
 	if(isset($_POST['company']) && strlen(trim($_POST['company']))){
-		$query[] = sprintf("MATCH `accounts`.`name` AGAINST('%s')", mysql_real_escape_String($dbConnection, $_POST['company']));
+		$query[] = sprintf("MATCH `accounts`.`name` AGAINST('%s')", mysqli_real_escape_string($dbConnection, $_POST['company']));
 	}
-	$query[] = sprintf("AND `startDate` BETWEEN '%s' AND '%s'", mysql_real_escape_String($dbConnection, $from), mysql_real_escape_String($dbConnection, $to));
+	$query[] = sprintf("AND `startDate` BETWEEN '%s' AND '%s'", mysqli_real_escape_string($dbConnection, $from), mysqli_real_escape_string($dbConnection, $to));
 	$query[] = 'GROUP BY `companyCode`, `mediaCode`';
 	$query[] = 'ORDER BY `amount` DESC';
 	$records = dbFetch(dbQuery(implode(' ', $query)));
