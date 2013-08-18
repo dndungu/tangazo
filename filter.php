@@ -42,6 +42,7 @@
 }
 </style>
 <title>Media Spending :: Company Report</title>
+<link rel="stylesheet" type="text/css" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css"/>
 </head>
 <body>
 	<div class="header row">
@@ -110,6 +111,7 @@
 		&#160; I did not find any records matching dates <?php print $from?> to <?php print $to?>
 	</div>
 	<?php }?>
-	<script type="text/javascript" src="js/jquery-1.8.2.min.js"></script>
+	<script type="text/javascript" src="http://code.jquery.com/jquery-1.9.1.js"></script>
+	<script type="text/javascript" src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
 </body>
 </html>
