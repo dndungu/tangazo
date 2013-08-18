@@ -29,9 +29,6 @@
 			$companies[$companyCode] = $company;
 			$brands[$companyCode][$brandCode] = $record['brand'];
 			$outlets[$mediaCode] = $record['media'];
-			if(is_null($record['amount'])){
-				print_r($record);die();
-			}
 			$spending[$companyCode][$brandCode][$mediaCode] = $record['amount'];
 		}
 	}		
