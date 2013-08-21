@@ -47,6 +47,11 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <link href="style.css" media="all" rel="stylesheet" type="text/css" />
 <style type="text/css">
+.header {
+	display:block;
+	width:100%;
+	float:left;
+}
 .report-content .row {
 	padding:0;
 	margin:0;
@@ -118,7 +123,7 @@ input[type="text"] {
 	if(!is_null($records)) {
 	?>
 		<div class="report-content" style="width:<?php print (251 + (count($outlets) * 171))?>px;">
-			<div class="row header">
+			<div class="header">
 				<div class="row">
 					<div class="column"><strong>Companies</strong></div>
 					<?php foreach($outlets as $mediaCode => $outlet){?>

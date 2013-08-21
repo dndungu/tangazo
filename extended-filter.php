@@ -48,6 +48,11 @@
 <link href="style.css" media="all" rel="stylesheet" type="text/css" />
 <link rel="stylesheet" type="text/css" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css"/>
 <style type="text/css">
+.header {
+	display:block;
+	width:100%;
+	float:left;
+}
 .report-content .row {
 	padding:0;
 	margin:0;
@@ -127,7 +132,7 @@ input[type="text"] {
 	if(!is_null($records)) {
 		?>
 		<div class="report-content" style="width:<?php print (251 + (count($outlets) * 171))?>px;">
-			<div class="row header">
+			<div class="header">
 				<div class="column"><strong>Brands</strong></div>
 				<?php foreach($outlets as $mediaCode => $outlet){?>
 				<div class="column" mediacode="<?php print $mediaCode?>">
