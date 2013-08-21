@@ -132,6 +132,16 @@ input[type="text"] {
 				<?php foreach($outlets as $mediaCode => $outlet){?>
 				<div class="column" mediacode="<?php print $mediaCode?>">
 					<?php print $outlet?> [<a href="javascript:removeColumn('<?php print $mediaCode?>')" title="Remove this column">X</a>]
+					<br/>
+					<?php
+						$mediaTotal = 0;
+						foreach ($spending as $companySpending){
+							foreach($companySpending as $brandSpending){
+								$mediaTotal += $brandSpending[$mediaCode];
+							}
+						}
+						print number_format($mediaTotal);
+					?>
 				</div>
 				<?php }?>
 			</div>
