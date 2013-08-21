@@ -133,22 +133,30 @@ input[type="text"] {
 		?>
 		<div class="report-content" style="width:<?php print (251 + (count($outlets) * 171))?>px;">
 			<div class="header">
-				<div class="column"><strong>Brands</strong></div>
-				<?php foreach($outlets as $mediaCode => $outlet){?>
-				<div class="column" mediacode="<?php print $mediaCode?>">
-					<?php print $outlet?> [<a href="javascript:removeColumn('<?php print $mediaCode?>')" title="Remove this column">X</a>]
-					<br/>
-					<?php
-						$mediaTotal = 0;
-						foreach ($spending as $companySpending){
-							foreach($companySpending as $brandSpending){
-								@$mediaTotal += $brandSpending[$mediaCode];
-							}
-						}
-						print number_format($mediaTotal);
-					?>
+				<div class="row">
+					<div class="column"><strong>Brands</strong></div>
+					<?php foreach($outlets as $mediaCode => $outlet){?>
+						<div class="column" mediacode="<?php print $mediaCode?>">
+							<?php print $outlet?> [<a href="javascript:removeColumn('<?php print $mediaCode?>')" title="Remove this column">X</a>]
+						</div>
+					<?php }?>
 				</div>
-				<?php }?>
+				<div class="row">
+					<div class="column">&#160;</div>
+					<?php foreach($outlets as $mediaCode => $outlet){?>
+						<div class="column" mediacode="<?php print $mediaCode?>">
+							<?php
+								$mediaTotal = 0;
+								foreach ($spending as $companySpending){
+									foreach($companySpending as $brandSpending){
+										@$mediaTotal += $brandSpending[$mediaCode];
+									}
+								}
+								print number_format($mediaTotal);
+							?>
+						</div>
+					<?php }?>
+				</div>
 			</div>
 			<?php foreach($brands as $companyCode => $companyBrands){?>
 				<?php foreach ($companyBrands as $brandCode => $brand){?>
