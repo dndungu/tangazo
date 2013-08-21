@@ -137,7 +137,7 @@ input[type="text"] {
 						$mediaTotal = 0;
 						foreach ($spending as $companySpending){
 							foreach($companySpending as $brandSpending){
-								$mediaTotal += $brandSpending[$mediaCode];
+								@$mediaTotal += $brandSpending[$mediaCode];
 							}
 						}
 						print number_format($mediaTotal);

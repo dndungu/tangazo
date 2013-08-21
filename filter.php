@@ -127,7 +127,7 @@ input[type="text"] {
 					<?php
 						$mediaTotal = 0;
 						foreach ($spending as $companySpending){
-							$mediaTotal += $companySpending[$mediaCode];
+							@$mediaTotal += $companySpending[$mediaCode];
 						}
 						print number_format($mediaTotal);
 					?>
